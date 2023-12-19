@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: app_production
-  username: app
-  password: <%= ENV["APP_DATABASE_PASSWORD"] %>
+  database: ai_coten_db
+  username: ai_coten_db_user
+  url: <%= ENV['DATABASE_URL'] %>

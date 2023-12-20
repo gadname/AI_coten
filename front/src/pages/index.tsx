@@ -9,8 +9,16 @@ import Link from 'next/link';
 
 
 export default function Home() {
-  let typewriterText = "AIで、創る。";
+  const typewriterText = "AIで、創る。";
   const { data: session, status } = useSession()
+
+  const handleImageClick = () => {
+    if (status === 'authenticated') {
+      signOut();
+    } else {
+      signIn();
+    }
+  }
 
   return (
     <>
@@ -34,12 +42,7 @@ export default function Home() {
           left: '50%',
           
       }}  
-          onClick={() => {if (status === 'authenticated') {
-            signOut();
-          } else {
-            signIn();
-          }
-          }}
+          onClick={handleImageClick}
           />
         
         </div>

@@ -31,8 +31,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./front:/app
-    command: yarn dev -p 4000
+    command: 'yarn dev'
     ports:
-      - "8000:4000"
+      - "8000:3000"
 volumes:
   postgres_data:

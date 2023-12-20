@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  post 'auth/:provider/callback', to: 'api/v1/users#create'
+  delete 'users/:email', to: 'api/v1/users#destroy', constraints: { email: %r{[^/]+} }
+  
+  namespace :api do
+    namespace :v1 do
+      resources :posts
+      
+    end
+  end
 end

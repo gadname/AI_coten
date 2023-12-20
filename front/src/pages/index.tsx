@@ -49,6 +49,9 @@ export default function Home() {
       ) : (
         <Login />
       )}
+       <Logout />
+       <DeleteUser/>
+      
     </div>
     
       <Link href="/home">

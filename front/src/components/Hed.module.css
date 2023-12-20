@@ -1,0 +1,40 @@
+.header {
+  background-color: rgba(245, 245, 245, 0); 
+  padding: 20px;
+  text-align: left;
+  position: fixed;  
+  top: 0;  
+  left: 0;
+  width: 100%;  
+  z-index: 1000;  
+  
+  border-radius: 5px;
+}
+
+.navLink {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: background 0.2s;
+}
+.navLink:hover {
+  background: #eee;
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.name {
+  position: absolute;
+  top: 10px;
+  left: 50px;
+  width: auto;
+  height: 250px;
+}

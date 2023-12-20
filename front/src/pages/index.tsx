@@ -31,7 +31,7 @@ export default function Home() {
       {status === 'authenticated' ? (
         <div>
           {/* <p>{session.user.name}</p> */}
-          <img src={session.user.image} 
+          <img src={session.user.image || 'default-image-url.jpg'} 
           alt='' className="login"  
         style={{ 
           width: '50px', 
@@ -50,7 +50,6 @@ export default function Home() {
         <Login />
       )}
        <Logout />
-       
        <DeleteUser/>
       
     </div>

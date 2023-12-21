@@ -25,7 +25,7 @@ type Props = {
 };
 
 export async function getStaticProps() { //Props = ページごとに異なるPropsを設定できる
-  const res = await fetch('http://localhost:3000/api/v1/posts');
+  const res = await fetch('https://ai-coten.onrender.com/api/v1/posts');
   const posts: Post[] = await res.json();
 
   return {

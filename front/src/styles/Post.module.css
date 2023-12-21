@@ -1,0 +1,22 @@
+/* Post.module.css */
+.container {
+  display: flex;
+  justify-content: center;
+  }
+  
+  .title {
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 0.5em;
+    text-align: center;
+  }
+  
+  
+  .content {
+    font-size: 1.2em;
+    line-height: 1.6em;
+    text-align: center;
+  }
+  .deleteButton {
+    color: #e3e3e3;
+  }

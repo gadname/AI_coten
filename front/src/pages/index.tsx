@@ -1,8 +1,6 @@
 import React from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Login from '../components/Login'
-import Logout from '../components/logout'
-import DeleteUser from '../components/deleteUser'
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Link from 'next/link';

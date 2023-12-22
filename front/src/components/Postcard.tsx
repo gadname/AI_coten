@@ -5,18 +5,18 @@ import { useRouter } from 'next/router';
 import React, { useState,useEffect } from 'react';
 
 
-export default function Postcard({ post, handleDelete }) {
+export default function Postcard({ post, handleDelete }: { post: any, handleDelete: () => void }) {
   const router = useRouter();
   const [isStarred, setIsStarred] = useState(false); 
   const [clickCount, setClickCount] = useState(0);
   const [comment, setComment] = useState(''); // Add this line
-  const [comments, setComments] = useState([]); // Add this line
+  const [comments, setComments] = useState<string[]>([]);
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
     const storedCount = Number(localStorage.getItem(`clickCount-${post.id}`)) || 0;
     const storedStarred = localStorage.getItem(`isStarred-${post.id}`) === 'true';
-    const storedComments = JSON.parse(localStorage.getItem(`comments-${post.id}`)) || [];
+    const storedComments = JSON.parse(localStorage.getItem(`comments-${post.id}`) || '[]');
     setClickCount(storedCount);
     setIsStarred(storedStarred);
     setComments(storedComments);
@@ -44,7 +44,7 @@ export default function Postcard({ post, handleDelete }) {
     localStorage.setItem(`comments-${post.id}`, JSON.stringify(newComments));
   };
 
-  const handleCommentDelete = (index) => { // Add this function
+  const handleCommentDelete = (index: number) => { // Add this function
     const newComments = [...comments];
     newComments.splice(index, 1);
     setComments(newComments);

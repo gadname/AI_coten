@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/drei": "^9.92.6",
     "axios": "^1.6.2",
+    "localforage": "^1.10.0",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "@types/node": "^20",

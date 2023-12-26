@@ -1,6 +1,7 @@
 .header {
-  background-color: rgba(245, 245, 245, 0); 
-  padding: 20px;
+  background-color: rgba(240, 240, 240, 0.5); /* 半透明に設定 */
+  padding: 40px;
+  margin: 0px;
   text-align: left;
   position: fixed;  
   top: 0;  
@@ -12,9 +13,9 @@
 }
 
 .navLink {
-  margin: 0 10px;
+  margin: 0 0px;
   text-decoration: none;
-  color: #333;
+  color: #7c2424;
   padding: 10px 15px;
   border-radius: 3px;
   transition: background 0.2s;
@@ -36,5 +37,5 @@
   top: 10px;
   left: 50px;
   width: auto;
-  height: 250px;
+  height: 100px;
 }

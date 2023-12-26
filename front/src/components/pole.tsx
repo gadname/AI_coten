@@ -1,6 +1,6 @@
 'use client'
 import { useTexture } from '@react-three/drei';
-
+import React from 'react';
 import * as THREE from 'three'
 import { useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three'

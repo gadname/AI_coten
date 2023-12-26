@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react';
 // 壁
 const Wall = () => {
   return (

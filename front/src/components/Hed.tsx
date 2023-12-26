@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styles from './Hed.module.css';
-
+import React from 'react';
 export default function Hed() {
   return (
     <header className={styles.header}>

@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from '../styles/MyComponent.module.css';  // CSS モジュールをインポート
 import axios from 'axios';
 import { useRouter } from 'next/router';

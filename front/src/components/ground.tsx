@@ -1,7 +1,7 @@
 'use client'
 import { extend } from '@react-three/fiber';
 import { MeshReflectorMaterial } from '@react-three/drei';
-
+import React from 'react';
 extend({ MeshReflectorMaterial });
 import { useLoader } from '@react-three/fiber'
 import { TextureLoader } from 'three'

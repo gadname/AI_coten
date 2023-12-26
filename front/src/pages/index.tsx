@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Login from '../components/Login'
-
+import Logout from '../components/Logout'
+import DeleteUser from '../components/DeleteUser'
 import Header from '../components/Header';
 import Main from '../components/Main';
 import Link from 'next/link';
@@ -22,7 +23,7 @@ export default function Home() {
       {status === 'authenticated' ? (
         <div>
           {/* <p>{session.user.name}</p> */}
-          <img src={session.user?.image || ''} 
+          <img src={session?.user?.image || ''}
           alt='' className="login"  
         style={{ 
           width: '50px', 
@@ -47,12 +48,12 @@ export default function Home() {
       )}
     </div>
     
-      <Link href="/home">
+      <Link href="/museum">
         <div className="gotoHome">Go to Home</div>
       </Link>
     </div>
     
-    <Link href="/create-post">
+    <Link href="/museum">
     <img src="/art_post.png" className="artpost"  />
     </Link>
     </>

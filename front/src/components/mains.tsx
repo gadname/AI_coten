@@ -1,7 +1,5 @@
 'use client'
-
-import { useState } from 'react' 
-import { StrictMode } from 'react'
+import React, { useState, StrictMode } from 'react';
 import { Canvas } from '@react-three/fiber'
 
 import * as THREE from 'three'

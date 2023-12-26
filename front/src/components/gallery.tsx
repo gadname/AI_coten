@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react';
 import { useState, useEffect } from 'react'
 import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'

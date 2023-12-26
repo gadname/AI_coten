@@ -4,7 +4,7 @@ import { useRef } from 'react'
 import { Perf } from 'r3f-perf'
 import { OrbitControls, useHelper } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-
+import React from 'react';
 import * as THREE from 'three'
 
 // 基本

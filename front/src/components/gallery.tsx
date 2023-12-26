@@ -7,7 +7,6 @@ import Wall from './wall'
 import Ground from './ground'
 import Pole from './pole'
 import FrameList from './frame-list'
-import InputText from './input-text'
 import { Html } from '@react-three/drei';
 import { useRouter } from 'next/router';
 import localForage from 'localforage';

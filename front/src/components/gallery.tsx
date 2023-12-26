@@ -48,8 +48,9 @@ const Gallery = () => {
     
   ];
 
-  const handleImageUpload = (id, event) => {
-    const file = event.target.files[0];
+  const handleImageUpload = (id: string, event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files ? event.target.files[0] : null;
+    if (!file) return;
     const reader = new FileReader();
 
     reader.onloadend = () => {
@@ -59,11 +60,11 @@ const Gallery = () => {
       localForage.setItem(`savedImage${id}`, base64Image).then(() => {
         // 画像状態を更新
         if (id === '1') {
-          setImage1(base64Image);
+          setImage1(base64Image as string);
         } else if (id === '2') {
-          setImage2(base64Image);
+          setImage2(base64Image as string);
         } else if (id === '3') {
-          setImage3(base64Image);
+          setImage3(base64Image as string);
         }
       });
     };
@@ -77,17 +78,17 @@ const Gallery = () => {
   useEffect(() => {
     localForage.getItem('savedImage1').then(savedImage1 => {
       if (savedImage1) {
-        setImage1(savedImage1);
+        setImage1(savedImage1 as string);
       }
     });
     localForage.getItem('savedImage2').then(savedImage2 => {
       if (savedImage2) {
-        setImage2(savedImage2);
+        setImage2(savedImage2 as string);
       }
     });
     localForage.getItem('savedImage3').then(savedImage3 => {
       if (savedImage3) {
-        setImage3(savedImage3);
+        setImage3(savedImage3 as string);
       }
     });
   }, []);

@@ -21,7 +21,7 @@ const CreatePost = () => {
         }
 
         try {
-            await axios.post("https://ai-coten.onrender.com/api/v1/posts", formData);
+            await axios.post("http://back:3000/api/v1/posts", formData);
 
             router.push("/home");
             setTitle("");

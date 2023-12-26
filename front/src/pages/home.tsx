@@ -19,7 +19,7 @@ type Props = {
 };
 
 export async function getStaticProps() { //Props = ページごとに異なるPropsを設定できる
-  const res = await fetch('http://back:3000/api/v1/posts');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/posts`);
   const posts: Post[] = await res.json();
 
   return {
@@ -37,7 +37,7 @@ export default function Home({ posts }: { posts: Post[] }) {
 
   const handleDelete = async (postId: number) => {
     try{
-      await axios.delete(`http://back:3000/api/v1/posts/${postId}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/posts/${postId}`);
 
       router.reload();
     } catch (err) {

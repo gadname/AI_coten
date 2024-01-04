@@ -1,0 +1,368 @@
+
+
+.card{
+    top : 10px;
+    position : relative ;
+    z-index : 2 ;
+    display : flex ;
+    flex-direction : column ;
+    align-items : center ;
+    justify-content : flex-end ;
+    width : 400px ;
+    height : 600px ;
+    box-sizing : border-box ;
+    text-decoration : none ;
+    perspective : 700px ;
+    background: linear-gradient(to bottom right, 
+    rgba(255, 255, 0, 0.8), 
+    rgba(0, 0, 255, 0.8)
+  );
+  }
+  .main{
+    
+    display : flex ;
+    flex-direction : column ;
+    align-items : center ;
+    width : 100% ;
+    height : 100% ;
+    padding : 32px ;
+    box-sizing : border-box ;
+    border-radius : 24px ;
+    backdrop-filter : blur(6px) ;
+    border : solid 2px rgba(255,255,255,.3) ;
+    background : linear-gradient( 135deg , rgba(255,255,255,.4) 8% , rgba(255,255,255,.1) 60% , rgba(255,255,255,.2) 92% ) ;
+    transition : all ease .7s ;
+    color : #fff ;
+    box-shadow : 2px 2px 3px rgba(255,255,255,.2) inset ;
+  
+    /* 他のスタイル... */
+  }
+  .touch{
+    position : absolute  ;
+    z-index : 2 ;
+    width : 33.3333% ;
+    height : 33.3333% ;
+    box-sizing : border-box ;
+  }
+  .touch__1{
+    top : 0 ;
+    left : 0 ;
+  }
+  .touch__2{
+    top : 0 ;
+    left : 0 ;
+    right : 0 ;
+    margin : 0 auto ;
+  }
+  .touch__3{
+    top : 0 ;
+    right : 0 ;
+  }
+  .touch__4{
+    top : 33.3333% ;
+    left : 0 ;
+  }
+  .touch__6{
+    top : 33.3333% ;
+    right : 0 ;
+  }
+  .touch__7{
+    bottom : 0 ;
+    left : 0 ;
+  }
+  .touch__8{
+    bottom : 0 ;
+    left : 0 ;
+    right : 0 ;
+    margin : 0 auto ;
+  }
+  .touch__9{
+    bottom : 0 ;
+    right : 0 ;
+  }
+  .icon{
+    position : relative ;
+    z-index : 10 ;
+    width : 200px ;
+    height : 200px ;
+    border-radius : 50% ;
+    background : #fff ;
+    overflow : hidden ;
+    transition : all ease 1s ;
+  }
+  .img{
+    position : absolute;
+    width : 100% ;
+    height : 100% ;
+    object-fit: cover;
+  }
+  .name{
+    position : relative ;
+    z-index : 1 ;
+    font-size : 14px ;
+    margin : 16px 0 8px ;
+  }
+  .account{
+    position : relative ;
+    z-index : 1 ;
+    display : block ;
+    font-size : 10px ;
+    text-decoration : none ;
+    color : #ddd ;
+    margin : 0 0 32px 0 ;
+  }
+  .text{
+    position : relative ;
+    width : 100% ;
+    margin : 0 ;
+    box-sizing : border-box ;
+    border-radius : 8px ;
+    transition : all ease 1s ;
+  }
+  .link{
+    z-index : 4 ;
+    display : flex ;
+    justify-content : center ; 
+    align-items : center ;
+    padding : 8px 16px ;
+    color : #fff ;
+    background : linear-gradient( 90deg , #2ad2ff , #00e998 ) ;
+  }
+  .comment{
+    z-index : 3 ;
+    padding : 12px;
+    font-size : 12px ;
+    line-height : 1.4 ;
+    color : #444 ;
+    background : #FFF ;
+  }
+  .link:not(:last-child){
+    margin-bottom : 16px ;
+  }
+  .touch__1:hover ~ .main{
+    transform : rotateX(20deg) rotateY(-20deg) rotateZ(10deg);
+  }
+  .touch__1:hover ~ .main .icon{
+    transform : translateX(-20px) translateY(-10px) translateZ(60px);
+    box-shadow : 20px 20px 24px rgba(0,0,0,.2) ;
+  }
+  .touch__2:hover ~ .main{
+    transform : rotateX(20deg) rotateY(0) rotateZ(0);
+  }
+  .touch__2:hover ~ .main .icon{
+    transform : translateX(0) translateY(-10px) translateZ(60px);
+    box-shadow : 0 20px 24px rgba(0,0,0,.2) ;
+  }
+  .touch__3:hover ~ .main{
+    transform : rotateX(20deg) rotateY(20deg) rotateZ(-10deg);
+  }
+  .touch__3:hover ~ .main .icon{
+    transform : translateX(20px) translateY(-10px) translateZ(60px);
+    box-shadow : -20px 20px 24px rgba(0,0,0,.2) ;
+  }
+  .touch__4:hover ~ .main{
+    transform : rotateX(0) rotateY(-40deg) rotateZ(0);
+  }
+  .touch__6:hover ~ .main{
+    transform : rotateX(0) rotateY(40deg) rotateZ(0);
+  }
+  .touch__7:hover ~ .main{
+    transform : rotateX(-20deg) rotateY(-20deg) rotateZ(-10deg);
+  }
+  .touch__7:hover ~ .main .text{
+    transform : translateX(-20px) translateY(10px) translateZ(60px);
+    box-shadow : 20px -20px 24px rgba(0,0,0,.2) ;
+  }
+  .touch__8:hover ~ .main{
+    transform : rotateX(-20deg) rotateY(0) rotateZ(0);
+  }
+  .touch__8:hover ~ .main .text{
+    transform : translateX(0) translateY(10px) translateZ(60px);
+    box-shadow : 0 -20px 24px rgba(0,0,0,.2) ;
+  }
+  .touch__9:hover ~ .main{
+    transform : rotateX(-20deg) rotateY(20deg) rotateZ(10deg);
+  }
+  .touch__9:hover ~ .main .text{
+    transform : translateX(20px) translateY(10px) translateZ(60px);
+    box-shadow : -20px -20px 24px rgba(0,0,0,.2) ;
+  }
+  
+  
+  
+  
+  
+  
+  
+  /* 本体には関係ないスタイル */
+  .header{
+    
+    top : 0px;
+    position : absolute ;
+    width : 100% ;
+    left : 0%;
+    height : 300px ;
+    display : flex ;
+    flex-direction : column ;
+    justify-content : flex-start ;
+    align-items : center ;
+    background-color : hsla(205,100%,13%,1) ;
+    background-image:
+    radial-gradient(at 49% 49%, hsla(191,77%,26%,1) 0px, transparent 50%),
+    radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
+    radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
+    radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
+    radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%);
+    font-family : sans-serif ;
+    
+  }
+  .circle{
+    position : absolute ;
+    z-index : 1 ;
+    aspect-ratio : 1 / 1 ;
+    box-sizing : border-box ;
+    border-radius : 60px ;
+    animation : rotate ease infinite ;
+  }
+  .circle_1{
+    position: absolute;
+    top : 5% ;
+    left : 60% ;
+    width : 40% ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index : 0;
+    animation-duration : 12s ;
+    animation-direction : alternate ;
+    border-radius: 50%;
+  }
+  .circleText{
+    font-family: 'Arial', sans-serif; /* クリアで読みやすいフォント */
+    font-weight: 800;
+    left : 20%;
+    font-size: 16px; /* 十分な大きさで読みやすい */
+    color: #ffffff; /* 濃いグレー色でテキストをはっきりと */
+    line-height: 1.6; /* テキストの行間を適切に設定 */
+    text-align: center; /* テキストを中央揃えにする */
+    margin: 0; /* 余分なマージンを取り除く */
+    padding: 10px; /* 内側のスペースを適切に設定 */
+    border-radius: 50%; /* 円形の形状を作成 */
+    width: 100px; /* 円の幅を設定 */
+    height: 100px; /* 円の高さを設定 */
+    display: flex; /* Flexbox モデルを利用 */
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center; /* 垂直方向の中央揃え */
+    background-color: #000000; /* 背景色を設定 */
+  }
+  .circle_2{
+    top : 40px ;
+    right : 120px ;
+    width : 80px ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    border : solid 4px rgba(255, 0, 0, 0.3) ;
+    animation-duration : 25s ;
+    animation-direction : alternate-reverse ;
+  }
+  
+  .circle_3{
+    top : 240px ;
+    left : 200px ;
+    width : 200px ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    border : solid 4px rgba(67, 0, 253, 0.3) ;
+    animation-duration : 21s ;
+    animation-direction : alternate-reverse ;
+    border-radius: 50%;
+  }
+  .circle_4{
+    top : 220px ;
+    right : 20px ;
+    width : 100px ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    border : solid 4px #0097c8 ;
+    animation-duration : 22s ;
+    animation-direction : alternate ;
+  }
+  .circle_5{
+    bottom : 170px ;
+    left : 50px ;
+    width : 80px ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    border : solid 4px #0097c8 ;
+    animation-duration : 18s ;
+    animation-direction : alternate ;
+  }
+  .circle_6{
+    bottom : 70px ;
+    right : 140px ;
+    width : 70px ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    border : solid 4px #0097c8 ;
+    animation-duration : 26s ;
+    animation-direction : alternate-reverse ;
+  }
+  .circle_7{
+    bottom : 60px ;
+    left : 240px ;
+    width : 50px ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    border : solid 4px #0097c8 ;
+    animation-duration : 24s ;
+    animation-direction : alternate ;
+  }
+  .circle_8{
+    top : 340px ;
+    right : 200px ;
+    width : 50px ;
+    background-image: url('/ai1.jpg');
+    background-size: cover;
+    background-position: center;
+    border : solid 4px #0097c8 ;
+    animation-duration : 25s ;
+    animation-direction : alternate-reverse ;
+  }
+  @keyframes rotate{
+    0%  { transform : rotate(0) ;}
+    100%{ transform : rotate(360deg) ;}
+    from {
+      transform: translateY(-50%);
+    }
+    to {
+      transform: translateY(0);
+    }
+    
+  }
+  
+  .editButton {
+    position: absolute;
+    left: 50%;
+  }
+  .deleteButton{
+    position: absolute;
+    top: 70%;
+    right: 100px;
+  }
+  .starButtonClicked {
+    animation: scaleAnimation 0.2s ease-in-out;
+  }
+  
+  @keyframes scaleAnimation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+  }

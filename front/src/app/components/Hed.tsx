@@ -5,11 +5,16 @@ export default function Hed() {
   return (
     <header className={styles.header}>
       <nav>
-        {/*<Link href="/">
-        <img className={styles.name} src="/Aicoten3.jpg" alt="AI 個展" />
+        
+      <Link href="/museum">
+          <div style={{ color: 'black', position: 'absolute', top: '30px', left: '50px', fontSize: '20px' }}>AlchemIst.</div>
         </Link>
-       */}
+      
+      
         {/* 他のリンクをここに追加 */}
+        <Link href="/museum">
+          <div style={{ color: 'black', position: 'absolute', top: '30px', right: '100px' }}>Museum</div>
+        </Link>
       </nav>
     </header>
   );

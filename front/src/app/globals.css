@@ -49,19 +49,19 @@ body {
 
   }
   .top_text2 {
-    animation: typing 8s ease-in-out;
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 10;
-    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    animation: fadeIn 4s ease-in-out;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
     letter-spacing: 0.2em;
     line-height: 1.5; 
     text-transform: uppercase;
     transform: translate(-50%, -50%) rotate(-5deg); 
-    color: rgb(255, 255, 255);
-    font-size: 50px;
+    color: black;
+    font-size: 60px;
     position: absolute;
-    top: 130%;
-    left: 70%;
+    top: 38%;
+    left: 5%;
     transform: translate(-50%, -50%);
     z-index: 9999;  
     background: linear-gradient(to right, #878282, #000000);
@@ -71,20 +71,38 @@ body {
   -webkit-text-fill-color: transparent;
 
   }
-  @keyframes typing {
-    0%{width: 0}
-    50%{width: 100%; border-right-color: #00fff6 }
-    100%{border-right-color: transparent} 
+  @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+
   }
-  
-  @keyframes blink {
-    50% { border-color: transparent }
+  .top_text3 {
+    animation: fadeIn 4s ease-in-out;
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    letter-spacing: 0.2em;
+    line-height: 1.5; 
+    text-transform: uppercase;
+    transform: translate(-50%, -50%) rotate(-5deg); 
+    color: black;
+    font-size: 60px;
+    position: absolute;
+    top: 75%;
+    right: 0%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;  
+    background: linear-gradient(to right, #878282, #000000);
+
+  /* グラデーションの文字にぼかしをかける */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
   }
-  
-  .typing-effect {
-    animation: 
-      typing 2s steps(40),
-      blink .5s step-end infinite alternate; 
+  @keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+
   }
 
   .login {
@@ -133,3 +151,4 @@ body {
     position : absolute  ;
     width: 200px;
   }
+  

@@ -239,7 +239,7 @@
   background-image: url('/ai4.jpg');
   background-size: cover;
   background-position: center;
-  border : solid 4px rgba(255, 0, 0, 0.3) ;
+  border : solid 6px rgba(225, 26, 26, 0.3) ;
   border-radius: 50%;
 }
 .circle_3{
@@ -260,7 +260,7 @@
   background-image: url('/ai7.jpg');
   background-size: cover;
   background-position: center;
-  border : solid 4px #070707 ;
+  border : solid 2px #0c0c0c ;
   border-radius: 50%;
 }
 .circle_6{
@@ -272,7 +272,7 @@
   background-image: url('/ai5.jpg');
   background-size: cover;
   background-position: center;
-  border : solid 2px #fbfcfc ;
+  border : solid 2px #c0dbdb ;
   border-radius: 50%;
 }
 .circle_7{
@@ -282,7 +282,7 @@
   background-image: url('/ai6.jpg');
   background-size: cover;
   background-position: center;
-  border : solid 2px #c8007b ;
+  border : solid 2px #bd71a0 ;
 
   border-radius: 50%;
 }

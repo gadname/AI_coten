@@ -58,9 +58,9 @@ body {
     text-transform: uppercase;
     transform: translate(-50%, -50%) rotate(-5deg); 
     color: black;
-    font-size: 60px;
+    font-size: 90px;
     position: absolute;
-    top: 38%;
+    top: 35%;
     left: 5%;
     transform: translate(-50%, -50%);
     z-index: 9999;  
@@ -86,10 +86,10 @@ body {
     text-transform: uppercase;
     transform: translate(-50%, -50%) rotate(-5deg); 
     color: black;
-    font-size: 60px;
+    font-size: 90px;
     position: absolute;
-    top: 75%;
-    right: 0%;
+    top: 85%;
+    left: 95%;
     transform: translate(-50%, -50%);
     z-index: 9999;  
     background: linear-gradient(to right, #878282, #000000);
@@ -151,4 +151,35 @@ body {
     position : absolute  ;
     width: 200px;
   }
+  
+  
+  
+.balloon {
+    position: relative;
+    top: 50%;
+    padding: 15px;
+    border: 3px solid #333;
+    background-color: white;
+    color: #333;
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+    background : linear-gradient( 135deg , rgba(255,255,255,.4) 8% , rgba(255,255,255,.1) 60% , rgba(255,255,255,.2) 92% ) ;
+  transition : all ease .7s ;
+  color : #fff ;
+}
+
+.balloon :before {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) skew(-25deg);
+    height: 25px;
+    width: 15px;
+    border-right: 3px solid #333;
+    background-color: white;
+    content: "";
+}
+
+
   

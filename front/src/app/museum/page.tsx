@@ -1,5 +1,5 @@
-import Atelier from '../components/atelier'
+import Main from '../components/mains'
 
 export default function Home() {
-  return <Atelier />
+  return <Main />
 }

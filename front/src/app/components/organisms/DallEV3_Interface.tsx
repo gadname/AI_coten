@@ -5,8 +5,8 @@ import { Typography } from "@mui/joy";
 import {
   TextPromptForm,
   TextPromptFormInputs,
-} from "@/app/components/molecules/TextPromptForm";
-import { ImageWrapper } from "@/app/components/molecules/ImageWrapper";
+} from "../../components/molecules/TextPromptForm";
+import { ImageWrapper } from "../../components/molecules/ImageWrapper";
 
 export const DallE3Interface: FC = () => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);

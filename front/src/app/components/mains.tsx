@@ -1,16 +1,24 @@
 'use client'
-
-import { StrictMode } from 'react'
+import React, { useState, StrictMode } from 'react';
 import { Canvas } from '@react-three/fiber'
 
 import * as THREE from 'three'
 import Basic from './basic'
 import Gallery from './gallery'
 
+type Post = {
+  id: number;
+  title: string;
+  image: string;
+};
+
+type MainProps = {
+  posts: Post[];
+};
 // メイン
-const Atelier = () => {
+const Main = () => {
   return (
-    <div className="w-full h-screen">
+    <div style={{ width: '100vw', height: '100vh', overflow: 'hidden' }}>
       <StrictMode>
         <Canvas
           flat
@@ -21,13 +29,13 @@ const Atelier = () => {
             outputEncoding: THREE.sRGBEncoding,
           }}
           camera={{
-            fov: 45,
-            near: 0.1,
+            fov: 60,
+            near: 0.5,
             far: 100,
-            position: [0, 0, 4],
+            position: [0, 2, 2],
           }}
         >
-          {/* <Basic /> */}
+           <Basic /> 
           <Gallery />
         </Canvas>
       </StrictMode>
@@ -35,4 +43,4 @@ const Atelier = () => {
   )
 }
 
-export default Atelier
+export default Main

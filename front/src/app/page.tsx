@@ -11,8 +11,8 @@ import Hed from './components/Hed';
 
 export default function Home() {
   const typewritewText = "AIで、創る。";
-  const text = "想像力は、";
-  const texts = "止まらない。";
+  const text = "想い、";
+  const texts = "描く。";
 const verticalText = text.split('').map((char, index) => (
   <div key={index} style={{writingMode: 'vertical-rl'}}>
     {char}
@@ -75,9 +75,7 @@ const verticalTexts = texts.split('').map((char, index) => (
     
       
     
-      <Link href="/museum">
-        <img src="/art_post.png" className="artpost"  />
-      </Link>
+      
     </>
   )
 }

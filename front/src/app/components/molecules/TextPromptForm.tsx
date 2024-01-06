@@ -30,7 +30,6 @@ export const TextPromptForm: FC<{
               minRows={2}
               onChange={onChange}
               value={value}
-              style={{ width: '400px', height: '400px' }}
             />
           </FormControl>
         )}

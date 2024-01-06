@@ -6,7 +6,7 @@
   transition : all ease .7s ;
   color : #fff ;
   box-shadow : 2px 2px 3px rgba(255,255,255,.2) inset ; 
-  padding: 35px;
+  padding: 40px;
   text-align: left;
   position: fixed;  
   top: 0;  
@@ -42,5 +42,5 @@
   top: 0px;
   left: 80px;
   width: auto;
-  height: 50px;
+  height: 20px;
 }

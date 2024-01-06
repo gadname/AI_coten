@@ -350,7 +350,9 @@
   
   .editButton {
     position: absolute;
-    left: 50%;
+
+    left: 20%;
+    top: 200px;
   }
   .deleteButton{
     position: absolute;

@@ -1,40 +1,44 @@
 'use client'
-
+import { useTexture } from '@react-three/drei';
+import React from 'react';
 import * as THREE from 'three'
+import { useLoader } from '@react-three/fiber'
+import { TextureLoader } from 'three'
 
 const poles = [
   {
-    position: [0, 0.2, 0.5],
-    scale: [0.005, 8, 0.005],
+    position: [0, 0.5, 0.5],
+    scale: [0.005, 16, 0.005],
     rotation: [0, 0, Math.PI / 2],
   },
   {
-    position: [-0.75, 0.1, 0.5],
-    scale: [0.02, 0.25, 0.02],
+    position: [-0.95, 0.2, 0.5],
+    scale: [0.02, 0.75, 0.02],
     rotation: [0, 0, 0],
   },
   {
-    position: [0.75, 0.1, 0.5],
-    scale: [0.02, 0.25, 0.02],
+    position: [0.75, 0.2, 0.5],
+    scale: [0.02, 0.75, 0.02],
     rotation: [0, 0, 0],
   },
   {
-    position: [2.1, 0.1, 0.5],
-    scale: [0.02, 0.25, 0.02],
+    position: [2.1, 0.2, 0.5],
+    scale: [0.02, 0.75, 0.02],
     rotation: [0, 0, 0],
   },
   {
-    position: [-2.1, 0.1, 0.5],
-    scale: [0.02, 0.25, 0.02],
+    position: [-2.1, 0.2, 0.5],
+    scale: [0.02, 0.75, 0.02],
     rotation: [0, 0, 0],
   },
 ]
 
 // 円柱
 const cylinderGeometry = new THREE.CylinderGeometry()
-
+const boxGeometry = new THREE.BoxGeometry(1, 0.75, 0.02);
 // ポール
 const Pole = () => {
+  const texture = useLoader(TextureLoader, '/ai1.jpg') 
   return (
     <>
       {poles.map((pole, index) => {
@@ -48,7 +52,7 @@ const Pole = () => {
             geometry={cylinderGeometry}
           >
             {/* Material */}
-            <meshStandardMaterial color="dimgray" metalness={0.7} roughness={0.1} />
+            <meshStandardMaterial map={texture} metalness={1.65} roughness={10} />
           </mesh>
         )
       })}

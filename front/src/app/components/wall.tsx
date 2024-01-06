@@ -1,5 +1,5 @@
 'use client'
-
+import React from 'react';
 // 壁
 const Wall = () => {
   return (
@@ -7,7 +7,7 @@ const Wall = () => {
       {/* Geometry */}
       <planeGeometry />
       {/* Material */}
-      <meshStandardMaterial color="gray" metalness={0.1} roughness={1} />
+      <meshStandardMaterial color="white" metalness={0.1} roughness={1} />
     </mesh>
   )
 }

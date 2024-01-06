@@ -1,5 +1,5 @@
-import { DallE3Interface } from "@/app/components/organisms/DallEV3_Interface";
-import { GptV3_5TurboInterface } from "@/app/components/organisms/GptV3_5TurboInterface";
+import { DallE3Interface } from "../../components/organisms/DallEV3_Interface";
+import { GptV3_5TurboInterface } from "../../components/organisms/GptV3_5TurboInterface";
 import { FC } from "react";
 
 export const HomeTemplate: FC = () => {

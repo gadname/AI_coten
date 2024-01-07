@@ -14,7 +14,7 @@ const FrameItem = ({ data }: { data: imagesType }) => {
   const [hover, setHover] = useState(false)
   const spotLightRef = useRef<THREE.SpotLight>(null)
   const frameRef = useRef<THREE.Mesh>(null)
-  const woodTexture = useTexture('./ai5.jpg');
+  const woodTexture = useTexture('./ai1.jpg');
   const { size, frameSize } = data;
 
   useEffect(() => {

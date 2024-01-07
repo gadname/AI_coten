@@ -40,39 +40,7 @@ const verticalTexts = texts.split('').map((char, index) => (
       <h3 className="top_text3">{verticalTexts}</h3>
       
       <Main />
-      <div className="login">
-        {status === 'authenticated' ? (
-          <div>
-            <p>セッションの期限：{session.expires}</p>
-            <p>ようこそ、{session.user?.name}さん</p>
-            <img
-              src={session.user?.image ?? ``}
-              alt=""
-              style={{ 
-                width: '50px', 
-                height: '50px', 
-                borderRadius: '50%',
-                position: 'absolute',
-                top: '20px',
-                left: '50%',
-              }}
-              onClick={() => {
-                if (status === 'authenticated') {
-                  signOut();
-                } else {
-                  signIn();
-                }
-              }}
-            />
-            <div>
-              <Logout />
-            </div>
-          </div>
-        ) : (
-          <Login />
-        )}
-      </div>
-    
+      
       
     
       

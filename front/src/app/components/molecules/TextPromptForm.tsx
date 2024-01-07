@@ -10,7 +10,8 @@ export type TextPromptFormInputs = {
 export const TextPromptForm: FC<{
   onSubmit: SubmitHandler<TextPromptFormInputs>;
   isExecuting: boolean;
-}> = ({ onSubmit, isExecuting }) => {
+  initialValue: string;
+}> = ({ onSubmit, isExecuting, initialValue  }) => {
   const { handleSubmit, control } = useForm<TextPromptFormInputs>();
 
   return (
@@ -22,6 +23,7 @@ export const TextPromptForm: FC<{
         name="textPrompt"
         control={control}
         rules={{ required: "Text prompt is required." }}
+        defaultValue={initialValue}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <FormControl>
             <FormLabel>Text prompt</FormLabel>

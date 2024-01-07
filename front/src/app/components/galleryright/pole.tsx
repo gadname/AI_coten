@@ -41,7 +41,6 @@ const poles = [
     scale: [0.02, 0.75, 0.02],
     rotation: [0, 0, 0],
   },
-  
 ]
 
 // 円柱

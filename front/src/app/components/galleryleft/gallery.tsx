@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import { useState, useRef, KeyboardEvent } from 'react'
+import { useState } from 'react'
 import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import Wall from './wall'
@@ -9,7 +9,8 @@ import Pole from './pole'
 import FrameList from './frame-list'
 import { Html } from '@react-three/drei';
 import { useRouter } from 'next/navigation';
-import InputText from './input-text'
+import Modal from 'react-modal';
+
 
 type Post = {
   id: number;
@@ -29,9 +30,6 @@ const Gallery = () => {
   const [content, setContent] = useState("");
   const router = useRouter();
   const [title, setTitle] = useState("");
-  const [loading, setLoading] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [isExecuting, setIsExecuting] = useState(false);
 
   // 絵画リスト
   const images = [
@@ -83,7 +81,7 @@ const Gallery = () => {
       
     },
   ];
-  
+
   const handleImageUpload = (id: string, event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (!file) return;
@@ -160,7 +158,6 @@ const Gallery = () => {
         <Pole />
         {/* フレーム */}
         <FrameList images={images} />
-        <InputText  inputRef={inputRef} loading={loading} />
       </group>
     </>
   )

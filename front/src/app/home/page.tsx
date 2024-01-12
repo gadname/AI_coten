@@ -6,6 +6,9 @@ import styles from '../../styles/MyComponent.module.css';
 import { useRouter } from 'next/navigation';
 import Postcard from '../components/Postcard';
 import ReactDOM from 'react-dom';
+import Hed from '../components/Hed';
+import { useSession, signIn, signOut } from 'next-auth/react'
+import useSWR from 'swr';
 
 type Post = {
   id: number;
@@ -18,25 +21,18 @@ type Post = {
 
 // モーダルのコンテキストを作成
 const ModalContext = React.createContext({});
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function Home() {
-  const [posts, setPosts] = useState<Post[]>([]);
+  
   const [modalPost, setModalPost] = useState<Post | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await fetch("https://ai-coten.onrender.com/api/v1/posts");
-      const data: Post[] = await res.json();
-      setPosts(data);
-    };
-
-    fetchPosts();
-  }, []);
+  const { data: posts, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/posts`, fetcher);
 
   const handleDelete = async (postId: number) => {
     try {
-      await axios.delete(`https://ai-coten.onrender.com/api/v1/posts/${postId}`);
+      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/${postId}`);
       router.reload();
     } catch (err) {
       alert("削除に失敗しました");
@@ -46,7 +42,7 @@ export default function Home() {
   return (
     <ModalContext.Provider value={{ setModalPost }}>
       <div className={styles.postsContainer}>
-        {posts.map((post: Post) => (
+      {posts && posts.map((post: Post) => (
           <div key={post.id} className={styles.postCard}>
             <Postcard post={post} handleDelete={() => handleDelete(post.id)} handleEdit={() => setModalPost(post)} />
             <button style={{position: 'absolute', right: 80}} onClick={() => setModalPost(post)}>編集</button>

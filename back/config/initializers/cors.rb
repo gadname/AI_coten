@@ -11,6 +11,8 @@ allow do
 
     resource "*",
     headers: :any,
-    methods: [:get, :post, :put, :patch, :delete, :options, :head]
+    expose: ['access-token', 'uid','client'],
+    methods: [:get, :post, :put, :patch, :delete, :options, :head],
+    credentials: true
   end
 end

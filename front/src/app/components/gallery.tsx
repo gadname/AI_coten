@@ -10,6 +10,8 @@ import FrameList from './frame-list'
 import { Html } from '@react-three/drei';
 import { useRouter } from 'next/navigation';
 import InputText from './input-text'
+import axios from 'axios';
+
 
 type Post = {
   id: number;
@@ -109,7 +111,6 @@ const Gallery = () => {
     <>
     
      <Html>
-     <audio src="/bgm.mp3" autoPlay loop />
      <input 
         type="file" 
         onChange={(event) => handleImageUpload('1', event)} 

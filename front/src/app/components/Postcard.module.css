@@ -356,8 +356,8 @@
   }
   .deleteButton{
     position: absolute;
-    top: 70%;
-    right: 100px;
+    top: 50%;
+    right: 120px;
   }
   .starButtonClicked {
     animation: scaleAnimation 0.2s ease-in-out;

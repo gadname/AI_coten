@@ -4,10 +4,10 @@ import { FC } from "react";
 
 export const HomeTemplate: FC = () => {
   return (
-    <main className="flex h-screen w-screen justify-center items-center">
+    <main class="w-auto h-screen p-5">
       <div className="flex justify-center w-full">
-        <GptV3_5TurboInterface />
-        <DallE3Interface />
+      <GptV3_5TurboInterface /> 
+      <DallE3Interface />
       </div>
     </main>
   );

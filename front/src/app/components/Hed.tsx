@@ -14,10 +14,10 @@ export default function Hed() {
         <img src="/Alchemist.jpg" alt="Logo" style={{ position: 'absolute', top: '-30px', left: '20px', width: '150px', height: '150px' }} />
         </Link>
         <Link href="/home">
-          <div style={{ color: 'black', position: 'absolute', top: '30px', right: '300px' }}>Home</div>
+          <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '350px' }}>Home</div>
           </Link>
-        <Link href="/dalle">
-          <div style={{ color: 'black', position: 'absolute', top: '30px', right: '180px' }}>dalle</div>
+        <Link href="/form">
+          <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '250px' }}>form</div>
         </Link>
         <div className="login">
         {status === 'authenticated' ? (
@@ -52,9 +52,9 @@ export default function Hed() {
       </div>
         {/* 他のリンクをここに追加 */}
         <Link href="/museum">
-          <div style={{ color: 'black', position: 'absolute', top: '30px', right: '100px' }}>Museum</div>
+          <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '150px' }}>Museum</div>
         </Link>
-      </nav>
+      </nav> 
     </header>
   );
 }

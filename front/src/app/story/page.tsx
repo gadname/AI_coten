@@ -121,7 +121,7 @@ return (
       </div>
     )}
 <div style={{ position: 'absolute', left: 10, bottom: 0 }}>
-  <Image src="/human.jpg" alt="Human" width={400} height={400} />
+  <Image src="/aicat.png" alt="Human" width={400} height={400} />
 </div>
     {currentTextIndexBook1 < storyTextsBook1.length && (
       <div className="bubble">

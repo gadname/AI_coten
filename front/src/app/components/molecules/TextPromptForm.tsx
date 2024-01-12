@@ -3,6 +3,13 @@ import { FormControl, FormLabel, Textarea, Button } from "@mui/joy";
 import { FC } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 
+export type TextPromptFormProps = {
+  onSubmit: SubmitHandler<TextPromptFormInputs>;
+  isExecuting: boolean;
+  initialValue: string;
+  insertValues: () => string; // この関数はBasicFormとOptionalFormの値を結合して返します
+};
+
 export type TextPromptFormInputs = {
   textPrompt: string;
 };
@@ -18,6 +25,7 @@ export const TextPromptForm: FC<{
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-2 w-full"
+      
     >
       <Controller
         name="textPrompt"
@@ -32,6 +40,7 @@ export const TextPromptForm: FC<{
               minRows={2}
               onChange={onChange}
               value={value}
+              style={{ width: "100%"  }} 
             />
           </FormControl>
         )}

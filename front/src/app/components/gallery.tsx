@@ -1,150 +1,163 @@
-'use client'
-import React from 'react';
-import { useState, useRef, KeyboardEvent } from 'react'
-import { OrbitControls } from '@react-three/drei'
-import { Perf } from 'r3f-perf'
-import Wall from './wall'
-import Ground from './ground'
-import Pole from './pole'
-import FrameList from './frame-list'
+import React, { useState, useRef, useEffect } from 'react';
 import { Html } from '@react-three/drei';
-import { useRouter } from 'next/navigation';
-import InputText from './input-text'
-import axios from 'axios';
-
-
-type Post = {
-  id: number;
-  title: string;
-  content: string;
-  image: string;
-  user_id: number;
-  post_id: number;
-};
+import { useRouter } from 'next/';
+import localForage from 'localforage';
+import Wall from './wall';
+import Ground from './ground';
+import Pole from './pole';
+import FrameList from './frame-list';
+import InputText from './input-text';
 
 const Gallery = () => {
   const [image1, setImage1] = useState("./white.png");
   const [image2, setImage2] = useState("./white.png");
   const [image3, setImage3] = useState("./white.png");
-  const [image4, setImage4] = useState("./white.png"); // 新しい画像の状態
-  const [image5, setImage5] = useState("./white.png"); // 新しい画像の状態
+  const [image4, setImage4] = useState("./white.png");
+  const [image5, setImage5] = useState("./white.png");
   const [content, setContent] = useState("");
-  const router = useRouter();
   const [title, setTitle] = useState("");
-  const [loading, setLoading] = useState(false)
-  const inputRef = useRef<HTMLInputElement>(null)
-  const [isExecuting, setIsExecuting] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
 
-  // 絵画リスト
-  const images = [
-    {
-      id: '1',
-      image: image1,
-      position: [0, 0.8, 0.05], // 位置を調整      
-      size: [1.2, 1.2, 1,2], // 絵の大きさ
-      frameSize: [1.3,1.3, 1.3], // フレームの大きさ
-      
-      
-    },
-    {
-      id: '2',
-      image: image2,
-      position: [-1.4, 0.5, 0.05], // 位置を調整
-      size: [1, 0.9, 1], // 絵の大きさ
-      frameSize: [1.2, 1.0, 1.2], // フレームの大きさ
-      
-      
-    },
-    {
-      id: '3',
-      image: image3,
-      position: [-3, 0.8, 0.05], // 位置を調整
-      size: [1, 0.5, 1], // 絵の大きさ
-      frameSize: [1.1,0.6, 0.7], // フレームの大きさ
-      
-      
-      
-    },
-    {
-      id: '4',
-      image: image4,
-      position: [1.4, 0.5, 0.05], // 位置を調整      
-      size: [1, 0.8, 1], // 絵の大きさ
-      frameSize: [1.2, 1.0, 1.2], // フレームの大きさ
-      
-      
-      
-    },
-    {
-      id: '5',
-      image: image5,
-      position: [2.8, 0.5, 0.05], // 位置を調整      
-      size: [1, 1, 1], // 絵の大きさ
-      frameSize: [1.2, 1.2, 1.2], // フレームの大きさ
-      
-      
-    },
-  ];
-  
-  const handleImageUpload = (id: string, event: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => {
+    const loadImage = async (id) => {
+      const imageData = await localForage.getItem(`image_${id}`);
+      if (imageData) {
+        switch (id) {
+          case '1':
+            setImage1(imageData);
+            break;
+          case '2':
+            setImage2(imageData);
+            break;
+          case '3':
+            setImage3(imageData);
+            break;
+          case '4':
+            setImage4(imageData);
+            break;
+          case '5':
+            setImage5(imageData);
+            break;
+          default:
+            break;
+        }
+      }
+    };
+
+    loadImage('1');
+    loadImage('2');
+    loadImage('3');
+    loadImage('4');
+    loadImage('5');
+  }, []);
+
+  const handleImageUpload = async (id, event) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (!file) return;
     const reader = new FileReader();
 
-    reader.onloadend = () => {
+    reader.onloadend = async () => {
       const base64Image = reader.result;
+      switch (id) {
+        case '1':
+          setImage1(base64Image);
+          break;
+        case '2':
+          setImage2(base64Image);
+          break;
+        case '3':
+          setImage3(base64Image);
+          break;
+        case '4':
+          setImage4(base64Image);
+          break;
+        case '5':
+          setImage5(base64Image);
+          break;
+        default:
+          break;
+      }
 
-      // 画像状態を更新
-      if (id === '1') {
-        setImage1(base64Image as string);
-      } else if (id === '2') {
-        setImage2(base64Image as string);
-      } else if (id === '3') {
-        setImage3(base64Image as string);
+      try {
+        await localForage.setItem(`image_${id}`, base64Image);
+        console.log(`Image ${id} saved successfully.`);
+      } catch (error) {
+        console.error('Image saving failed', error);
       }
     };
 
     reader.readAsDataURL(file);
   };
 
+  const images = [
+    {
+      id: '1',
+      image: image1,
+      position: [0, 0.8, 0.05],
+      size: [1.2, 1.2, 1.2],
+      frameSize: [1.3, 1.3, 1.3],
+    },
+    {
+      id: '2',
+      image: image2,
+      position: [-1.4, 0.5, 0.05],
+      size: [1, 0.9, 1],
+      frameSize: [1.2, 1.0, 1.2],
+    },
+    {
+      id: '3',
+      image: image3,
+      position: [-3, 0.8, 0.05],
+      size: [1, 0.5, 1],
+      frameSize: [1.1, 0.6, 0.7],
+    },
+    {
+      id: '4',
+      image: image4,
+      position: [1.4, 0.5, 0.05],
+      size: [1, 0.8, 1],
+      frameSize: [1.2, 1.0, 1.2],
+    },
+    {
+      id: '5',
+      image: image5,
+      position: [2.8, 0.5, 0.05],
+      size: [1, 1, 1],
+      frameSize: [1.2, 1.2, 1.2],
+    },
+  ];
+
   return (
     <>
-    
-     <Html>
-     <input 
-        type="file" 
-        onChange={(event) => handleImageUpload('1', event)} 
-        style={{ 
-          color: 'red', 
-          fontSize: '8px',
-          position: 'absolute',
-          top: '120px', // 上から50pxの位置
-          left: '50px',
-        }} 
-      />
-      <input 
-        type="file" 
-        onChange={(event) => handleImageUpload('2', event)} 
-        style={{ 
-          color: 'red', 
-          fontSize: '8px',
-          position: 'absolute',
-          top: '120px', // 上から50pxの位置
-          left: '100px',
-        }} 
-      />
-      <input 
-        type="file" 
-        onChange={(event) => handleImageUpload('3', event)} 
-        style={{ 
-          color: 'red', 
-          fontSize: '8px',
-          position: 'absolute',
-          top: '120px', // 上から50pxの位置
-          left: '150px',
-        }} 
-      />
-     </Html>
+      <Html>
+        <input 
+          type="file" 
+          onChange={(event) => handleImageUpload('1', event)} 
+          style={{ position: 'absolute', top: '120px', left: '50px' }} 
+        />
+        <input 
+          type="file" 
+          onChange={(          event) => handleImageUpload('2', event)} 
+          style={{ position: 'absolute', top: '120px', left: '100px' }} 
+        />
+        <input 
+          type="file" 
+          onChange={(event) => handleImageUpload('3', event)} 
+          style={{ position: 'absolute', top: '120px', left: '150px' }} 
+        />
+        <input 
+          type="file" 
+          onChange={(event) => handleImageUpload('4', event)} 
+          style={{ position: 'absolute', top: '120px', left: '200px' }} 
+        />
+        <input 
+          type="file" 
+          onChange={(event) => handleImageUpload('5', event)} 
+          style={{ position: 'absolute', top: '120px', left: '250px' }} 
+        />
+      </Html>
 
       {/* 背景 */}
       <color attach="background" args={['#ADD8E6']} />
@@ -153,18 +166,14 @@ const Gallery = () => {
       <ambientLight intensity={0.5} />
 
       <group position={[0, -1, 0]}>
-       
         <Wall />
-        {/* 地面 */}
         <Ground />
-        {/* ポール */}
         <Pole />
-        {/* フレーム */}
         <FrameList images={images} />
-        <InputText  inputRef={inputRef} loading={loading} />
+        <InputText inputRef={inputRef} loading={loading} />
       </group>
     </>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;

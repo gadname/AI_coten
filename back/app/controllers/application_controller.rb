@@ -8,8 +8,9 @@ class ApplicationController < ActionController::API
   private
 
   def set_current_user
+    binding.pry
     Rails.logger.info "Current session: #{session.inspect}"  # セッション情報をログに出力
-    
+    received_access_token = request.headers["Authorization"].split(' ').last
 
     if session[:user_id] && session[:access_token] == received_access_token
       # セッションからユーザー情報を取得
@@ -21,17 +22,16 @@ class ApplicationController < ActionController::API
       user_info = fetch_user_info_from_google(received_access_token)
 
       # Googleのuidをもとにユーザー検索
-      @current_user = User.find_or_initialize_by(uid: user_info['sub'])
+      @current_user = User.find_or_initialize_by(uid: user_info['sub']) # GoogleのユーザーIDは 'sub' になります
 
       if @current_user.new_record?
-        # ユーザーがデータベースに存在しない場合は、新規作成する
-        @current_user.name = user_info['name']
-        @current_user.email = user_info['email']
-        @current_user.save
-      end
-
-      def current_user
-        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+        # ユーザーが存在しない場合は新規作成
+        @current_user.assign_attributes(
+          name: user_info['name'],
+          email: user_info['email'],
+          provider: 'google'
+        )
+        @current_user.save!
       end
 
       # セッションにユーザー情報を保存

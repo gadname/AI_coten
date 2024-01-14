@@ -12,7 +12,7 @@ function UserPosts() {
     if (session) {
       async function fetchUserPosts() {
         try {
-          const response = await axios.get('https://ai-coten.onrender.com/api/v1/posts', {
+          const response = await axios.get('http://localhost:3000/api/v1/posts', {
             headers: {
               'Authorization': `Bearer ${session.accessToken}`
             }

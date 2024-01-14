@@ -28,7 +28,7 @@ export default function Home() {
   const [modalPost, setModalPost] = useState<Post | null>(null);
   const router = useRouter();
 
-  const { data: posts, error } = useSWR(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/posts`, fetcher);
+  const { data: posts, error } = useSWR("http://localhost:3000/api/v1/posts", fetcher);
 
   const handleDelete = async (postId: number) => {
     try {

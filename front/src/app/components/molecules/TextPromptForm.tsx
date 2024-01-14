@@ -2,6 +2,7 @@
 import { FormControl, FormLabel, Textarea, Button } from "@mui/joy";
 import { FC } from "react";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import { useState } from 'react';
 
 export type TextPromptFormProps = {
   onSubmit: SubmitHandler<TextPromptFormInputs>;

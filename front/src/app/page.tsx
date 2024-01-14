@@ -11,6 +11,7 @@ import Hed from './components/Hed';
 
 export default function Home() {
   const typewritewText = "AIで、創る。";
+  const typewritewText2 = "DALL-E3を使用し、AIでイラストを作成することができます。";
   const text = "想い、";
   const texts = "描く。";
 const verticalText = text.split('').map((char, index) => (
@@ -36,8 +37,9 @@ const verticalTexts = texts.split('').map((char, index) => (
         </div>
       <Header />
       <h1 className="top_text">{typewritewText}</h1>
-      <h2 className="top_text2">{verticalText}</h2>
-      <h3 className="top_text3">{verticalTexts}</h3>
+      <h2 className="top_text-2">{typewritewText2}</h2>
+      <h3 className="top_text2">{verticalText}</h3>
+      <h4 className="top_text3">{verticalTexts}</h4>
       
       <Main />
       

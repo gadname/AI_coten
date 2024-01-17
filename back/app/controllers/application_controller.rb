@@ -2,47 +2,42 @@ require 'net/http'
 require 'uri'
 require 'json'
 
-class ApplicationController < ActionController::API
-  include ActionController::Cookies
+class ApplicationController < ActionController::Base
+  protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format.json? }
+  before_action :set_current_user
+  
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+  helper_method :current_user
 
-  private
 
   def set_current_user
-    binding.pry
-    Rails.logger.info "Current session: #{session.inspect}"  # セッション情報をログに出力
+    # Add the following line to the ApplicationController to log the current_user value
+    
     received_access_token = request.headers["Authorization"].split(' ').last
-
+    Rails.logger.info "Received access token: #{received_access_token}"
     if session[:user_id] && session[:access_token] == received_access_token
       # セッションからユーザー情報を取得
       @current_user = User.find_by(id: session[:user_id])
+      
     else
-      # Google APIからユーザー情報を取得
-      session.delete(:user_id)
+      # GitHub APIからユーザー情報を取得
       session.delete(:access_token)
-      user_info = fetch_user_info_from_google(received_access_token)
-
-      # Googleのuidをもとにユーザー検索
-      @current_user = User.find_or_initialize_by(uid: user_info['sub']) # GoogleのユーザーIDは 'sub' になります
-
-      if @current_user.new_record?
-        # ユーザーが存在しない場合は新規作成
-        @current_user.assign_attributes(
-          name: user_info['name'],
-          email: user_info['email'],
-          provider: 'google'
-        )
-        @current_user.save!
-      end
-
+      user_info = fetch_user_info_from_github(received_access_token)
+      Rails.logger.info "Session user_id: #{session[:user_id]}, access_token: #{session[:access_token]}, received_access_token: #{received_access_token}"
+      # GitHubのuidをもとにユーザー検索
+      @current_user = User.find_by(uid: user_info['id'])
+   
       # セッションにユーザー情報を保存
       session[:user_id] = @current_user.id
       session[:access_token] = received_access_token
     end
   end
 
-  # Googleのユーザー情報を取得
-  def fetch_user_info_from_google(access_token)
-    uri = URI.parse("https://www.googleapis.com/oauth2/v3/userinfo")
+  # GiHtubのユーザー情報を取得
+  def fetch_user_info_from_github(access_token)
+    uri = URI.parse("https://api.github.com/user")
     request = Net::HTTP::Get.new(uri)
     request["Authorization"] = "Bearer #{access_token}"
 
@@ -53,3 +48,4 @@ class ApplicationController < ActionController::API
     JSON.parse(response.body)
   end
 end
+

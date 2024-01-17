@@ -1,6 +1,5 @@
 class Api::V1::PostsController < ApplicationController
   def index
-    pp "session: #{session.inspect}"
     @posts = Post.all
     render json: @posts
   end
@@ -11,8 +10,9 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    
 
+    @post = @current_user.posts.build(post_params)
     if @post.save
       render json: { post: @post, image_url: @post.image.url }, status: :created 
     else
@@ -32,8 +32,6 @@ class Api::V1::PostsController < ApplicationController
   def edit 
   end
 
-  
-
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
@@ -42,7 +40,6 @@ class Api::V1::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :content, :image, :image_cache, :bookmark)
+    params.require(:post).permit(:title, :content, :image, :image_cache, )
   end
-
 end

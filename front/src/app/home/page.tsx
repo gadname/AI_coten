@@ -10,6 +10,7 @@ import Hed from '../components/Hed';
 import { useSession, signIn, signOut } from 'next-auth/react'
 import useSWR from 'swr';
 
+import { getSession } from 'next-auth/react';
 type Post = {
   id: number;
   title: string;
@@ -21,14 +22,32 @@ type Post = {
 
 // モーダルのコンテキストを作成
 const ModalContext = React.createContext({});
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = async (url: string) => {
+  const session = await getSession();
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${session?.accessToken}`,
+    },
+  });
+  return res.json();
+};
 
 export default function Home() {
-  
+  useEffect(() => {
+    const fetchSession = async () => {
+      const session = await getSession();
+      console.log(session);
+    };
+
+    fetchSession();
+  }, []);
+
   const [modalPost, setModalPost] = useState<Post | null>(null);
   const router = useRouter();
 
   const { data: posts, error } = useSWR("http://localhost:3000/api/v1/posts", fetcher);
+
+  
 
   const handleDelete = async (postId: number) => {
     try {

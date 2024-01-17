@@ -1,7 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Html } from '@react-three/drei';
-import { useRouter } from 'next/';
-import localForage from 'localforage';
+import { useRouter } from 'next/navigation';
 import Wall from './wall';
 import Ground from './ground';
 import Pole from './pole';
@@ -17,48 +16,14 @@ const Gallery = () => {
   const [content, setContent] = useState("");
   const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    const loadImage = async (id) => {
-      const imageData = await localForage.getItem(`image_${id}`);
-      if (imageData) {
-        switch (id) {
-          case '1':
-            setImage1(imageData);
-            break;
-          case '2':
-            setImage2(imageData);
-            break;
-          case '3':
-            setImage3(imageData);
-            break;
-          case '4':
-            setImage4(imageData);
-            break;
-          case '5':
-            setImage5(imageData);
-            break;
-          default:
-            break;
-        }
-      }
-    };
-
-    loadImage('1');
-    loadImage('2');
-    loadImage('3');
-    loadImage('4');
-    loadImage('5');
-  }, []);
-
-  const handleImageUpload = async (id, event) => {
+  const handleImageUpload = (id, event) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (!file) return;
     const reader = new FileReader();
 
-    reader.onloadend = async () => {
+    reader.onloadend = () => {
       const base64Image = reader.result;
       switch (id) {
         case '1':
@@ -78,13 +43,6 @@ const Gallery = () => {
           break;
         default:
           break;
-      }
-
-      try {
-        await localForage.setItem(`image_${id}`, base64Image);
-        console.log(`Image ${id} saved successfully.`);
-      } catch (error) {
-        console.error('Image saving failed', error);
       }
     };
 
@@ -139,7 +97,7 @@ const Gallery = () => {
         />
         <input 
           type="file" 
-          onChange={(          event) => handleImageUpload('2', event)} 
+          onChange={(event) => handleImageUpload('2', event)} 
           style={{ position: 'absolute', top: '120px', left: '100px' }} 
         />
         <input 
@@ -157,23 +115,21 @@ const Gallery = () => {
           onChange={(event) => handleImageUpload('5', event)} 
           style={{ position: 'absolute', top: '120px', left: '250px' }} 
         />
-      </Html>
-
-      {/* 背景 */}
-      <color attach="background" args={['#ADD8E6']} />
-
-      {/* 環境光 */}
-      <ambientLight intensity={0.5} />
-
-      <group position={[0, -1, 0]}>
-        <Wall />
-        <Ground />
-        <Pole />
-        <FrameList images={images} />
-        <InputText inputRef={inputRef} loading={loading} />
-      </group>
-    </>
-  );
-};
+            </Html>
+            {/* 背景 */}
+            <color attach="background" args={['#ADD8E6']} />
+            {/* 環境光 */}
+            <ambientLight intensity={0.5} />
+            <group position={[0, -1, 0]}>
+              <Wall />
+              <Ground />
+              <Pole />
+              <FrameList images={images} />
+              <InputText loading={loading} />
+              </group>
+              </>
+              );
+            };
 
 export default Gallery;
+

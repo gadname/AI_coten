@@ -22,6 +22,19 @@ module App
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+
+    # Add this block for rack-cors configuration
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'localhost:8000'
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head]
+      end
+    end
+
     config.api_only = true
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :local

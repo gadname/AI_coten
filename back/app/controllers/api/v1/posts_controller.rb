@@ -10,8 +10,7 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    
-
+    Rails.logger.info "Received session: #{session.inspect}"
     @post = @current_user.posts.build(post_params)
     if @post.save
       render json: { post: @post, image_url: @post.image.url }, status: :created 

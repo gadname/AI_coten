@@ -23,7 +23,7 @@ const CreatePost = () => {
         const formData = new FormData();
         formData.append('post[title]', title);
         formData.append('post[content]', content);
-        formData.append('post[userId]', session?.userId );
+        // formData.append('post[userId]', session?.userId );
         if (image) {
             formData.append('post[image]', image);
         }
@@ -31,13 +31,14 @@ const CreatePost = () => {
         
 
         try {
-            console.log("Access Token:", session.accessToken);
+            console.log("Session:", session);
             await axios.post("http://localhost:3000/api/v1/posts/", formData, {
                 
               headers: {
                 
                 // ヘッダーにaccessTokenを含める
-                Authorization: `Bearer ${session.accessToken}`,
+                'Authorization': `Bearer ${session.accessToken}`,
+                'UserId': session.user_id,
 
               },
             });

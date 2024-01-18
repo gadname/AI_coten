@@ -13,10 +13,11 @@ class ApplicationController < ActionController::Base
 
 
   def set_current_user
-    # Add the following line to the ApplicationController to log the current_user value
-    
     received_access_token = request.headers["Authorization"].split(' ').last
+    pp "たちつてと"
+    Rails.logger.info "User ID in session: #{session[:user_id]}"
     Rails.logger.info "Received access token: #{received_access_token}"
+    
     if session[:user_id] && session[:access_token] == received_access_token
       # セッションからユーザー情報を取得
       @current_user = User.find_by(id: session[:user_id])
@@ -25,14 +26,15 @@ class ApplicationController < ActionController::Base
       # GitHub APIからユーザー情報を取得
       session.delete(:access_token)
       user_info = fetch_user_info_from_github(received_access_token)
-      Rails.logger.info "Session user_id: #{session[:user_id]}, access_token: #{session[:access_token]}, received_access_token: #{received_access_token}"
+      # Rails.logger.info "Session user_id: #{session[:user_id]}, access_token: #{session[:access_token]}, received_access_token: #{received_access_token}"
       # GitHubのuidをもとにユーザー検索
       @current_user = User.find_by(uid: user_info['id'])
-   
+      
       # セッションにユーザー情報を保存
       session[:user_id] = @current_user.id
       session[:access_token] = received_access_token
     end
+    Rails.logger.info "@current_user: #{@current_user.inspect}"
   end
 
   # GiHtubのユーザー情報を取得

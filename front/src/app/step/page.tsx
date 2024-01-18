@@ -95,6 +95,5 @@ export default function Home() {
             </Box>
             
         </Container>
-       
     );
 }

@@ -9,8 +9,8 @@ import ReactDOM from 'react-dom';
 import Hed from '../components/Hed';
 import { useSession, signIn, signOut } from 'next-auth/react'
 import useSWR from 'swr';
-
 import { getSession } from 'next-auth/react';
+
 type Post = {
   id: number;
   title: string;
@@ -51,7 +51,7 @@ export default function Home() {
 
   const handleDelete = async (postId: number) => {
     try {
-      await axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/${postId}`);
+      await axios.delete(`http://localhost:3000/api/v1/posts/${postId}`);
       router.reload();
     } catch (err) {
       alert("削除に失敗しました");

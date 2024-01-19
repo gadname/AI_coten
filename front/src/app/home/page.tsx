@@ -11,6 +11,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import useSWR from 'swr';
 import { getSession } from 'next-auth/react';
 
+
 type Post = {
   id: number;
   title: string;
@@ -33,14 +34,7 @@ const fetcher = async (url: string) => {
 };
 
 export default function Home() {
-  useEffect(() => {
-    const fetchSession = async () => {
-      const session = await getSession();
-      console.log(session);
-    };
-
-    fetchSession();
-  }, []);
+  
 
   const [modalPost, setModalPost] = useState<Post | null>(null);
   const router = useRouter();

@@ -1,7 +1,13 @@
 class Api::V1::PostsController < ApplicationController
+  before_action :set_current_user
+
   def index
-    @posts = Post.all
-    render json: @posts
+    if @current_user
+      @posts = @current_user.posts
+      render json: @posts
+    else
+      render json: { error: "User not found" }, status: :not_found
+    end
   end
 
   def show
@@ -10,11 +16,15 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    Rails.logger.info "Received session: #{session.inspect}"
+    pp "debag"
+    Rails.logger.info "Received params: #{params.inspect}"
+    Rails.logger.info "@current_user: #{@current_user.inspect}"
     @post = @current_user.posts.build(post_params)
     if @post.save
+      Rails.logger.info "Post saved successfully: #{@post.inspect}"
       render json: { post: @post, image_url: @post.image.url }, status: :created 
     else
+      Rails.logger.info "Failed to save post: #{@post.errors.full_messages}"
       render json: @post.errors, status: :unprocessable_entity
     end
   end
@@ -35,6 +45,7 @@ class Api::V1::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
   end
+
 
   private
 

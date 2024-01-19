@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      resources :posts
+      resources :posts do
+        get 'user_posts', on: :collection # これにより /api/v1/posts/user_posts が利用可能になります
+      end
     end
   end
 end

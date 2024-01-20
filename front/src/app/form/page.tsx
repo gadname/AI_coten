@@ -17,7 +17,7 @@ import Optional from "../components/forms/Optional";
 import NewStep from "../components/forms/NewStep";
 import AdditionalStep from "../components/forms/AdditionalStep"; // 追加のステップのコンポーネントをインポートします。
 import { HomeTemplate } from "@/app/components/templates/HomeTemplate";
-import App from "../components/App";
+import TagSelector from "../components/TagSelector";
 import Hed from '../components/Hed';
 import { useSession, signIn, signOut } from 'next-auth/react'
 
@@ -60,7 +60,7 @@ export default function Home() {
 
     return (
         <Container sx={{ marginTop: '100px' }}>
-          <App />
+          <TagSelector />
             <Box sx={{ width: "100%" }}>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (

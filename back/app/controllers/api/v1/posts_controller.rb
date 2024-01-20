@@ -16,9 +16,8 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    pp "debag"
-    Rails.logger.info "Received params: #{params.inspect}"
-    Rails.logger.info "@current_user: #{@current_user.inspect}"
+    # Rails.logger.info "Received params: #{params.inspect}"
+    # Rails.logger.info "@current_user: #{@current_user.inspect}"
     @post = @current_user.posts.build(post_params)
     if @post.save
       Rails.logger.info "Post saved successfully: #{@post.inspect}"

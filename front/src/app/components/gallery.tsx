@@ -13,8 +13,6 @@ const Gallery = () => {
   const [image3, setImage3] = useState("./white.png");
   const [image4, setImage4] = useState("./white.png");
   const [image5, setImage5] = useState("./white.png");
-  const [content, setContent] = useState("");
-  const [title, setTitle] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -60,28 +58,28 @@ const Gallery = () => {
     {
       id: '2',
       image: image2,
-      position: [-1.4, 0.5, 0.05],
+      position: [-1.4, 0.5, 0.1],
       size: [1, 0.9, 1],
       frameSize: [1.2, 1.0, 1.2],
     },
     {
       id: '3',
       image: image3,
-      position: [-3, 0.8, 0.05],
+      position: [-3, 0.8, 0.1],
       size: [1, 0.5, 1],
       frameSize: [1.1, 0.6, 0.7],
     },
     {
       id: '4',
       image: image4,
-      position: [1.4, 0.5, 0.05],
+      position: [1.4, 0.5, 0.1],
       size: [1, 0.8, 1],
       frameSize: [1.2, 1.0, 1.2],
     },
     {
       id: '5',
       image: image5,
-      position: [2.8, 0.5, 0.05],
+      position: [2.8, 0.5, 0.1],
       size: [1, 1, 1],
       frameSize: [1.2, 1.2, 1.2],
     },

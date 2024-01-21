@@ -35,3 +35,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+front/public/Cyberpunk_Street.fbx
+front/public/cyberpunk_hotel_final.fbx

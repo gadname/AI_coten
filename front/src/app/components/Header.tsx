@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import styles from './Header.module.css';
 
+
 export default function Header() {
   return (
     <div className={styles.header}>
+       
       <div className={styles.card}>
         <div className={styles.touch + " " + styles.touch__1}></div>
         <div className={styles.touch + " " + styles.touch__2}></div>
@@ -23,7 +25,7 @@ export default function Header() {
           <span className={styles.comment + " " + styles.text}>「AI個展」はAIイラスト専用の画像投稿サービスです。<br /><br /></span>
         </div>
       </div>
-
+     
       <div className={styles.circle + " " + styles.circle_1}>
       <span className={styles.circleText}></span></div>
       <div className={styles.circle + " " + styles.circle_2}></div>
@@ -34,5 +36,6 @@ export default function Header() {
       <div className={styles.circle + " " + styles.circle_7}></div>
       <div className={styles.circle + " " + styles.circle_8}></div>
     </div>
+    
   );
 }

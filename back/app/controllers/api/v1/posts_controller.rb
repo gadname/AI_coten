@@ -16,14 +16,10 @@ class Api::V1::PostsController < ApplicationController
   end
 
   def create
-    # Rails.logger.info "Received params: #{params.inspect}"
-    # Rails.logger.info "@current_user: #{@current_user.inspect}"
     @post = @current_user.posts.build(post_params)
-    if @post.save
-      Rails.logger.info "Post saved successfully: #{@post.inspect}"
+    if @post.save  
       render json: { post: @post, image_url: @post.image.url }, status: :created 
     else
-      Rails.logger.info "Failed to save post: #{@post.errors.full_messages}"
       render json: @post.errors, status: :unprocessable_entity
     end
   end

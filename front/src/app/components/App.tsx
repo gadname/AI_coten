@@ -10,8 +10,8 @@ const GOLDENRATIO = 1.61803398875
 
 export const App = ({ images }) => (
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
-    <color attach="background" args={['#191920']} />
-    <fog attach="fog" args={['#191920', 0, 15]} />
+    <color attach="background" args={['#ffffff']} />
+    <fog attach="fog" args={['#ffffff', 0, 15]} />
     <group position={[0, -0.5, 0]}>
       <Frames images={images} />
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
@@ -76,7 +76,7 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
   useFrame((state, dt) => {
     image.current.material.zoom = 2 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 2
     easing.damp3(image.current.scale, [0.85 * (!isActive && hovered ? 0.85 : 1), 0.9 * (!isActive && hovered ? 0.905 : 1), 1], 0.1, dt)
-    easing.dampC(frame.current.material.color, hovered ? 'orange' : 'white', 0.1, dt)
+    easing.dampC(frame.current.material.color, hovered ? 'Aqua' : 'white', 0.1, dt)
   })
   return (
     <group {...props}>

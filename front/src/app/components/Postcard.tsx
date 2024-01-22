@@ -17,7 +17,7 @@ export default function Postcard({ post, handleDelete }: { post: Post; handleDel
   const [isStarred, setIsStarred] = useState(false); 
   const [clickCount, setClickCount] = useState(0);
   const [comment, setComment] = useState(''); // Add this line
-  const [comments, setComments] = useState([]); // Add this line
+  const [comments, setComments] = useState<string[]>([]); 
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
@@ -45,8 +45,7 @@ export default function Postcard({ post, handleDelete }: { post: Post; handleDel
   };
 
   const handleCommentSubmit = () => {
-    const [comments, setComments] = useState<string[]>([]);
-    const newComments = [...comments, comment]; // Assuming you want to add the new comment to the existing list
+    const newComments = [...comments, comment]; // 既存のリストに新しいコメントを追加
     setComments(newComments);
     setComment('');
     localStorage.setItem(`comments-${post.id}`, JSON.stringify(newComments));

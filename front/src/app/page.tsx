@@ -33,7 +33,10 @@ const verticalTexts = texts.split('').map((char, index) => (
      
      
       <div style={{ position: 'absolute', top: '80px', left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-        <img src="/AIs.jpg" style={{ width: '100%', height: '100%', objectFit: 'cover', animation: 'fa-bounce 3s ease-in-out, fadeIn 2s ease-in-out forwards, scaleRotate 2s ease-in-out forwards', opacity: 0.5 }} onLoad={(e) => { e.target.style.opacity = 1 }} />
+        <img src="/AIs.jpg" style={{ width: '100%', height: '100%', objectFit: 'cover', animation: 'fa-bounce 3s ease-in-out, fadeIn 2s ease-in-out forwards, scaleRotate 2s ease-in-out forwards', opacity: 0.5 }} onLoad={(e) => {
+           const target = e.target as HTMLImageElement;
+           target.style.opacity = '1';
+         }} />
         </div>
       <Header />
       <h1 className="top_text">{typewritewText}</h1>

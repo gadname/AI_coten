@@ -1,11 +1,14 @@
 import Modal from "./Modal";
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
+
+// Assuming you have a type or interface defined for ModalProps
+
 
 export default function TagSelector() {
   // trueになればmodal表示
   const [modalFlg, setFlg] = useState(false);
   // 選択確定のタグ
-  const [selectTag, setTag] = useState([]);
+  const [selectTag, setTag] = useState<string[]>([]);
   // テキストボックスの状態
   const [textBoxValue, setTextBoxValue] = useState('');
 
@@ -13,7 +16,7 @@ export default function TagSelector() {
   const insertAllTagsToTextBox = () => {
     setTextBoxValue(selectTag.join(' ')); // タグをスペースで結合してテキストボックスの状態を更新
   };
-  const insertTagToTextBox = (tag) => {
+  const insertTagToTextBox = (tag: string) => {
     setTextBoxValue(textBoxValue + ' ' + tag); // 既存のテキストにタグを追加
   };
 
@@ -24,8 +27,9 @@ export default function TagSelector() {
     selectTag,
     setTag
   };
-
+  
   return (
+    
     <>
        <div style={{ textAlign: "center" }}>
       <input

@@ -16,7 +16,7 @@ interface Image {
   url: string;
   // Add any other properties that each image object might have
 }
-export const App = ({ images }: AppProps) => (
+export const Cpp = ({ images }: AppProps) => (
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
     <fog attach="fog" args={['#ffffff', 0, 15]} />
@@ -49,7 +49,8 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }:
   const [, params] = useRoute('/item/:id')
   const [, setLocation] = useLocation()
   useEffect(() => {
-    clicked.current = ref.current?.getObjectByName(params?.id);
+    if (params?.id) {
+      clicked.current = ref.current?.getObjectByName(params?.id!);
     if (clicked.current) {
       clicked.current.parent?.updateWorldMatrix(true, true)
       clicked.current.parent?.localToWorld(p.set(0, GOLDENRATIO / 2, 1.25))
@@ -57,6 +58,7 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }:
     } else {
       p.set(0, 0, 5.5)
       q.identity()
+    }
     }
   })
   useFrame((state, dt) => {

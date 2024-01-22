@@ -9,7 +9,11 @@ import {
     Center,
     OrbitControls,
 } from '@react-three/drei'
-
+interface SphereProps {
+    position: [number, number, number];
+    texture: string;
+    scale: number | [number, number, number];
+  }
 export default function Ball() {
     // 球体の属性を定義する配列
     const spheres = [
@@ -36,14 +40,15 @@ export default function Ball() {
     )
 }
 
-function Sphere({ position, texture, scale }) {
-    const meshRef = useRef(); // meshへの参照を保持するためのref
+function Sphere({ position, texture, scale }: SphereProps) {
+    const meshRef = useRef<THREE.Mesh>(null);
     const loadedTexture = useLoader(TextureLoader, texture);
 
     // フレームごとに実行されるコールバックで回転を更新
     useFrame(() => {
-        
-        meshRef.current.rotation.y += 0.005;
+        if (meshRef.current) {
+            meshRef.current.rotation.y += 0.005;
+        }
     });
 
     return (

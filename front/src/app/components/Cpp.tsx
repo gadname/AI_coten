@@ -10,7 +10,7 @@ import '../../styles/robot.css';
 
 const GOLDENRATIO = 1.61803398875
 
-export const App = ({ images }) => (
+export const Cpp = ({ images }) => (
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
     <fog attach="fog" args={['#ffffff', 0, 15]} />
@@ -59,34 +59,19 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
   return (
     <group
       ref={ref}
-      onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
+      onClick={(e) => {
+        e.stopPropagation();
+        if (!clicked.current) {
+          clicked.current = e.object;
+          setLocation('/item/' + e.object.name);
+          setTimeout(() => {
+            window.location.href = '/'; // Change to your root page URL
+          }, 2000); // 3 seconds delay
+        }
+      }}
       onPointerMissed={() => setLocation('/')}>
       {images.map((props) => <Frame key={props.url} {...props} /> /* prettier-ignore */)}
-      <Html position={[0, 0, 0]}>
-        <div className="container">
-          <div className="box">
-            <div className="area area_1"></div>
-            <div className="area area_2"></div>
-            <div className="area area_3"></div>
-            <div className="area area_4"></div>
-            <div className="area area_5"></div>
-            <div className="area area_6"></div>
-            <div className="area area_7"></div>
-            <div className="area area_8"></div>
-            <div className="area area_9"></div>
-            <a href="/" className="robot">
-              <div className="front parts_A"></div>
-              <div className="front parts_B"></div>
-              <div className="face">
-                <div className="face__wrapper">
-                  <div className="eye"></div>
-                  <span className="text">ART</span>
-                </div>
-              </div>
-            </a>
-          </div>
-        </div>
-      </Html>
+      
     </group>
   )
 }
@@ -124,9 +109,7 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
 
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>
-      <Text maxWidth={0.1} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO, 0]} fontSize={0.025}>
-        {name.split('-').join(' ')}
-      </Text>
+      
     </group>
     
   )

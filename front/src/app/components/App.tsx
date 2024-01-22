@@ -49,7 +49,7 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }:
   const [, params] = useRoute('/item/:id')
   const [, setLocation] = useLocation()
   useEffect(() => {
-    clicked.current = ref.current?.getObjectByName(params?.id);
+    clicked.current = ref.current?.getObjectByName(params?.id!);
     if (clicked.current) {
       clicked.current.parent?.updateWorldMatrix(true, true)
       clicked.current.parent?.localToWorld(p.set(0, GOLDENRATIO / 2, 1.25))

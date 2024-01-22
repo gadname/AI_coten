@@ -32,7 +32,7 @@ const nextAuthOptions = {
   
 
   callbacks: {
-    async jwt({ token, account, user }: { token: any; account: Account; user: User }) {
+    async jwt({ token, account, user }: { token: MyToken; account: Account | null; user: User }) {
       if (account && user) {
         token.id = user.id;
         if (account.access_token) {

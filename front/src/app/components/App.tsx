@@ -16,6 +16,14 @@ interface Image {
   url: string;
   // Add any other properties that each image object might have
 }
+interface FrameProps {
+  url: string;
+  c?: THREE.Color;
+  [key: string]: any; // for the rest of the properties
+}
+interface CustomMaterial extends THREE.Material {
+  zoom: number;
+}
 export const App = ({ images }: AppProps) => (
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
@@ -98,9 +106,9 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }:
   )
 }
 
-function Frame({ url, c = new THREE.Color(), ...props }) {
-  const image = useRef()
-  const frame = useRef()
+function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
+  const image = useRef<THREE.Mesh<THREE.BufferGeometry, CustomMaterial>>(null);
+  const frame = useRef<THREE.Mesh<THREE.BufferGeometry, THREE.MeshStandardMaterial | THREE.MeshBasicMaterial>>(null);
   const [, params] = useRoute('/item/:id')
   const [hovered, hover] = useState(false)
   const [rnd] = useState(() => Math.random())
@@ -108,10 +116,12 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
   const isActive = params?.id === name
   useCursor(hovered)
   useFrame((state, dt) => {
-    image.current.material.zoom = 2 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 2
-    easing.damp3(image.current.scale, [0.85 * (!isActive && hovered ? 0.85 : 1), 0.9 * (!isActive && hovered ? 0.905 : 1), 1], 0.1, dt)
-    easing.dampC(frame.current.material.color, hovered ? 'Aqua' : 'white', 0.1, dt)
-  })
+    if (image.current && frame.current) {
+      image.current.material.zoom = 2 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 2;
+      easing.damp3(image.current.scale, [0.85 * (!isActive && hovered ? 0.85 : 1), 0.9 * (!isActive && hovered ? 0.905 : 1), 1], 0.1, dt);
+      easing.dampC(frame.current.material.color, hovered ? 'Aqua' : 'white', 0.1, dt);
+    }
+  });
   return (
     <group {...props}>
       <mesh

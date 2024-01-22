@@ -12,8 +12,8 @@ import {
 export default function Ball() {
     // 球体の属性を定義する配列
     const spheres = [
-        { position: [0, -0.65, 0], texture: '/ai5.jpg', scale: [0.25, 0.25, 0.25] },
-        { position: [-2, -0.65, 0], texture: '/ai6.jpg', scale: [0.5, 0.5, 0.5] },
+        { position: [0, 1.3, 0], texture: '/ai5.jpg', scale: [0.2, 0.2, 0.2] },
+        { position: [0, 0.6, 0], texture: '/ai6.jpg', scale: [0.1, 0.1, 0.1] },
         { position: [0, -0.65, 0], texture: '/ai7.jpg', scale: [0.5, 0.5, 0.5] },
     ];
 

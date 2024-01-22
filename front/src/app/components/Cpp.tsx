@@ -9,8 +9,14 @@ import { Html } from '@react-three/drei'
 import '../../styles/robot.css';
 
 const GOLDENRATIO = 1.61803398875
-
-export const Cpp = ({ images }) => (
+interface AppProps {
+  images: { url: string }[]; // Replace this with the actual type structure of your images
+}
+interface Image {
+  url: string;
+  // Add any other properties that each image object might have
+}
+export const App = ({ images }: AppProps) => (
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
     <fog attach="fog" args={['#ffffff', 0, 15]} />
@@ -19,6 +25,7 @@ export const Cpp = ({ images }) => (
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[50, 50]} />
         <MeshReflectorMaterial
+        mirror={0.5}
           blur={[300, 100]}
           resolution={2048}
           mixBlur={1}
@@ -36,17 +43,17 @@ export const Cpp = ({ images }) => (
   </Canvas>
 )
 
-function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
-  const ref = useRef()
-  const clicked = useRef()
+function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }: { images: Image[]; q?: THREE.Quaternion; p?: THREE.Vector3 }) {
+  const ref = useRef<THREE.Group>(null);
+  const clicked = useRef<THREE.Object3D<THREE.Object3DEventMap> | undefined>();
   const [, params] = useRoute('/item/:id')
   const [, setLocation] = useLocation()
   useEffect(() => {
-    clicked.current = ref.current.getObjectByName(params?.id)
+    clicked.current = ref.current?.getObjectByName(params?.id);
     if (clicked.current) {
-      clicked.current.parent.updateWorldMatrix(true, true)
-      clicked.current.parent.localToWorld(p.set(0, GOLDENRATIO / 2, 1.25))
-      clicked.current.parent.getWorldQuaternion(q)
+      clicked.current.parent?.updateWorldMatrix(true, true)
+      clicked.current.parent?.localToWorld(p.set(0, GOLDENRATIO / 2, 1.25))
+      clicked.current.parent?.getWorldQuaternion(q)
     } else {
       p.set(0, 0, 5.5)
       q.identity()
@@ -59,19 +66,34 @@ function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() })
   return (
     <group
       ref={ref}
-      onClick={(e) => {
-        e.stopPropagation();
-        if (!clicked.current) {
-          clicked.current = e.object;
-          setLocation('/item/' + e.object.name);
-          setTimeout(() => {
-            window.location.href = '/'; // Change to your root page URL
-          }, 2000); // 3 seconds delay
-        }
-      }}
+      onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
       {images.map((props) => <Frame key={props.url} {...props} /> /* prettier-ignore */)}
-      
+      <Html position={[0, 0, 0]}>
+        <div className="container">
+          <div className="box">
+            <div className="area area_1"></div>
+            <div className="area area_2"></div>
+            <div className="area area_3"></div>
+            <div className="area area_4"></div>
+            <div className="area area_5"></div>
+            <div className="area area_6"></div>
+            <div className="area area_7"></div>
+            <div className="area area_8"></div>
+            <div className="area area_9"></div>
+            <a href="/" className="robot">
+              <div className="front parts_A"></div>
+              <div className="front parts_B"></div>
+              <div className="face">
+                <div className="face__wrapper">
+                  <div className="eye"></div>
+                  <span className="text">ART</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </Html>
     </group>
   )
 }
@@ -109,7 +131,9 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
 
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>
-      
+      <Text maxWidth={0.1} anchorX="left" anchorY="top" position={[0.55, GOLDENRATIO, 0]} fontSize={0.025}>
+        {name.split('-').join(' ')}
+      </Text>
     </group>
     
   )

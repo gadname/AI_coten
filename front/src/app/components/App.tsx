@@ -44,16 +44,16 @@ export const App = ({ images }: AppProps) => (
 )
 
 function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }: { images: Image[]; q?: THREE.Quaternion; p?: THREE.Vector3 }) {
-  const ref = useRef()
-  const clicked = useRef()
+  const ref = useRef<THREE.Group>(null);
+  const clicked = useRef<THREE.Object3D<THREE.Object3DEventMap> | undefined>();
   const [, params] = useRoute('/item/:id')
   const [, setLocation] = useLocation()
   useEffect(() => {
-    clicked.current = ref.current.getObjectByName(params?.id)
+    clicked.current = ref.current?.getObjectByName(params?.id);
     if (clicked.current) {
-      clicked.current.parent.updateWorldMatrix(true, true)
-      clicked.current.parent.localToWorld(p.set(0, GOLDENRATIO / 2, 1.25))
-      clicked.current.parent.getWorldQuaternion(q)
+      clicked.current.parent?.updateWorldMatrix(true, true)
+      clicked.current.parent?.localToWorld(p.set(0, GOLDENRATIO / 2, 1.25))
+      clicked.current.parent?.getWorldQuaternion(q)
     } else {
       p.set(0, 0, 5.5)
       q.identity()

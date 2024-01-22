@@ -24,7 +24,7 @@ interface FrameProps {
 interface CustomMaterial extends THREE.Material {
   zoom: number;
 }
-export const App = ({ images }: AppProps) => (
+export const Cpp = ({ images }: AppProps) => (
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
     <fog attach="fog" args={['#ffffff', 0, 15]} />

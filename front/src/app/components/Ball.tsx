@@ -20,12 +20,10 @@ export default function Ball() {
 
     return (
         <Canvas
-            shadows
-            camera={{ position: [0, 0, 4.5], fov: 40 }}
-            colormanagement="true"
-            gl={{ antialias: true }}
-            style={{ background: "transparent", marginTop: "900px", width: "100vw", height: "100vh" }}
-        >
+    camera={{ position: [0, 0, 4.5], fov: 40 }}
+    gl={{ antialias: true }}
+    style={{ background: "transparent", marginTop: "900px", width: "100vw", height: "100vh" }}
+>
             <ambientLight intensity={0.5} />
             <directionalLight position={[-3, 2, 4]} intensity={2} />
             <Environment preset="sunset" background={false} />

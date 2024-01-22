@@ -1,8 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 
-const Modal = ({ modalFlg, setFlg, selectTag, setTag }) => {
+
+interface ModalProps {
+  modalFlg: boolean;
+  setFlg: Dispatch<SetStateAction<boolean>>;
+  selectTag: string[];
+  setTag: Dispatch<SetStateAction<string[]>>;
+  insertTagToTextBox: (tag: string) => void; // この行を追加
+}
+const Modal = ({ modalFlg, setFlg, selectTag, setTag }: ModalProps) => {
   // 選択できるタグ一覧
   const array = Array.of(
     "lighting, 2700K",
@@ -14,46 +22,46 @@ const Modal = ({ modalFlg, setFlg, selectTag, setTag }) => {
   );
 
   // Modalコンポーネントで選択中のタグを保持
-  const [selectingTag, setSeletingTag] = useState([]);
+  const [selectingTag, setSelectingTag] = useState<string[]>([]);
 
   //modalFlgが切り替わったタイミング（modal表示/非表示)で
   // 選択確定タグと選択中タグの選択タグを一致させる
   useEffect(() => {
-    setSeletingTag(() => selectTag);
-  }, [modalFlg]);
+    setSelectingTag(() => selectTag);
+  }, [modalFlg, selectTag]);
 
   // タグ選択処理
-  const push = (e) => {
+  const push = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-
+    const target = e.target as HTMLButtonElement; 
     // タグが既に選択中かチェックする
     const check = selectingTag.find((tag) => {
-      return tag === e.target.value;
+      return tag === target.value;
     });
 
     if (!check) {
       //未選択の場合は追加
-      setSeletingTag((selected) => [...selectingTag, e.target.value]);
+      setSelectingTag((selected) => [...selectingTag, target.value]);
     } else {
       // 選択済の場合は削除
       // filterで選択したタグ以外のlistを作り直す
-      setSeletingTag((selected) =>
-        selectingTag.filter((tag) => tag !== e.target.value)
+      setSelectingTag((selected) =>
+      selectingTag.filter((tag) => tag !== target.value)
       );
     }
   };
   // Modalでのタグ選択を確定する
   const selectComfilm = () => {
     // Modalで選択したタグを確定（呼出し元へ反映）
-    setTag(() => selectingTag);
+    setTag(selectingTag);
     // Modalを閉じる
-    setFlg((flg) => !flg);
+    setFlg(!modalFlg);
   };
 
   // Modalで選択中タグをclear
   const clear = () => {
     // clear
-    setSeletingTag([]);
+    setSelectingTag([]);
   };
 
   return (
@@ -64,7 +72,7 @@ const Modal = ({ modalFlg, setFlg, selectTag, setTag }) => {
             <button
               key={tag}
               value={tag}
-              css={[grigItem(selectingTag, tag)]}
+              css={[gridItem(selectingTag, tag)]}
               onClick={(e) => push(e)}
             >
               {tag}
@@ -83,7 +91,7 @@ const Modal = ({ modalFlg, setFlg, selectTag, setTag }) => {
           </button>
           <button
             css={[gridItemBase, styles.item]}
-            onClick={() => setFlg((flg) => !flg)}
+            onClick={() => setFlg(!modalFlg)}
           >
             close
           </button>
@@ -94,7 +102,7 @@ const Modal = ({ modalFlg, setFlg, selectTag, setTag }) => {
 };
 export default Modal;
 
-const modal = (modalFlg) => {
+const modal = (modalFlg: boolean) => {
   let opacity = 0; //透明ではない
   let visibility = "hidden"; //不可視化
   if (modalFlg) {
@@ -143,39 +151,18 @@ const gridContainer = () => [
 ];
 
 // タグ選択時のスタイル変更
-const grigItem = (selectTag, select) => {
-  // 選択したタグが既に選択済かチェック
-  const count = selectTag.filter((selected) => select === selected);
-  // 選択してない場合はスタイル追加
-  if (count.length !== 0) {
-    return [
-      gridItemBase,
-      css`
-      background-color : hsla(205,100%,13%,1) ;
-      background-image:
-      radial-gradient(at 49% 49%, hsla(191,77%,26%,1) 0px, transparent 50%),
-      radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
-      radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
-      radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
-      radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
-      radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%);
-        color: white;
-      `
-    ];
-  } else {
-    return [
-      gridItemBase,
-      css`
-        background-color: white;
-
-        &:hover {
-          background-color: skyblue;
-        }
-      `
-    ];
-  }
+const gridItem = (selectingTag: string[], tag: string) => {
+  const isSelected = selectingTag.includes(tag);
+  return isSelected ? selectedStyle : unselectedStyle;
 };
+
+const selectedStyle = css`
+  /* Add your selected tag styles here */
+`;
+
+const unselectedStyle = css`
+  /* Add your unselected tag styles here */
+`;
 
 // タグのスタイルベース
 const gridItemBase = css`

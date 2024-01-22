@@ -16,7 +16,7 @@ interface SphereProps {
   }
 export default function Ball() {
     // 球体の属性を定義する配列
-    const spheres = [
+    const spheres: { position: [number, number, number]; texture: string; scale: number | [number, number, number]; }[] = [
         { position: [-2.5, 0.9, 0.4], texture: '/ai5.jpg', scale: [0.2, 0.2, 0.2] },
         // { position: [0, 0.6, 0.8], texture: '/ai6.jpg', scale: [0.1, 0.1, 0.1] },
         { position: [-2.1, -0.2, -0.1], texture: '/ai7.jpg', scale: [0.8, 0.8, 0.8] },

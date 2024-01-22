@@ -10,37 +10,28 @@ import {
 } from '@react-three/drei'
 
 export default function Ball() {
+    // 球体の属性を定義する配列
+    const spheres = [
+        { position: [0, -0.65, 0], texture: '/ai5.jpg', scale: [0.25, 0.25, 0.25] },
+        { position: [-2, -0.65, 0], texture: '/ai6.jpg', scale: [0.5, 0.5, 0.5] },
+        { position: [0, -0.65, 0], texture: '/ai7.jpg', scale: [0.5, 0.5, 0.5] },
+    ];
+
     return (
         <Canvas
             shadows
             camera={{ position: [0, 0, 4.5], fov: 40 }}
             colormanagement="true"
             gl={{ antialias: true }}
-            style={{ background: "transparent", marginTop: "950px" , width: "100vw", height: "100vh"}}
+            style={{ background: "transparent", marginTop: "900px", width: "100vw", height: "100vh" }}
         >
             <ambientLight intensity={0.5} />
             <directionalLight position={[-3, 2, 4]} intensity={2} />
             <Environment preset="sunset" background={false} />
-            <group position={[0, -0.65, 0]}>
-                <Sphere />
-                {/* <AccumulativeShadows
-                    temporal
-                    frames={200}
-                    color="purple"
-                    colorBlend={0.5}
-                    opacity={1}
-                    scale={10}
-                    alphaTest={0.85}
-                >
-                    <RandomizedLight
-                        amount={8}
-                        radius={5}
-                        ambient={0.5}
-                        position={[5, 3, 2]}
-                        bias={0.001}
-                    />
-                </AccumulativeShadows> */}
-            </group>
+            {/* ここでspheres配列をマッピングして、各Sphereコンポーネントに属性を適用 */}
+            {spheres.map((sphere, index) => (
+                <Sphere key={index} position={sphere.position} texture={sphere.texture} scale={sphere.scale} />
+            ))}
             <OrbitControls
                 autoRotate
                 autoRotateSpeed={2}
@@ -53,15 +44,13 @@ export default function Ball() {
     )
 }
 
-function Sphere() {
-    const texture = useLoader(TextureLoader, '/ai5.jpg');
+function Sphere({ position, texture, scale }) {
+    const loadedTexture = useLoader(TextureLoader, texture);
 
     return (
-        <Center top>
-            <mesh castShadow position={[0, 0, 0]}>
-                <sphereGeometry args={[0.5, 32, 32]} />
-                <meshStandardMaterial map={texture} metalness={1.5} />
-            </mesh>
-        </Center>
+        <mesh castShadow position={position} scale={scale}>
+            <sphereGeometry args={[1, 32, 32]} />
+            <meshStandardMaterial map={loadedTexture} metalness={0.9} roughness={0.5} />
+        </mesh>
     )
 }

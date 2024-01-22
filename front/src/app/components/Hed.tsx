@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './Hed.module.css';
 import Login from '../components/Login'
 import Logout from '../components/Logout'
-import Ball from '../components/Ball';
+
 import { useSession, signIn, signOut } from 'next-auth/react'
 
 
@@ -45,7 +45,7 @@ export default function Hed() {
             />
             <div>
               <Logout /> 
-              < Ball />
+             
             </div>
           </div>
         ) : (

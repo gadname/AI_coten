@@ -16,11 +16,13 @@ function Confirm(props: any) {
       <Typography>{props.formValue.AdditionalStepForm.additionalField}</Typography>
       <Box sx={{ display: "flex", flexDirection: "row", pt: 3 }}>
         {/* 選択したタグをスペース区切りで表示 */}
-        {props.formValue.AdditionalStepForm.additionalField.split(', ').map((tag, index) => (
-          <Typography key={index} sx={{ mr: 2 }}>
-            {tag}
-          </Typography>
-        ))}
+        {typeof props.formValue.AdditionalStepForm.additionalField === 'string' ? (
+          props.formValue.AdditionalStepForm.additionalField.split(', ').map((tag: string, index: number) => (
+    <Typography key={index} sx={{ mr: 2 }}>
+      {tag}
+    </Typography>
+  ))
+) : null}
       </Box>
       <Box> {/* This opening Box tag was missing */}
         <Button variant="outlined" onClick={props.handleBack} sx={{ mr: 1 }}>

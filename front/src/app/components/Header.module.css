@@ -253,7 +253,7 @@
   border-radius: 50%;
 }
 
-.circle_5{
+/* .circle_5{
   top : 350px ;
   left : 20px ;
   width : 400px ;
@@ -262,8 +262,8 @@
   background-position: center;
   border : solid 2px #0c0c0c ;
   border-radius: 50%;
-}
-.circle_6{
+} */
+/* .circle_6{
   top : 250px;
   bottom : 0px ;
   left : 10px;
@@ -274,7 +274,7 @@
   background-position: center;
   border : solid 2px #c0dbdb ;
   border-radius: 50%;
-}
+} */
 .circle_7{
   top : 10% ;
   left : 250px ;

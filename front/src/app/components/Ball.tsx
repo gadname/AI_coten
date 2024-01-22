@@ -1,6 +1,7 @@
-import { Canvas } from '@react-three/fiber'
+import { Canvas, useFrame } from '@react-three/fiber'
 import { Environment } from '@react-three/drei';
 import { useLoader } from '@react-three/fiber';
+import { useRef } from 'react';
 import { TextureLoader } from 'three';
 import {
     AccumulativeShadows,
@@ -12,9 +13,9 @@ import {
 export default function Ball() {
     // 球体の属性を定義する配列
     const spheres = [
-        { position: [0, 1.3, 0], texture: '/ai5.jpg', scale: [0.2, 0.2, 0.2] },
-        { position: [0, 0.6, 0], texture: '/ai6.jpg', scale: [0.1, 0.1, 0.1] },
-        { position: [0, -0.65, 0], texture: '/ai7.jpg', scale: [0.5, 0.5, 0.5] },
+        { position: [-2.5, 0.9, 0.4], texture: '/ai5.jpg', scale: [0.2, 0.2, 0.2] },
+        // { position: [0, 0.6, 0.8], texture: '/ai6.jpg', scale: [0.1, 0.1, 0.1] },
+        { position: [-2.1, -0.2, -0.1], texture: '/ai7.jpg', scale: [0.8, 0.8, 0.8] },
     ];
 
     return (
@@ -32,23 +33,23 @@ export default function Ball() {
             {spheres.map((sphere, index) => (
                 <Sphere key={index} position={sphere.position} texture={sphere.texture} scale={sphere.scale} />
             ))}
-            <OrbitControls
-                autoRotate
-                autoRotateSpeed={2}
-                enablePan={false}
-                enableZoom={false}
-                minPolarAngle={Math.PI / 2.1}
-                maxPolarAngle={Math.PI / 2.1}
-            />
+            
         </Canvas>
     )
 }
 
 function Sphere({ position, texture, scale }) {
+    const meshRef = useRef(); // meshへの参照を保持するためのref
     const loadedTexture = useLoader(TextureLoader, texture);
 
+    // フレームごとに実行されるコールバックで回転を更新
+    useFrame(() => {
+        
+        meshRef.current.rotation.y += 0.005;
+    });
+
     return (
-        <mesh castShadow position={position} scale={scale}>
+        <mesh ref={meshRef} castShadow position={position} scale={scale}>
             <sphereGeometry args={[1, 32, 32]} />
             <meshStandardMaterial map={loadedTexture} metalness={0.9} roughness={0.5} />
         </mesh>

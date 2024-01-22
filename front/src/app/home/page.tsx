@@ -1,6 +1,6 @@
 'use client';
-
-import React, { useEffect, useState, useContext } from 'react';
+import 'next-auth';
+import React, { useEffect, useState, useContext, ReactNode } from 'react';
 import axios from 'axios';
 import styles from '../../styles/MyComponent.module.css';
 import { useRouter } from 'next/navigation';
@@ -11,6 +11,14 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import useSWR from 'swr';
 import { getSession } from 'next-auth/react';
 
+declare module 'next-auth' {
+  /**
+   * Extends the built-in session types to include the accessToken property
+   */
+  interface Session {
+    accessToken?: string;
+  }
+}
 
 type Post = {
   id: number;
@@ -21,8 +29,16 @@ type Post = {
   post_id: number;
 };
 
-// モーダルのコンテキストを作成
-const ModalContext = React.createContext({});
+// Define the context shape with an interface
+interface ModalContextType {
+  setModalPost: (post: Post | null) => void;
+}
+
+// Create the context with the correct type
+const ModalContext = React.createContext<ModalContextType>({
+  setModalPost: () => {}, // Provide a default no-op function
+});
+
 const fetcher = async (url: string) => {
   const session = await getSession();
   const res = await fetch(url, {
@@ -46,7 +62,7 @@ export default function Home() {
   const handleDelete = async (postId: number) => {
     try {
       await axios.delete(`http://localhost:3000/api/v1/posts/${postId}`);
-      router.reload();
+      router.replace(router.asPath);
     } catch (err) {
       alert("削除に失敗しました");
     }
@@ -70,7 +86,7 @@ export default function Home() {
     </ModalContext.Provider>
   );
 }
-const modalStyle = {
+const modalStyle: React.CSSProperties = {
   position: 'fixed',
   top: '50%',
   left: '50%',
@@ -84,7 +100,7 @@ const modalStyle = {
   boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)'
 };
 
-const overlayStyle = {
+const overlayStyle: React.CSSProperties = {
   position: 'fixed',
   top: 0,
   left: 0,
@@ -93,7 +109,13 @@ const overlayStyle = {
   backgroundColor: 'rgba(0, 0, 0, 0.7)',
   zIndex: 1000
 };
-const Modal = ({ children }) => {
+
+interface ModalProps {
+  children: ReactNode;
+}
+
+
+const Modal: React.FC<ModalProps> = ({ children }) => {
   return (
     <>
       <div style={overlayStyle} />

@@ -3,9 +3,16 @@ import styles from './Postcard.module.css';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  image: {
+    url: string;
+  };
+}
 
-
-export default function Postcard({ post, handleDelete }) {
+export default function Postcard({ post, handleDelete }: { post: Post; handleDelete: () => void }) {
   const router = useRouter();
   const [isStarred, setIsStarred] = useState(false); 
   const [clickCount, setClickCount] = useState(0);
@@ -15,10 +22,10 @@ export default function Postcard({ post, handleDelete }) {
 
   useEffect(() => {
     const storedCount = Number(localStorage.getItem(`clickCount-${post.id}`)) || 0;
-    const storedStarred = localStorage.getItem(`isStarred-${post.id}`) === 'true';
-    const storedComments = JSON.parse(localStorage.getItem(`comments-${post.id}`)) || [];
+    const storedStarred = localStorage.getItem(`isStarred-${post.id}`) || 'false';
+    const storedComments = JSON.parse(localStorage.getItem(`comments-${post.id}`) || '[]');
     setClickCount(storedCount);
-    setIsStarred(storedStarred);
+    setIsStarred(storedStarred === 'true');
     setComments(storedComments);
   }, []);
 
@@ -38,13 +45,14 @@ export default function Postcard({ post, handleDelete }) {
   };
 
   const handleCommentSubmit = () => {
-    const newComments = [...comments, comment];
+    const [comments, setComments] = useState<string[]>([]);
+    const newComments = [...comments, comment]; // Assuming you want to add the new comment to the existing list
     setComments(newComments);
     setComment('');
     localStorage.setItem(`comments-${post.id}`, JSON.stringify(newComments));
   };
 
-  const handleCommentDelete = (index) => { // Add this function
+  const handleCommentDelete = (index: number) => { // Add this function
     const newComments = [...comments];
     newComments.splice(index, 1);
     setComments(newComments);

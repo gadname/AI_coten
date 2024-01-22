@@ -9,8 +9,14 @@ import { Html } from '@react-three/drei'
 import '../../styles/robot.css';
 
 const GOLDENRATIO = 1.61803398875
-
-export const App = ({ images }) => (
+interface AppProps {
+  images: { url: string }[]; // Replace this with the actual type structure of your images
+}
+interface Image {
+  url: string;
+  // Add any other properties that each image object might have
+}
+export const App = ({ images }: AppProps) => (
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
     <fog attach="fog" args={['#ffffff', 0, 15]} />
@@ -19,6 +25,7 @@ export const App = ({ images }) => (
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[50, 50]} />
         <MeshReflectorMaterial
+        mirror={0.5}
           blur={[300, 100]}
           resolution={2048}
           mixBlur={1}
@@ -36,7 +43,7 @@ export const App = ({ images }) => (
   </Canvas>
 )
 
-function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }) {
+function Frames({ images, q = new THREE.Quaternion(), p = new THREE.Vector3() }: { images: Image[]; q?: THREE.Quaternion; p?: THREE.Vector3 }) {
   const ref = useRef()
   const clicked = useRef()
   const [, params] = useRoute('/item/:id')

@@ -7,9 +7,11 @@ import styles from "../../../styles/Post.module.css"
 
 type Props = {
     post: Post;
+    handleDelete: () => Promise<void>;
+    handleEdit: () => void;
 };
 
-const Post = ({ post: initialPost }: Props) => {
+const Post = ({ post: initialPost, handleDelete, handleEdit }: Props) => {
     const router = useRouter()
     const [post, setPost] = useState(initialPost);
 

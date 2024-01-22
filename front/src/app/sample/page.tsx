@@ -146,22 +146,26 @@ const ThreeScene = () => {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover', width: '100vw', height: '100vh' }}>
       <Canvas 
-        style={{ width: '100vw', height: '100vh',margin: 0,padding: 0,
-          position: 'absolute',}}
-        gl={{
-          antialias: true,
-          toneMapping: THREE.ACESFilmicToneMapping,
-          outputEncoding: THREE.sRGBEncoding,
-          colorManagement: true,
-          backgroundColor: '#000000'
-        }}
-        camera={{
-          fov: 60,
-          near: 0.5,
-          far: 80,
-          position: [-4.1, 6.1, 16],
-        }}
-      >
+  style={{ 
+    width: '100vw', 
+    height: '100vh', 
+    margin: 0, 
+    padding: 0,
+    position: 'absolute',
+    backgroundColor: '#000000' // Set background color using CSS
+  }}
+  gl={{
+    antialias: true,
+    toneMapping: THREE.ACESFilmicToneMapping,
+    outputEncoding: THREE.sRGBEncoding
+  }}
+  camera={{
+    fov: 60,
+    near: 0.5,
+    far: 80,
+    position: [-4.1, 6.1, 16],
+  }}
+>
         <ambientLight />
         <pointLight position={[0.8, 1.4, 1.0]} intensity={50} />
         <Model />

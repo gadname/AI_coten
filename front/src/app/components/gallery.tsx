@@ -7,6 +7,7 @@ import Pole from './pole';
 import FrameList from './frame-list';
 import InputText from './input-text';
 
+
 const Gallery = () => {
   const [image1, setImage1] = useState("./white.png");
   const [image2, setImage2] = useState("./white.png");
@@ -16,31 +17,33 @@ const Gallery = () => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleImageUpload = (id, event) => {
+  const handleImageUpload = (id: string, event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (!file) return;
     const reader = new FileReader();
 
     reader.onloadend = () => {
-      const base64Image = reader.result;
-      switch (id) {
-        case '1':
-          setImage1(base64Image);
-          break;
-        case '2':
-          setImage2(base64Image);
-          break;
-        case '3':
-          setImage3(base64Image);
-          break;
-        case '4':
-          setImage4(base64Image);
-          break;
-        case '5':
-          setImage5(base64Image);
-          break;
-        default:
-          break;
+      if (typeof reader.result === 'string') {
+        const base64Image = reader.result;
+        switch (id) {
+          case '1':
+            setImage1(base64Image);
+            break;
+          case '2':
+            setImage2(base64Image);
+            break;
+          case '3':
+            setImage3(base64Image);
+            break;
+          case '4':
+            setImage4(base64Image);
+            break;
+          case '5':
+            setImage5(base64Image);
+            break;
+          default:
+            break;
+        }
       }
     };
 
@@ -52,36 +55,36 @@ const Gallery = () => {
       id: '1',
       image: image1,
       position: [0, 0.8, 0.05],
-      size: [1.2, 1.2, 1.2],
-      frameSize: [1.3, 1.3, 1.3],
+      size: [1.2, 1.2, 1.2] as [number, number, number],
+      frameSize: [1.2, 1.0, 1.2] as [number, number, number],
     },
     {
       id: '2',
       image: image2,
       position: [-1.4, 0.5, 0.1],
-      size: [1, 0.9, 1],
-      frameSize: [1.2, 1.0, 1.2],
+      size: [1, 0.9, 1] as [number, number, number],
+      frameSize: [1.2, 1.0, 1.2] as [number, number, number],
     },
     {
       id: '3',
       image: image3,
       position: [-3, 0.8, 0.1],
-      size: [1, 0.5, 1],
-      frameSize: [1.1, 0.6, 0.7],
+      size: [1, 0.5, 1] as [number, number, number],
+      frameSize: [1.1, 0.6, 0.7] as [number, number, number],
     },
     {
       id: '4',
       image: image4,
       position: [1.4, 0.5, 0.1],
-      size: [1, 0.8, 1],
-      frameSize: [1.2, 1.0, 1.2],
+      size: [1, 0.8, 1] as [number, number, number],
+      frameSize: [1.2, 1.0, 1.2] as [number, number, number],
     },
     {
       id: '5',
       image: image5,
       position: [2.8, 0.5, 0.1],
-      size: [1, 1, 1],
-      frameSize: [1.2, 1.2, 1.2],
+      size: [1, 1, 1] as [number, number, number],
+      frameSize: [1.2, 1.2, 1.2] as [number, number, number],
     },
   ];
 
@@ -123,11 +126,11 @@ const Gallery = () => {
               <Ground />
               <Pole />
               <FrameList images={images} />
-              <InputText loading={loading} />
+              <InputText loading={loading} handleKeyPress={() => {}} inputRef={React.createRef()} />
               </group>
               </>
               );
             };
-
+          
 export default Gallery;
 

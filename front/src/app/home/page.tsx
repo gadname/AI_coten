@@ -11,6 +11,11 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import useSWR from 'swr';
 import { getSession } from 'next-auth/react';
 
+interface EditFormProps {
+  post: Post;
+  onClose: () => void;
+}
+
 declare module 'next-auth' {
   /**
    * Extends the built-in session types to include the accessToken property
@@ -24,11 +29,10 @@ type Post = {
   id: number;
   title: string;
   content: string;
-  image: string;
+  image: { url: string }; // Updated to match the expected type
   user_id: number;
   post_id: number;
 };
-
 // Define the context shape with an interface
 interface ModalContextType {
   setModalPost: (post: Post | null) => void;
@@ -73,9 +77,9 @@ export default function Home() {
       <div className={styles.postsContainer}>
       {posts && posts.map((post: Post) => (
           <div key={post.id} className={styles.postCard}>
-            <Postcard post={post} handleDelete={() => handleDelete(post.id)} handleEdit={() => setModalPost(post)} />
-            <button style={{position: 'absolute', right: 80}} onClick={() => setModalPost(post)}>編集</button>
-          </div>
+          <Postcard post={post} handleDelete={() => handleDelete(post.id)} />
+          <button style={{position: 'absolute', right: 80}} onClick={() => setModalPost(post)}>編集</button>
+        </div>
         ))}
       </div>
       {modalPost && (
@@ -126,12 +130,12 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
   );
 };
 
-const EditForm = ({ post, onClose }) => {
+const EditForm: React.FC<EditFormProps> = ({ post, onClose }) => {
   const [title, setTitle] = useState(post.title);
   const [content, setContent] = useState(post.content);
   const { setModalPost } = useContext(ModalContext);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {

@@ -53,30 +53,30 @@ const schema = yup
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="additionalField"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              type="text"
-              label="追加フィールド"
-              error={!!errors.additionalField}
-              helperText={errors.additionalField?.message}
-              fullWidth
-            />
-          )}
-        />
-        <Box>
-          <Button variant="outlined" onClick={props.handleBack} sx={{ mr: 1 }}>
-            戻る
-          </Button>
-          <Button type="submit" variant="outlined">
-            次へ
-          </Button>
-        </Box>
-      </form>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="additionalField"
+        control={control}
+        render={({ field }) => (
+          <TextField
+            {...field}
+            type="text"
+            label="追加フィールド"
+            error={!!errors.additionalField}
+            helperText={errors.additionalField?.message}
+            fullWidth
+          />
+        )}
+      />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+        <Button variant="outlined" onClick={props.handleBack} style={{ marginRight: '8px' }}>
+          戻る
+        </Button>
+        <Button type="submit" variant="outlined">
+          次へ
+        </Button>
+      </div>
+    </form>
     </div>
   );
 }

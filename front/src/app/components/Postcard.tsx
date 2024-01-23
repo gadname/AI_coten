@@ -3,15 +3,20 @@ import styles from './Postcard.module.css';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import React, { useState,useEffect } from 'react';
+
 interface Post {
-  id: string;
+  id: number;
   title: string;
   content: string;
   image: {
     url: string;
   };
 }
-
+interface PostcardProps {
+  post: Post;
+  handleDelete: () => void;
+  handleEdit: () => void; // Add this line
+}
 export default function Postcard({ post, handleDelete }: { post: Post; handleDelete: () => void }) {
   const router = useRouter();
   const [isStarred, setIsStarred] = useState(false); 

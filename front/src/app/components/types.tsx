@@ -4,6 +4,8 @@ export type imagesType = {
   id: string
   position: number[]
   image: string
+  frameSize: number | [number, number, number];
+  size: [number, number, number];
 }
 
 export type inputTextTypes = {

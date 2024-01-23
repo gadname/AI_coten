@@ -61,7 +61,8 @@ export default function Home() {
     return (
         <Container sx={{ marginTop: '100px' }}>
           <TagSelector />
-            <Box sx={{ width: "100%" }}>
+            {/* ここでBoxを別のコンポーネントに置き換えます */}
+            <div style={{ width: "100%" }}>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (
                         <Step key={label}>
@@ -74,9 +75,9 @@ export default function Home() {
                         <Typography sx={{ mt: 2, mb: 1 }}>
                             All steps completed - you&apos;re finished
                         </Typography>
-                        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                        <div style={{ display: "flex", flexDirection: "row", pt: 2 }}>
                             <Button onClick={handleReset}>Reset</Button>
-                        </Box>
+                        </div>
                         
                     </div>
                     
@@ -88,10 +89,9 @@ export default function Home() {
                     
                 )}
                 
-            </Box>
+            </div>
             <HomeTemplate />
             <Hed />
         </Container>
-        
     );
 }

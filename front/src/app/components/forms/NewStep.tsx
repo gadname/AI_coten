@@ -45,31 +45,31 @@ function NewStep(props: any) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="newField"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              type="text"
-              label="新しいフィールド"
-              error={!!errors.newField}
-              helperText={errors.newField?.message}
-              fullWidth
-            />
-          )}
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <Controller
+      name="newField"
+      control={control}
+      render={({ field }) => (
+        <TextField
+          {...field}
+          type="text"
+          label="新しいフィールド"
+          error={!!errors.newField}
+          helperText={errors.newField?.message}
+          fullWidth
         />
-        <Box>
-          <Button variant="outlined" onClick={props.handleBack} sx={{ mr: 1 }}>
-            戻る
-          </Button>
-          <Button type="submit" variant="outlined">
-            次へ
-          </Button>
-        </Box>
-      </form>
+      )}
+    />
+    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px' }}>
+      <Button variant="outlined" onClick={props.handleBack} style={{ marginRight: '8px' }}>
+        戻る
+      </Button>
+      <Button type="submit" variant="outlined">
+        次へ
+      </Button>
     </div>
+  </form>
+</div>
   );
 }
 

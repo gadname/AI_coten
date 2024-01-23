@@ -40,35 +40,35 @@ function Optional(props: any) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Controller
-          name="optionalBox"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              type="text"
-              label="備考"
-              error={errors.optionalBox ? true : false}
-              helperText={errors.optionalBox?.message}
-              fullWidth
-            ></TextField>
-          )}
+  <form onSubmit={handleSubmit(onSubmit)}>
+    <Controller
+      name="optionalBox"
+      control={control}
+      render={({ field }) => (
+        <TextField
+          {...field}
+          type="text"
+          label="備考"
+          error={errors.optionalBox ? true : false}
+          helperText={errors.optionalBox?.message}
+          fullWidth
         />
-        <Box>
-          <Button variant="outlined" onClick={props.handleBack} sx={{ mr: 1 }}>
-            戻る
-          </Button>
-          <Button
-            onClick={handleSubmit(onSubmit)}
-            variant="outlined"
-            sx={{ mr: 1 }}
-          >
-            確認へ
-          </Button>
-        </Box>
-      </form>
+      )}
+    />
+    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '8px' }}>
+      <Button variant="outlined" onClick={props.handleBack} style={{ marginRight: '8px' }}>
+        戻る
+      </Button>
+      <Button
+        onClick={handleSubmit(onSubmit)}
+        variant="outlined"
+        style={{ marginRight: '8px' }}
+      >
+        確認へ
+      </Button>
     </div>
+  </form>
+</div>
   );
 }
 

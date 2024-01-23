@@ -60,14 +60,14 @@ function Basic(props: any) {
             ></TextField>
           )}
         />
-        <Box>
+         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
           <Button variant="outlined" disabled sx={{ mr: 1 }}>
             戻る
           </Button>
           <Button onClick={handleSubmit(onSubmit)} variant="outlined">
             次へ
           </Button>
-        </Box>
+        </div>
       </form>
     </div>
   );

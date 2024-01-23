@@ -35,7 +35,7 @@ export const App = ({ images }: AppProps) => (
         <MeshReflectorMaterial
         mirror={0.5}
           blur={[300, 100]}
-          resolution={2048}
+          resolution={1024}
           mixBlur={1}
           mixStrength={80}
           roughness={1}

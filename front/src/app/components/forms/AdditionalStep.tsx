@@ -60,7 +60,7 @@ function AdditionalStep(props: any) {
             />
           )}
         />
-        <Box style={{ display: "flex", flexDirection: "row", paddingTop: "16px" }}>
+        <Box>
           <Button variant="outlined" onClick={props.handleBack} sx={{ mr: 1 }}>
             戻る
           </Button>

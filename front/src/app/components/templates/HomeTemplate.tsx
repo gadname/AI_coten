@@ -4,7 +4,7 @@ import { FC } from "react";
 
 export const HomeTemplate: FC = () => {
   return (
-    <main class="w-auto h-screen p-5">
+    <main className="w-auto h-screen p-5">
       <div className="flex justify-center w-full">
       <GptV3_5TurboInterface /> 
       <DallE3Interface />

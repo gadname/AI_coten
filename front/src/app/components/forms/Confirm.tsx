@@ -14,7 +14,7 @@ function Confirm(props: any) {
       <Typography>{props.formValue.NewStepForm.newField}</Typography>
       {/* 追加されたステップの値を表示 */}
       <Typography>{props.formValue.AdditionalStepForm.additionalField}</Typography>
-      <Box sx={{ display: "flex", flexDirection: "row", pt: 3 }}>
+      <Box>
         {/* 選択したタグをスペース区切りで表示 */}
         {typeof props.formValue.AdditionalStepForm.additionalField === 'string' ? (
           props.formValue.AdditionalStepForm.additionalField.split(', ').map((tag: string, index: number) => (

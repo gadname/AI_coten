@@ -60,7 +60,7 @@ function Basic(props: any) {
             ></TextField>
           )}
         />
-        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+        <Box>
           <Button variant="outlined" disabled sx={{ mr: 1 }}>
             戻る
           </Button>

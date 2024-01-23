@@ -11,11 +11,11 @@ const images = [
   // Left
   { position: [-1.75, 0, 0.25], rotation: [0, Math.PI / 2.5, 0],url: '/art3.png'  },
   { position: [-2.15, 0, 1.5], rotation: [0, Math.PI / 2.5, 0],url: '/AIs.jpg' },
-//   { position: [-2, 0, 2.75], rotation: [0, Math.PI / 2.5, 0], url: '/ai8.jpg' },
+  { position: [-2, 0, 2.75], rotation: [0, Math.PI / 2.5, 0], url: '/ai8.jpg' },
 //   // Right
   { position: [1.75, 0, 0.25], rotation: [0, -Math.PI / 2.5, 0],  url: '/ai6.jpg'},
   { position: [2.15, 0, 1.5], rotation: [0, -Math.PI / 2.5, 0], url: '/ai7.jpg' },
-//   { position: [2, 0, 2.75], rotation: [0, -Math.PI / 2.5, 0], url: '/aicat.png' }
+  { position: [2, 0, 2.75], rotation: [0, -Math.PI / 2.5, 0], url: '/aicat.png' }
 ]
 
 export default function HomePage() {

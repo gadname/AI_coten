@@ -75,9 +75,9 @@ export default function Home() {
                         <Typography sx={{ mt: 2, mb: 1 }}>
                             All steps completed - you&apos;re finished
                         </Typography>
-                        <div style={{ display: "flex", flexDirection: "row", pt: 2 }}>
+                        <div style={{ display: "flex", flexDirection: "row", paddingTop: '2px' }}>
                             <Button onClick={handleReset}>Reset</Button>
-                        </div>
+                            </div>
                         
                     </div>
                     

@@ -66,7 +66,7 @@ export default function Home() {
   const handleDelete = async (postId: number) => {
     try {
       await axios.delete(`http://localhost:3000/api/v1/posts/${postId}`);
-      router.replace(router.asPath);
+      window.location.reload();
     } catch (err) {
       alert("削除に失敗しました");
     }

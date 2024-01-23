@@ -117,7 +117,7 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
   useCursor(hovered)
   useFrame((state, dt) => {
     if (image.current && frame.current) {
-      image.current.material.zoom = 2 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 2;
+      // image.current.material.zoom = 2 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 2;
       easing.damp3(image.current.scale, [0.85 * (!isActive && hovered ? 0.85 : 1), 0.9 * (!isActive && hovered ? 0.905 : 1), 1], 0.1, dt);
       easing.dampC(frame.current.material.color, hovered ? 'Aqua' : 'white', 0.1, dt);
     }

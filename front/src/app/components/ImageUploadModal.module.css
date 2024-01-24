@@ -1,5 +1,24 @@
 /* components/ImageUploadModal.module.css */
 /* ImageUploadModal.module.css */
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
 .sidebarOverlay {
     position: fixed;
     top: 0;
@@ -8,10 +27,13 @@
     left: 0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000; /* Overlay should be on top of other content */
+    animation: fadeIn 0.3s;
   }
   
   .sidebar {
-    background-color: #fff;
+    background : linear-gradient( 135deg , rgba(255,255,255,.4) 8% , rgba(255,255,255,.1) 60% , rgba(255,255,255,.2) 92% ) ;
+    transition : all ease .7s ;
+    color : #fff ;
     padding: 20px;
     width: 250px; /* Adjust width as needed */
     height: 100%;
@@ -21,4 +43,9 @@
     bottom: 0;
     overflow: auto; /* In case content overflows */
     z-index: 1001; /* Sidebar should be above the overlay */
+    animation: slideIn 0.3s forwards;
+  }
+
+  .sidebarClosing {
+    animation: slideOut 0.3s forwards;
   }

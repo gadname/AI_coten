@@ -65,7 +65,7 @@ export default function HomePage() {
 
   return (
     <div className={styles.root}>
-      <button onClick={showModal}>Click!</button>
+      <button onClick={showModal} >Click!</button>
       {isModalVisible && (
         <ImageUploadModal onClose={hideModal}>
           {Object.keys(imageUrls).map((key, index) => (
@@ -76,12 +76,13 @@ export default function HomePage() {
                 id={`file-input-${key}`}
                 style={{ display: 'none' }}
               />
-              <label htmlFor={`file-input-${key}`}>画像{index + 1}</label>
+              <label htmlFor={`file-input-${key}`}
+              >画像{index + 1}</label>
             </div>
       ))}
        </ImageUploadModal>
        )}
-      <App images={images} />
+      <App images={images} onShowModal={showModal}/>
       
     </div>
   );

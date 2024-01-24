@@ -65,7 +65,7 @@ export default function HomePage() {
 
   return (
     <div className={styles.root}>
-      <button onClick={showModal} >Click!</button>
+      <button onClick={showModal} ></button>
       {isModalVisible && (
         <ImageUploadModal onClose={hideModal}>
           {Object.keys(imageUrls).map((key, index) => (
@@ -82,7 +82,7 @@ export default function HomePage() {
       ))}
        </ImageUploadModal>
        )}
-      <App images={images} onShowModal={showModal}/>
+      <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>
       
     </div>
   );

@@ -14,6 +14,8 @@ const GOLDENRATIO = 1.61803398875
 interface AppProps {
   images: { url: string }[]; // Replace this with the actual type structure of your images
   onShowModal: () => void;
+  onHideModal: () => void;
+  isModalVisible: boolean;
 }
 interface Image {
   url: string;
@@ -27,13 +29,13 @@ interface FrameProps {
 interface CustomMaterial extends THREE.Material {
   zoom: number;
 }
-export const App = ({ images, onShowModal }: AppProps) => (
+export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppProps) => (
   
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
     <fog attach="fog" args={['#ffffff', 0, 15]} />
     <group position={[0, -0.5, 0]}>
-      <Frames images={images} onShowModal={onShowModal}/>
+      <Frames images={images} onShowModal={onShowModal} onHideModal={onHideModal} isModalVisible={isModalVisible}/>
       <mesh rotation={[-Math.PI / 2, 0, 0]}>
         <planeGeometry args={[50, 50]} />
         <MeshReflectorMaterial
@@ -55,7 +57,7 @@ export const App = ({ images, onShowModal }: AppProps) => (
   </Canvas>
 )
 
-function Frames({ images, onShowModal, q = new THREE.Quaternion(), p = new THREE.Vector3() }: { images: Image[]; onShowModal: () => void; q?: THREE.Quaternion; p?: THREE.Vector3 }) {
+function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THREE.Quaternion(), p = new THREE.Vector3() }: { images: Image[]; onShowModal: () => void; onHideModal: () => void; isModalVisible: boolean; q?: THREE.Quaternion; p?: THREE.Vector3 }) {
   const ref = useRef<THREE.Group>(null);
   const clicked = useRef<THREE.Object3D<THREE.Object3DEventMap> | undefined>();
   const [, params] = useRoute('/item/:id')
@@ -94,7 +96,7 @@ function Frames({ images, onShowModal, q = new THREE.Quaternion(), p = new THREE
             <div className="area area_8"></div>
             <div className="area area_9"></div>
             
-            <button onClick={() => onShowModal()} className="robot">
+            <button onClick={() => { isModalVisible ? onHideModal() : onShowModal(); }} className="robot">
               <div className="front parts_A"></div>
               <div className="front parts_B"></div>
               <div className="face">

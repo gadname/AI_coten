@@ -35,7 +35,7 @@
     transition : all ease .7s ;
     color : #fff ;
     padding: 20px;
-    width: 250px; /* Adjust width as needed */
+    width: 200px; /* Adjust width as needed */
     height: 100%;
     position: fixed;
     right: 0; /* Align the sidebar to the right */

@@ -15,3 +15,15 @@
     padding: 0;
     overflow: hidden;
 }
+.imageHoverEffect {
+    transition: brightness 0.3s ease;
+  }
+  
+  .imageHoverEffect:hover {
+    filter: brightness(1.5);
+  }
+  .buttonPosition {
+    position: absolute;
+    top: 600px;
+    right: 300px;
+  }

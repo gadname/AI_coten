@@ -7,6 +7,8 @@ import { easing } from 'maath'
 import getUuid from 'uuid-by-string'
 import { Html } from '@react-three/drei'
 import '../../styles/robot.css';
+import React from 'react';
+ 
 
 const GOLDENRATIO = 1.61803398875
 interface AppProps {
@@ -25,6 +27,7 @@ interface CustomMaterial extends THREE.Material {
   zoom: number;
 }
 export const App = ({ images }: AppProps) => (
+  
   <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
     <color attach="background" args={['#ffffff']} />
     <fog attach="fog" args={['#ffffff', 0, 15]} />
@@ -137,7 +140,7 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
           <meshBasicMaterial toneMapped={false} fog={false} />
         </mesh>
 
-        
+       
 
         <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
       </mesh>

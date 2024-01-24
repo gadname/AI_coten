@@ -1,0 +1,24 @@
+/* components/ImageUploadModal.module.css */
+/* ImageUploadModal.module.css */
+.sidebarOverlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000; /* Overlay should be on top of other content */
+  }
+  
+  .sidebar {
+    background-color: #fff;
+    padding: 20px;
+    width: 250px; /* Adjust width as needed */
+    height: 100%;
+    position: fixed;
+    right: 0; /* Align the sidebar to the right */
+    top: 0;
+    bottom: 0;
+    overflow: auto; /* In case content overflows */
+    z-index: 1001; /* Sidebar should be above the overlay */
+  }

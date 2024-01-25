@@ -1,6 +1,7 @@
 // components/HomePage.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { App } from './App'; // Adjust the path according to your project structure
+import localForage from 'localforage';
 import styles from './HomePage.module.css';
 import ImageUploadModal from './ImageUploadModal';
 
@@ -17,6 +18,32 @@ export default function HomePage() {
     image8: '/ai7.jpg',
     image9: '/aicat.png',
   });
+
+// localForageの設定
+  localForage.config({
+    name: 'myApp',
+    storeName: 'images',
+  });
+
+  // 画像をlocalForageから読み込む関数
+  const loadImageFromStorage = async (key) => {
+    try {
+      const dataUrl = await localForage.getItem(key);
+      if (dataUrl) {
+        setImageUrls(prevUrls => ({
+          ...prevUrls,
+          [key]: dataUrl
+        }));
+      }
+    } catch (error) {
+      console.error('画像の読み込みに失敗しました', error);
+    }
+  };
+
+  // コンポーネントのマウント時に画像を読み込む
+  useEffect(() => {
+    Object.keys(imageUrls).forEach(loadImageFromStorage);
+  }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -49,18 +76,17 @@ export default function HomePage() {
   ];
 
   // 画像をアップロードするためのハンドラー
-  const handleImageUpload = (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-        const file = event.target.files[0];
+  const handleImageUpload = async (imageKey, event) => {
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        // 新しい画像の URL を読み込んだ後、状態を更新
-        updateImageUrl(imageKey as keyof typeof imageUrls, reader.result as string);
+      reader.onloadend = async () => {
+        const dataUrl = reader.result as string;
+        await localForage.setItem(imageKey, dataUrl); // 画像をlocalForageに保存
+        updateImageUrl(imageKey as keyof typeof imageUrls, dataUrl); // 状態を更新
       };
       reader.readAsDataURL(file);
     }
-}
   };
 
   return (

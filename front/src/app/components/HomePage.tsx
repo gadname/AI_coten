@@ -34,16 +34,14 @@ export default function HomePage() {
   };
   // 画像 URL を更新する関数
   useEffect(() => {
-    localForage.getItem('imageUrls').then((savedImageUrls) => {
-      if (typeof savedImageUrls === 'string') {
-        // localForageは自動でparseするが、明示的に行いたい場合は以下のようにする
-        const imageUrlsObject = JSON.parse(savedImageUrls);
-        setImageUrls(imageUrlsObject);
+    async function loadImageUrls() {
+        const savedImageUrls = await localForage.getItem('imageUrls');
+        if (savedImageUrls) {
+          setImageUrls(JSON.parse(savedImageUrls as string));
+        }
       }
-    }).catch((err) => {
-      console.error('Failed to load image URLs from localForage', err);
-    });
-  }, []);
+      loadImageUrls();
+    }, []);
   
   // 画像 URL を更新する関数
   const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {

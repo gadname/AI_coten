@@ -27,3 +27,73 @@
     top: 600px;
     right: 300px;
   }
+/* HomePage.module.css */
+.labelPosition {
+    position: relative;
+}
+  .labelPosition1 {
+    position: absolute;
+    top: 68%;
+    left: 48%;
+  }
+  
+  /* ラベル2の位置 */
+  .labelPosition2 {
+    position: absolute;
+    top: 60%;
+    left: 40%;
+  }
+  .labelPosition3 {
+    position: absolute;
+    top: 60%;
+    left: 57%;
+  }
+  .labelPosition4 {
+    position: absolute;
+    top: 60%;
+    left: 30%;
+  }
+  .labelPosition5 {
+    position: absolute;
+    top: 62%;
+    left: 20%;
+  }
+  .labelPosition6 {
+    position: absolute;
+    top: 60%;
+    left: 5%;
+  }
+  .labelPosition7 {
+    position: absolute;
+    top: 60%;
+    left: 67%;
+  }
+  .labelPosition8 {
+    position: absolute;
+    top: 62%;
+    left: 77%;
+  }
+  .labelPosition9 {
+    position: absolute;
+    top: 60%;
+    left: 90%;
+  }
+  
+  
+  /* 中画面デバイス用のスタイル */
+  @media (min-width: 600px) and (max-width: 1199px) {
+    .labelPosition {
+      /* 画面のサイズに応じて位置を調整 */
+      top: 20vh;
+      left: 20vw;
+    }
+  }
+  
+  /* 大画面デバイス用のスタイル */
+  @media (min-width: 1200px) {
+    .labelPosition {
+      /* 画面のサイズに応じて位置を調整 */
+      top: 30vh;
+      left: 30vw;
+    }
+  }

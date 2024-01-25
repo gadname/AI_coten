@@ -69,17 +69,21 @@ export default function HomePage() {
       {isModalVisible && (
         <ImageUploadModal onClose={hideModal}>
           {Object.keys(imageUrls).map((key, index) => (
-            <div key={key}>
-              <input
-                type="file"
-                onChange={(event) => handleImageUpload(key, event)}
-                id={`file-input-${key}`}
-                style={{ display: 'none' }}
-              />
-              <label htmlFor={`file-input-${key}`}
-              >画像{index + 1}</label>
-            </div>
-      ))}
+  <div key={key} className={styles.labelContainer}>
+    <input
+      type="file"
+      onChange={(event) => handleImageUpload(key, event)}
+      id={`file-input-${key}`}
+      style={{ display: 'none' }}
+    />
+    <label
+      htmlFor={`file-input-${key}`}
+      className={styles[`labelPosition${index + 1}`]} // ここでスタイルクラスを適用
+    >
+      Click!
+    </label>
+  </div>
+))}
        </ImageUploadModal>
        )}
       <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>

@@ -35,7 +35,7 @@ export default function HomePage() {
   // 画像 URL を更新する関数
   useEffect(() => {
     localForage.getItem('imageUrls').then((savedImageUrls) => {
-      if (savedImageUrls) {
+      if (typeof savedImageUrls === 'string') {
         // localForageは自動でparseするが、明示的に行いたい場合は以下のようにする
         const imageUrlsObject = JSON.parse(savedImageUrls);
         setImageUrls(imageUrlsObject);
@@ -47,7 +47,7 @@ export default function HomePage() {
   
   // 画像 URL を更新する関数
   const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
-    setImageUrls(prevUrls => {
+    setImageUrls((prevUrls: typeof imageUrls) => {
       const updatedUrls = {
         ...prevUrls,
         [imageKey]: newUrl

@@ -13,6 +13,7 @@ const ImageUploadModal: FC<ImageUploadModalProps> = ({ onClose, children }) => {
   const handleClose = () => {
     setIsClosing(true);
     setTimeout(() => {
+      setIsClosing(false);
       onClose();
     }, 300); // 300msはアニメーションの時間と一致させる
   };
@@ -21,7 +22,7 @@ const ImageUploadModal: FC<ImageUploadModalProps> = ({ onClose, children }) => {
     <div className={styles.sidebarOverlay} onClick={handleClose}>
       <div className={`${styles.sidebar} ${isClosing ? styles.sidebarClosing : ''}`} onClick={e => e.stopPropagation()}>
         {children}
-        <button onClick={handleClose}>閉じる</button>
+        <button onClick={handleClose} className={styles.uploadButton}>画像投稿</button>
       </div>
     </div>
   );

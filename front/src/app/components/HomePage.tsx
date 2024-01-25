@@ -9,8 +9,9 @@ import Compressor from 'compressorjs';
 export default function HomePage() {
   // 画像の URL を状態として管理
   const [imageUrls, setImageUrls] = useState(() => {
-    const savedImageUrls = localStorage.getItem('imageUrls');
-    return savedImageUrls ? JSON.parse(savedImageUrls) : {
+    if (typeof window !== 'undefined') {
+      const savedImageUrls = localStorage.getItem('imageUrls');
+      return savedImageUrls ? JSON.parse(savedImageUrls) : {
     image1: '/ai4.jpg',
     image2: '/art1.png',
     image3: '/art2.png',
@@ -21,7 +22,20 @@ export default function HomePage() {
     image8: '/ai7.jpg',
     image9: '/aicat.png',
     };
-  });
+} else {
+    return {
+      image1: '/ai4.jpg',
+      image2: '/art1.png',
+      image3: '/art2.png',
+    image4: '/art3.png',
+    image5: '/AIs.jpg',
+    image6: '/ai8.jpg',
+    image7: '/ai6.jpg',
+    image8: '/ai7.jpg',
+    image9: '/aicat.png',
+};
+}
+});
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 

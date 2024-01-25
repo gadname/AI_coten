@@ -1,13 +1,16 @@
 // components/HomePage.tsx
-import React, { useState, useEffect } from 'react';
+import React, { useState,useEffect } from 'react';
 import { App } from './App'; // Adjust the path according to your project structure
-import localForage from 'localforage';
 import styles from './HomePage.module.css';
 import ImageUploadModal from './ImageUploadModal';
+import localForage from 'localforage';
+import Compressor from 'compressorjs';
 
 export default function HomePage() {
   // 画像の URL を状態として管理
-  const [imageUrls, setImageUrls] = useState({
+  const [imageUrls, setImageUrls] = useState(() => {
+    const savedImageUrls = localStorage.getItem('imageUrls');
+    return savedImageUrls ? JSON.parse(savedImageUrls) : {
     image1: '/ai4.jpg',
     image2: '/art1.png',
     image3: '/art2.png',
@@ -17,33 +20,8 @@ export default function HomePage() {
     image7: '/ai6.jpg',
     image8: '/ai7.jpg',
     image9: '/aicat.png',
+    };
   });
-
-// localForageの設定
-  localForage.config({
-    name: 'myApp',
-    storeName: 'images',
-  });
-
-  // 画像をlocalForageから読み込む関数
-  const loadImageFromStorage = async (key) => {
-    try {
-      const dataUrl = await localForage.getItem(key);
-      if (dataUrl) {
-        setImageUrls(prevUrls => ({
-          ...prevUrls,
-          [key]: dataUrl
-        }));
-      }
-    } catch (error) {
-      console.error('画像の読み込みに失敗しました', error);
-    }
-  };
-
-  // コンポーネントのマウント時に画像を読み込む
-  useEffect(() => {
-    Object.keys(imageUrls).forEach(loadImageFromStorage);
-  }, []);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -55,11 +33,32 @@ export default function HomePage() {
     setIsModalVisible(false);
   };
   // 画像 URL を更新する関数
+  useEffect(() => {
+    localForage.getItem('imageUrls').then((savedImageUrls) => {
+      if (savedImageUrls) {
+        // localForageは自動でparseするが、明示的に行いたい場合は以下のようにする
+        const imageUrlsObject = JSON.parse(savedImageUrls);
+        setImageUrls(imageUrlsObject);
+      }
+    }).catch((err) => {
+      console.error('Failed to load image URLs from localForage', err);
+    });
+  }, []);
+  
+  // 画像 URL を更新する関数
   const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
-    setImageUrls(prevUrls => ({
-      ...prevUrls,
-      [imageKey]: newUrl
-    }));
+    setImageUrls(prevUrls => {
+      const updatedUrls = {
+        ...prevUrls,
+        [imageKey]: newUrl
+      };
+      // localForage を使用して画像URLを非同期に保存
+      // localForageは自動でstringifyするが、明示的に行いたい場合は以下のようにする
+      localForage.setItem('imageUrls', JSON.stringify(updatedUrls)).catch((err) => {
+        console.error('Failed to save image URLs to localForage', err);
+      });
+      return updatedUrls;
+    });
   };
 
   // 画像のデータを配列に変換
@@ -75,17 +74,33 @@ export default function HomePage() {
     { position: [2, 0, 2.75], rotation: [0, -Math.PI / 2.5, 0], url: imageUrls.image9 },
   ];
 
+  const clearLocalStorage = () => {
+    localStorage.clear();
+  };
   // 画像をアップロードするためのハンドラー
-  const handleImageUpload = async (imageKey, event) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = async () => {
-        const dataUrl = reader.result as string;
-        await localForage.setItem(imageKey, dataUrl); // 画像をlocalForageに保存
-        updateImageUrl(imageKey as keyof typeof imageUrls, dataUrl); // 状態を更新
-      };
-      reader.readAsDataURL(file);
+  const handleImageUpload = (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      if (file) {
+        // 画像を圧縮する
+        new Compressor(file, {
+          quality: 0.2, // 画質を20%に設定
+          maxWidth: 800, // 最大幅を800pxに設定
+          maxHeight: 600, // 最大高さを600pxに設定
+          convertSize: 100000, // 100KB以下の画像はJPEGに変換しない
+          success(result) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+              // 新しい画像の URL を読み込んだ後、状態を更新
+              updateImageUrl(imageKey as keyof typeof imageUrls, reader.result as string);
+            };
+            reader.readAsDataURL(result);
+          },
+          error(err) {
+            console.error(err.message);
+          },
+        });
+      }
     }
   };
 
@@ -106,6 +121,7 @@ export default function HomePage() {
       htmlFor={`file-input-${key}`}
       className={styles[`labelPosition${index + 1}`]} // ここでスタイルクラスを適用
     >
+        
       Click!
     </label>
   </div>

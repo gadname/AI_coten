@@ -6,7 +6,11 @@ import ImageUploadModal from './ImageUploadModal';
 import localForage from 'localforage';
 import Compressor from 'compressorjs';
 import { useSession } from "next-auth/react";
+import { Session } from "next-auth";
 
+interface CustomSession extends Session {
+    user_id: string;
+  }
 export default function HomePage() {
   // 画像の URL を状態として管理
   const { data: session } = useSession();
@@ -54,7 +58,7 @@ export default function HomePage() {
     async function loadImageUrls() {
       if (session) {
         // ユーザーIDをキーとして使用
-        const userImageUrlsKey = `imageUrls-${session.user_id}`;
+        const userImageUrlsKey = `imageUrls-${(session as CustomSession).user_id}`;
         const savedImageUrls = await localForage.getItem(userImageUrlsKey);
         if (savedImageUrls) {
           setImageUrls(JSON.parse(savedImageUrls as string));
@@ -73,7 +77,7 @@ export default function HomePage() {
       };
       if (session) {
         // ユーザーIDをキーとして使用
-        const userImageUrlsKey = `imageUrls-${session.user_id}`;
+        const userImageUrlsKey = `imageUrls-${(session as CustomSession).user_id}`;
         localForage.setItem(userImageUrlsKey, JSON.stringify(updatedUrls)).catch((err) => {
           console.error('Failed to save image URLs to localForage', err);
         });

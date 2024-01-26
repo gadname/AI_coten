@@ -14,10 +14,10 @@ export default function Hed() {
       <Link href="/">
         <img src="/Alchemist.jpg" alt="Logo" style={{ position: 'absolute', top: '-30px', left: '20px', width: '150px', height: '150px' }} />
         </Link>
-        <Link href="/home">
+        {/* <Link href="/home">
           <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '350px' }}>Home</div>
-          </Link>
-        <Link href="/form">
+          </Link> */}
+        <Link href="/Form">
           <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '250px' }}>form</div>
         </Link>
         <div className="login">
@@ -53,7 +53,7 @@ export default function Hed() {
         )}
       </div>
         {/* 他のリンクをここに追加 */}
-        <Link href="/museum">
+        <Link href="/three">
           <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '150px' }}>Museum</div>
         </Link>
       </nav> 

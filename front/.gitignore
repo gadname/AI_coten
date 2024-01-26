@@ -38,3 +38,6 @@ next-env.d.ts
 
 front/public/Cyberpunk_Street.fbx
 front/public/cyberpunk_hotel_final.fbx
+.env.development
+.env.production
+.env.local

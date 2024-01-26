@@ -5,9 +5,11 @@ import styles from './HomePage.module.css';
 import ImageUploadModal from './ImageUploadModal';
 import localForage from 'localforage';
 import Compressor from 'compressorjs';
+import { useSession } from "next-auth/react";
 
 export default function HomePage() {
   // 画像の URL を状態として管理
+  const { data: session } = useSession();
   const [imageUrls, setImageUrls] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedImageUrls = localStorage.getItem('imageUrls');
@@ -48,14 +50,19 @@ export default function HomePage() {
   };
   // 画像 URL を更新する関数
   useEffect(() => {
+    console.log('Current session:', session);
     async function loadImageUrls() {
-        const savedImageUrls = await localForage.getItem('imageUrls');
+      if (session) {
+        // ユーザーIDをキーとして使用
+        const userImageUrlsKey = `imageUrls-${session.user_id}`;
+        const savedImageUrls = await localForage.getItem(userImageUrlsKey);
         if (savedImageUrls) {
           setImageUrls(JSON.parse(savedImageUrls as string));
         }
       }
-      loadImageUrls();
-    }, []);
+    }
+    loadImageUrls();
+  }, [session]);
   
   // 画像 URL を更新する関数
   const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
@@ -64,11 +71,13 @@ export default function HomePage() {
         ...prevUrls,
         [imageKey]: newUrl
       };
-      // localForage を使用して画像URLを非同期に保存
-      // localForageは自動でstringifyするが、明示的に行いたい場合は以下のようにする
-      localForage.setItem('imageUrls', JSON.stringify(updatedUrls)).catch((err) => {
-        console.error('Failed to save image URLs to localForage', err);
-      });
+      if (session) {
+        // ユーザーIDをキーとして使用
+        const userImageUrlsKey = `imageUrls-${session.user_id}`;
+        localForage.setItem(userImageUrlsKey, JSON.stringify(updatedUrls)).catch((err) => {
+          console.error('Failed to save image URLs to localForage', err);
+        });
+      }
       return updatedUrls;
     });
   };
@@ -118,30 +127,33 @@ export default function HomePage() {
 
   return (
     <div className={styles.root}>
-      <button onClick={showModal} ></button>
-      {isModalVisible && (
-        <ImageUploadModal onClose={hideModal}>
-          {Object.keys(imageUrls).map((key, index) => (
-  <div key={key} className={styles.labelContainer}>
-    <input
-      type="file"
-      onChange={(event) => handleImageUpload(key, event)}
-      id={`file-input-${key}`}
-      style={{ display: 'none' }}
-    />
-    <label
-      htmlFor={`file-input-${key}`}
-      className={styles[`labelPosition${index + 1}`]} // ここでスタイルクラスを適用
-    >
-        
-      Click!
-    </label>
-  </div>
-))}
-       </ImageUploadModal>
-       )}
+      {/* セッションが存在する場合にのみ画像アップロード関連のUIを表示 */}
+      {session && (
+        <>
+          <button onClick={showModal}></button>
+          {isModalVisible && (
+            <ImageUploadModal onClose={hideModal}>
+              {Object.keys(imageUrls).map((key, index) => (
+                <div key={key} className={styles.labelContainer}>
+                  <input
+                    type="file"
+                    onChange={(event) => handleImageUpload(key, event)}
+                    id={`file-input-${key}`}
+                    style={{ display: 'none' }}
+                  />
+                  <label
+                    htmlFor={`file-input-${key}`}
+                    className={styles[`labelPosition${index + 1}`]}
+                  >
+                    Click!
+                  </label>
+                </div>
+              ))}
+            </ImageUploadModal>
+          )}
+        </>
+      )}
       <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>
-      
     </div>
   );
 }

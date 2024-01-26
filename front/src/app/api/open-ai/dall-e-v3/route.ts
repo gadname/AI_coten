@@ -1,6 +1,6 @@
-import { askGptV3_5Turbo, generateImageWithDallE3 } from "@/services/open-ai";
+
 import type { NextApiRequest, NextApiResponse } from 'next';
-export const runtime = 'experimental-edge';
+import { generateImageWithDallE3 } from '@/services/open-ai';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {

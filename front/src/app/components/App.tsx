@@ -41,7 +41,7 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
         <MeshReflectorMaterial
         mirror={0.5}
           blur={[300, 100]}
-          resolution={500}
+          resolution={256}
           mixBlur={1}
           mixStrength={80}
           roughness={1}

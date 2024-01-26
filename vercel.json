@@ -1,5 +1,4 @@
 {
-  "root": "front",
   "functions": {
     "api/generate-image.ts": {
       "runtime": "experimental-edge",

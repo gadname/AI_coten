@@ -1,0 +1,8 @@
+{
+    "functions": {
+      "api/generate-image.ts": {
+        "runtime": "experimental-edge",
+        "maxDuration": 30
+      }
+    }
+  }

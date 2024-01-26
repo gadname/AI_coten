@@ -1,12 +1,21 @@
 import { askGptV3_5Turbo, generateImageWithDallE3 } from "@/services/open-ai";
 
-export async function POST(req: Request) {
+export const config = {
+  runtime: 'experimental-edge',
+};
+
+export default async function handler(req) {
+  // Edge Functionsはリクエストを受け取るときにRequestオブジェクトを使用します
+  if (req.method !== 'POST') {
+    return new Response('Method Not Allowed', { status: 405 });
+  }
+
   const { textPrompt } = await req.json();
 
-  if (typeof textPrompt !== "string") {
+  if (typeof textPrompt !== 'string') {
     return new Response(
-      JSON.stringify({ error: "textPrompt must be a string" }),
-      { status: 400 }
+      JSON.stringify({ error: 'textPrompt must be a string' }),
+      { status: 400, headers: { 'Content-Type': 'application/json' } }
     );
   }
 

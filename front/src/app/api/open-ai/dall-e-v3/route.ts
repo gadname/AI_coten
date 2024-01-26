@@ -1,17 +1,22 @@
+import { generateImageWithDallE3 } from "@/services/open-ai";
 
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { generateImageWithDallE3 } from '@/services/open-ai';
+export async function POST(req: Request) {
+  const { textPrompt } = await req.json();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
-    return res.status(405).send('Method Not Allowed');
+  if (typeof textPrompt !== "string") {
+    return new Response(
+      JSON.stringify({ error: "textPrompt must be a string" }),
+      { status: 400 }
+    );
   }
 
-  const { textPrompt } = req.body;
-  if (typeof textPrompt !== 'string') {
-    return res.status(400).json({ error: 'textPrompt must be a string' });
+  try {
+    const srcUrl = await generateImageWithDallE3(textPrompt);
+    return new Response(JSON.stringify({ srcUrl }), { status: 200 });
+  } catch (error) {
+    if (error.status !== 200) {
+      throw new Error(`Request failed with status ${error.status}`);
+    }
+    // ... その他のエラーハンドリング ...
   }
-
-  const srcUrl = await generateImageWithDallE3(textPrompt);
-  return res.status(200).json({ srcUrl });
 }

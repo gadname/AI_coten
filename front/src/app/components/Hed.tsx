@@ -18,7 +18,7 @@ export default function Hed() {
           <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '350px' }}>Home</div>
           </Link> */}
         <Link href="/form">
-          <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '250px' }}>form</div>
+          <div style={{ fontFamily: 'Georgia, serif', color: 'black', position: 'absolute', top: '30px', right: '250px' }}>Form</div>
         </Link>
         <div className="login">
         {status === 'authenticated' ? (

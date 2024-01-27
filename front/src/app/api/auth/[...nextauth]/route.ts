@@ -22,6 +22,7 @@ interface MyToken extends JWT {
   accessToken?: string;
   user_id?: string;
 }
+// NextAuthの設定
 const nextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -29,8 +30,7 @@ const nextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
   ],
-  
-
+  secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async jwt({ token, account, user }: { token: MyToken; account: Account | null; user: User }) {
       if (account && user) {
@@ -54,6 +54,7 @@ const nextAuthOptions = {
       return session;
     },
   },
+  // 他の設定が必要な場合はここに追加
 };
 
 const handler = NextAuth(nextAuthOptions);

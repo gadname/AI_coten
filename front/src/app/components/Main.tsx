@@ -6,5 +6,6 @@ export default function Main() {
       <div className={styles.main}>
        
       </div>
+      
   )
 }

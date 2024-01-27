@@ -16,6 +16,7 @@ export const DallE3Interface: FC = () => {
     try {
       setIsExecuting(true);
       const response = await fetch("/api/open-ai/dall-e-v3", {
+        
         method: "POST",
         headers: {
           "Content-Type": "application/json",

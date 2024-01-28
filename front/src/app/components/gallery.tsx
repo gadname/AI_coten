@@ -90,7 +90,7 @@ const Gallery = () => {
 
   return (
     <>
-      <Html>
+      {/* <Html>
         <input 
           type="file" 
           onChange={(event) => handleImageUpload('1', event)} 
@@ -116,15 +116,16 @@ const Gallery = () => {
           onChange={(event) => handleImageUpload('5', event)} 
           style={{ position: 'absolute', top: '120px', left: '250px' }} 
         />
-            </Html>
+            </Html> */}
             {/* 背景 */}
             <color attach="background" args={['#ADD8E6']} />
+            <fog attach="fog" args={['#ADD8E6', 10, 50]} />
             {/* 環境光 */}
             <ambientLight intensity={0.5} />
             <group position={[0, -1, 0]}>
               <Wall />
               <Ground />
-              <Pole />
+              {/* <Pole /> */}
               <FrameList images={images} />
               <InputText loading={loading} handleKeyPress={() => {}} inputRef={React.createRef()} />
               </group>

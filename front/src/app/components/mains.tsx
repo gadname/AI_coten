@@ -29,10 +29,10 @@ const Main = () => {
             outputEncoding: THREE.sRGBEncoding,
           }}
           camera={{
-            fov: 60,
-            near: 0.5,
-            far: 100,
-            position: [0, 2, 2],
+            fov: 100,
+            near: 0.1,
+            far: 500,
+            position: [2, 2, 5],
           }}
         >
            <Basic /> 

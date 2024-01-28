@@ -30,7 +30,7 @@ const nextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
   ],
-  secret: process.env.NEXTAUTH_SECRET,
+  secret,
   callbacks: {
     async jwt({ token, account, user }: { token: MyToken; account: Account | null; user: User }) {
       if (account && user) {

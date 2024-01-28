@@ -40,10 +40,10 @@ const FrameItem = ({ data }: { data: imagesType }) => {
         ref={spotLightRef}
         castShadow
         color="white"
-        intensity={20}
+        intensity={30}
         position={[3, 1, 3]}
         angle={Math.PI / 10}
-        penumbra={0.7}
+        penumbra={0.3}
       />
 
       {/* フレーム */}

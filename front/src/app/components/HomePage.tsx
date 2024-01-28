@@ -18,27 +18,27 @@ export default function HomePage() {
     if (typeof window !== 'undefined') {
       const savedImageUrls = localStorage.getItem('imageUrls');
       return savedImageUrls ? JSON.parse(savedImageUrls) : {
-    image1: '/ai4.jpg',
-    image2: '/art1.png',
-    image3: '/art2.png',
-    image4: '/art3.png',
-    image5: '/AIs.jpg',
-    image6: '/ai8.jpg',
-    image7: '/ai6.jpg',
-    image8: '/ai7.jpg',
-    image9: '/aicat.png',
+    image1: '/white.png',
+    image2: '/white.png',
+    image3: '/white.png',
+    image4: '/white.png',
+    image5: '/white.png',
+    image6: '/white.png',
+    image7: '/white.png',
+    image8: '/white.png',
+    image9: '/white.png',
     };
 } else {
     return {
-      image1: '/ai4.jpg',
-      image2: '/art1.png',
-      image3: '/art2.png',
-    image4: '/art3.png',
-    image5: '/AIs.jpg',
-    image6: '/ai8.jpg',
-    image7: '/ai6.jpg',
-    image8: '/ai7.jpg',
-    image9: '/aicat.png',
+      image1: '/white.png',
+      image2: '/white.png',
+      image3: '/white.png',
+    image4: '/white.png',
+    image5: '/white.png',
+    image6: '/white.png',
+    image7: '/white.png',
+    image8: '/white.png',
+    image9: '/white.png',
 };
 }
 });
@@ -100,8 +100,16 @@ export default function HomePage() {
   ];
 
   const clearLocalStorage = () => {
-    localStorage.clear();
+    localForage.clear().then(() => {
+      console.log('LocalForage storage cleared');
+      // ストレージをクリアした後に /three に遷移
+      window.location.href = '/three';
+    }).catch((err) => {
+      console.error('Failed to clear LocalForage storage', err);
+    });
   };
+
+
   // 画像をアップロードするためのハンドラー
   const handleImageUpload = (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -153,8 +161,10 @@ export default function HomePage() {
                   </label>
                 </div>
               ))}
+              <button onClick={clearLocalStorage}>Clear</button>
             </ImageUploadModal>
           )}
+           
         </>
       )}
       <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>

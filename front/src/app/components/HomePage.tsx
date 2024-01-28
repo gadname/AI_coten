@@ -18,27 +18,27 @@ export default function HomePage() {
     if (typeof window !== 'undefined') {
       const savedImageUrls = localStorage.getItem('imageUrls');
       return savedImageUrls ? JSON.parse(savedImageUrls) : {
-    image1: '/white.png',
-    image2: '/white.png',
-    image3: '/white.png',
-    image4: '/white.png',
-    image5: '/white.png',
-    image6: '/white.png',
-    image7: '/white.png',
-    image8: '/white.png',
-    image9: '/white.png',
+    image1: '/ai4.jpg',
+    image2: '/art1.png',
+    image3: '/art2.png',
+    image4: '/art3.png',
+    image5: '/AIs.jpg',
+    image6: '/ai8.jpg',
+    image7: '/ai6.jpg',
+    image8: '/ai7.jpg',
+    image9: '/aicat.png',
     };
 } else {
     return {
-      image1: '/white.png',
-      image2: '/white.png',
-      image3: '/white.png',
-    image4: '/white.png',
-    image5: '/white.png',
-    image6: '/white.png',
-    image7: '/white.png',
-    image8: '/white.png',
-    image9: '/white.png',
+      image1: '/ai4.jpg',
+      image2: '/art1.png',
+      image3: '/art2.png',
+    image4: '/art3.png',
+    image5: '/AIs.jpg',
+    image6: '/ai8.jpg',
+    image7: '/ai6.jpg',
+    image8: '/ai7.jpg',
+    image9: '/aicat.png',
 };
 }
 });
@@ -46,7 +46,11 @@ export default function HomePage() {
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
-    setIsModalVisible(true);
+    if (session) {
+      setIsModalVisible(true);
+    } else {
+      alert('ログインしてください');
+    }
   };
 
   const hideModal = () => {
@@ -108,7 +112,6 @@ export default function HomePage() {
       console.error('Failed to clear LocalForage storage', err);
     });
   };
-
 
   // 画像をアップロードするためのハンドラー
   const handleImageUpload = (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {

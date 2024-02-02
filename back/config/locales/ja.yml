@@ -1,0 +1,12 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      player: 選手
+    attributes:
+      user:
+        twitter_id: Twitter ID
+        email: メールアドレス
+        screen_name: 名前
+        profile_image_url: アバター
+        notification: メール通知

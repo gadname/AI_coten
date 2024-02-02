@@ -6,6 +6,7 @@ const Robot = () => {
   // モーダルの表示状態を管理するためのstate
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isTypingSecond, setIsTypingSecond] = useState(false);
+  const [isTypingThird, setIsTypingThird] = useState(false);
   const [animationKey, setAnimationKey] = useState(0); // アニメーションを再トリガーするためのkey
 
   useEffect(() => {
@@ -14,7 +15,7 @@ const Robot = () => {
       const audio = new Audio('/se_robo1.mp3');
       audio.play().catch(error => console.error("Audio play failed", error));
     }
-  }, [isModalVisible,isTypingSecond]);
+  }, [isModalVisible,isTypingSecond,isTypingThird]);
 
   // モーダルを表示する関数
   const onShowModal = () => {
@@ -27,10 +28,15 @@ const Robot = () => {
 
   const handleClick = () => {
     if (isModalVisible) {
-      setIsTypingSecond(!isTypingSecond);
+      if (!isTypingSecond) {
+        setIsTypingSecond(true);
+      } else if (!isTypingThird) {
+        setIsTypingThird(true);
+      }
       setAnimationKey(prevKey => prevKey + 1); // クリックするたびにkeyを更新
     }
   };
+
   return (
     <div className={`${styles.container}`}>
       <div className="box">
@@ -58,7 +64,7 @@ const Robot = () => {
       {/* モーダルの表示状態に応じてモーダルを表示 */}
       {isModalVisible && (
         <div className={styles.modal} onClick={handleClick}>
-          <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''}`}>
+          <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''} ${isTypingThird ? styles.typing3 : ''}`}>
             {/* アニメーションが表示される */}
           </p>
           <ul>

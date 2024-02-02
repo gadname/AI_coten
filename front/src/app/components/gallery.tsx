@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, KeyboardEvent } from 'react';
 import { Html } from '@react-three/drei';
 import { useRouter } from 'next/navigation';
 import Wall from './wall';
@@ -14,9 +14,10 @@ const Gallery = () => {
   const [image3, setImage3] = useState("./white.png");
   const [image4, setImage4] = useState("./white.png");
   const [image5, setImage5] = useState("./white.png");
-  const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
+  const router = useRouter();
+  const [loading, setLoading] = useState(false)
+  const inputRef = useRef<HTMLInputElement>(null)
   const handleImageUpload = (id: string, event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
     if (!file) return;
@@ -87,7 +88,50 @@ const Gallery = () => {
       frameSize: [1.2, 1.2, 1.2] as [number, number, number],
     },
   ];
-
+  const handleKeyPress = async (e: KeyboardEvent<HTMLInputElement>) => {
+    // エンターキーが押されたら
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      setLoading(true); // ローディング状態をtrueに
+  
+      const inputValue = inputRef.current?.value;
+  
+      // 入力チェック
+      if (!inputValue) {
+        setLoading(false); // ローディング状態をfalseに
+        return;
+      }
+  
+      try {
+        // DALLE APIコール
+        const response = await fetch('/api/dalle', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt: inputValue,
+          }),
+        });
+  
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+  
+        const data = await response.json();
+        // 画像をセット（Base64エンコードされた画像データを直接<img>タグで表示可能な形式に変換して設定）
+        setImage(`data:image/png;base64,${data.photo}`);
+      } catch (error) {
+        alert(`Fetch error: ${error}`);
+      } finally {
+        // 入力フォームクリア
+        if (inputRef.current) {
+          inputRef.current.value = '';
+        }
+        setLoading(false); // ローディング状態をfalseに
+      }
+    }
+  };
   return (
     <>
       {/* <Html>
@@ -127,7 +171,7 @@ const Gallery = () => {
               <Ground />
               {/* <Pole /> */}
               <FrameList images={images} />
-              <InputText loading={loading} handleKeyPress={() => {}} inputRef={React.createRef()} />
+              <InputText handleKeyPress={handleKeyPress} inputRef={inputRef} loading={loading} />
               </group>
               </>
               );

@@ -12,11 +12,7 @@ interface Post {
     url: string;
   };
 }
-interface PostcardProps {
-  post: Post;
-  handleDelete: () => void;
-  handleEdit: () => void; // Add this line
-}
+
 export default function Postcard({ post, handleDelete }: { post: Post; handleDelete: () => void }) {
   const router = useRouter();
   const [isStarred, setIsStarred] = useState(false); 

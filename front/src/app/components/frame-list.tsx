@@ -26,7 +26,7 @@ const FrameList = ({ images }: { images: imagesType[] }) => {
         // フレームが存在する場合はその位置にカメラを移動
         const parent = clickRef.current.parent
         parent.updateWorldMatrix(true, true)
-        parent.localToWorld(targetPosition.set(0, GOLDENRATIO / 2 , 2.2))
+        parent.localToWorld(targetPosition.set(0, GOLDENRATIO / 2 , 1))
         parent.getWorldQuaternion(targetQuaternion)
         
       } else {

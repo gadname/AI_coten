@@ -8,6 +8,8 @@ import Main from './components/Main';
 import Link from 'next/link';
 import Hed from './components/Hed';
 import Ball from './components/Ball';
+import Robot from './components/Robot';
+import '../styles/robot.css';
 
 export default function Home() {
   const typewritewText = "AIで、創る。";
@@ -28,7 +30,7 @@ const verticalTexts = texts.split('').map((char, index) => (
 
   return (
     <>
-    
+     
      <Hed />
      
      
@@ -39,14 +41,9 @@ const verticalTexts = texts.split('').map((char, index) => (
          }} />
         </div>
       <Header />
-      <h1 className="top_text">{typewritewText}</h1>
-      <h2 className="top_text-2">{typewritewText2}</h2>
-      <h3 className="top_text2">{verticalText}</h3>
-      <h4 className="top_text3">{verticalTexts}</h4>
-      
       <Main />
       <Ball />
-      
+      <Robot />
     
       
     </>

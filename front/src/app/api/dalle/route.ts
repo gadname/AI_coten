@@ -1,15 +1,41 @@
-import { askGptV3_5Turbo, generateImageWithDallE3 } from "@/services/open-ai";
+import { NextRequest, NextResponse } from 'next/server'
+import { Configuration, OpenAIApi } from 'openai'
 
-export async function POST(req: Request) {
-  const { textPrompt } = await req.json();
+// OpenAI API key
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+})
 
-  if (typeof textPrompt !== "string") {
-    return new Response(
-      JSON.stringify({ error: "textPrompt must be a string" }),
-      { status: 400 }
-    );
+// OpenAI API client
+const openai = new OpenAIApi(configuration)
+
+// API response limit
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+}
+
+export async function POST(request: NextRequest) {
+  const body = await request.json()
+  const prompt = body.prompt
+
+  try {
+    // OpenAI APIコール
+    const response = await openai.createImage({
+      model: "dalle-3",
+      prompt,
+      n: 1,
+      size: '512x512',
+      response_format: 'b64_json',
+    })
+
+    // 画像取得
+    const image = response.data.data[0].b64_json
+
+    return NextResponse.json({ photo: image })
+  } catch (error) {
+    console.error(error)
+    return NextResponse.error()
   }
-
-  const srcUrl = await generateImageWithDallE3(textPrompt);
-  return new Response(JSON.stringify({ srcUrl }), { status: 200 });
 }

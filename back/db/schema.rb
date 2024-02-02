@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_11_050204) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_02_001646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,21 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_11_050204) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_images", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name"
+    t.text "description"
+    t.integer "file_size"
+    t.string "content_type"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image", null: false
+    t.string "key"
+    t.jsonb "image_urls", default: {}
+    t.index ["user_id"], name: "index_user_images_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "provider", null: false
     t.string "uid"
@@ -37,4 +52,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_11_050204) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "user_images", "users"
 end

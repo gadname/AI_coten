@@ -8,10 +8,10 @@ interface ImageUploadModalProps {
 }
 
 const ImageUploadModal: FC<ImageUploadModalProps> = ({ onClose, children }) => {
-  const [isClosing, setIsClosing] = useState(false);
+  const [isClosing, setIsClosing] = useState(false); //初期値はfalse
 
   const handleClose = () => {
-    setIsClosing(true);
+    setIsClosing(true); // 状態変更の関数(setIsClosing)を使用して、IsClosingをtrueにする
     setTimeout(() => {
       setIsClosing(false);
       onClose();
@@ -22,7 +22,7 @@ const ImageUploadModal: FC<ImageUploadModalProps> = ({ onClose, children }) => {
     <div className={styles.sidebarOverlay} onClick={handleClose}>
       <div className={`${styles.sidebar} ${isClosing ? styles.sidebarClosing : ''}`} onClick={e => e.stopPropagation()}>
         {children}
-        <button onClick={handleClose} className={styles.uploadButton}>画像投稿</button>
+        <text className={styles.uploadButton}>画像投稿</text>
       </div>
     </div>
   );

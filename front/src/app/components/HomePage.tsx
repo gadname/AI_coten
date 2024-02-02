@@ -92,7 +92,6 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
 
     if (session) {
       const requestBody = {
-        user_id: session.user_id,
         image_urls: updatedUrls,
       };
 
@@ -101,6 +100,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${session.accessToken}`,
+          'UserId': (session as CustomSession).user_id, 
         },
         body: JSON.stringify(requestBody)
       })

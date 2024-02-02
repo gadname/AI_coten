@@ -16,7 +16,7 @@ class Api::V1::PostsController < ApplicationController
     if @post.save
       logger.debug "Image URL: #{@post.image.url}"
       # 新しい画像のURLのみを含むJSONを返す
-      render json: { url: @post.image.url }, status: :created #クライアントにjsonオブジェクトをでimage属性のurlを返している
+      render json: { url: @post.image.url }, status: :created #クライアントにjsonオブジェクトでimage属性のurlを返している
     else
       render json: @post.errors, status: :unprocessable_entity
     end

@@ -501,7 +501,17 @@
   .modalContent.typing2::before {
     animation: typing2 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
   }
+  .modalContent.typing3::before {
+    animation: typing3 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
+  }
   
+  .modalContent.typing4::before {
+    animation: typing4 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
+  }
+  
+  .modalContent.typing5::before {
+    animation: typing5 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
+  }
   
   @keyframes typing1 {
     0% {
@@ -633,7 +643,48 @@
       content: 'わたしはナビゲーションを務めますAI「195」とお呼びください！！';
     }
 }
+@keyframes typing3 {
+    0% { content: ''; }
+    5% { content: 'A'; }
+    10% { content: 'AL'; }
+    15% { content: 'ALC'; }
+    20% { content: 'ALCH'; }
+    25% { content: 'ALCHE'; }
+    30% { content: 'ALCHEM'; }
+    35% { content: 'ALCHEMI'; }
+    40% { content: 'ALCHEMIS'; }
+    45% { content: 'ALCHEMIST'; }
+    50% { content: 'ALCHEMISTは'; }
+    55% { content: 'ALCHEMISTはA'; }
+    60% { content: 'ALCHEMISTはAI'; }
+    65% { content: 'ALCHEMISTはAI画'; }
+    70% { content: 'ALCHEMISTはAI画像'; }
+    75% { content: 'ALCHEMISTはAI画像生'; }
+    80% { content: 'ALCHEMISTはAI画像生成'; }
+    85% { content: 'ALCHEMISTはAI画像生成サ'; }
+    90% { content: 'ALCHEMISTはAI画像生成サー'; }
+    95% { content: 'ALCHEMISTはAI画像生成サービ'; }
+    100% { content: 'ALCHEMISTはAI画像生成サービスです'; }
+  }
   
+  /* typing4 アニメーション */
+  @keyframes typing4 {
+    0% { content: ''; }
+    25% { content: 'ロボット'; }
+    50% { content: 'ロボットが'; }
+    75% { content: 'ロボットが動き'; }
+    100% { content: 'ロボットが動きます'; }
+  }
+  
+  /* typing5 アニメーション */
+  @keyframes typing5 {
+    0% { content: ''; }
+    20% { content: 'こんにちは、'; }
+    40% { content: 'こんにちは、世界'; }
+    60% { content: 'こんにちは、世界！'; }
+    80% { content: 'こんにちは、世界！！'; }
+    100% { content: 'こんにちは、世界！！！'; }
+  }
   
   
   @keyframes blink {

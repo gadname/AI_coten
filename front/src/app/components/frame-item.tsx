@@ -14,7 +14,8 @@ const FrameItem = ({ data }: { data: imagesType }) => {
   const [hover, setHover] = useState(false)
   const spotLightRef = useRef<THREE.SpotLight>(null)
   const frameRef = useRef<THREE.Mesh>(null)
-  const woodTexture = useTexture('./ai1.jpg');
+  const woodTexture = useTexture('./ai5.jpg');
+  const { size, frameSize } = data;
 
   useEffect(() => {
     if (spotLightRef.current && frameRef.current) {
@@ -39,18 +40,18 @@ const FrameItem = ({ data }: { data: imagesType }) => {
         ref={spotLightRef}
         castShadow
         color="white"
-        intensity={80}
+        intensity={30}
         position={[3, 1, 3]}
         angle={Math.PI / 10}
-        penumbra={0.7}
+        penumbra={0.3}
       />
 
       {/* フレーム */}
-      <mesh position={[0, 0.8, 0]} geometry={boxGeometry} castShadow>
+      <mesh position={[0, 0.8, 0]} geometry={boxGeometry} castShadow scale={frameSize}>
         <meshStandardMaterial color="gold" metalness={1.8} roughness={10} map={woodTexture} />
         
       </mesh>
-
+      
       {/* 絵 */}
       <mesh
         ref={frameRef}
@@ -59,9 +60,10 @@ const FrameItem = ({ data }: { data: imagesType }) => {
         onPointerOut={() => setHover(false)}
         geometry={boxGeometry}
         position={[0, 0.8, 0.01]}
-        scale={[0.85, 0.94, 0.85]}
+        scale={size}
         material-roughness={1}
         dispose={null}
+        
       >
         {/* オブジェクトの表面にテクスチャを投影 */}
         <Decal

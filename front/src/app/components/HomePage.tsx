@@ -4,9 +4,9 @@ import { App } from './App'; // Adjust the path according to your project struct
 import styles from './HomePage.module.css';
 import ImageUploadModal from './ImageUploadModal';
 import localForage from 'localforage';
-import Compressor from 'compressorjs';
 import { useSession } from "next-auth/react";
 import { Session } from "next-auth";
+import { getSession } from 'next-auth/react';
 
 interface CustomSession extends Session {
     user_id: string;
@@ -55,10 +55,12 @@ const images = [
 
 
   // 画像をアップロードするためのハンドラー
-  const handleImageUpload = (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
       const formData = new FormData();
+      const session = await getSession() as any;
+      console.log('Session_log' , session);
       formData.append('post[image]', file); // 'image' を 'post[image]' に変更
       formData.append('post[user_id]', session.user_id); // 'user_id' を 'post[user_id]' に変更
       
@@ -67,7 +69,7 @@ const images = [
         body: formData, // formDataを使用しているため、これが正しいbodyです
         headers: {
           'Authorization': `Bearer ${session.accessToken}`,
-          'UserId': (session as CustomSession).user_id, 
+          'UserId': session.user_id, 
         },
       })
       .then(response => response.json())
@@ -95,7 +97,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
         image_urls: updatedUrls,
       };
 
-      fetch('http://localhost:3000/api/v1/user_images/update_urls', { // エンドポイントを適切に変更
+      fetch('http://localhost:3000/api/v1/user_images/update_urls', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -117,37 +119,40 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
 };
 
 // 画像 URL を更新する関数
-// useEffect(() => {
-//   console.log('Current session:', session);
-//   async function loadImageUrls() {
-//     if (session) {
-//       // ユーザーIDをキーとして使用
-//       const userImageUrlsKey = `imageUrls-${(session as CustomSession).user_id}`;
+useEffect(() => {
+  const fetchImageUrls = async () => {
+    if (session) {
+      try {
+        const response = await fetch('http://localhost:3000/api/v1/user_images/', {
+          method: 'GET', // または 'POST', APIの要件に応じて
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${session.accessToken}`,
+          },
+        });
 
-//       try {
-//         // RailsのAPIエンドポイントから画像URLを取得
-//         const response = await fetch(`http://localhost:3000/user_images?user_id=${(session as CustomSession).user_id}&key=${encodeURIComponent(userImageUrlsKey)}`, {
-//           method: 'GET',
-//           headers: {
-//             'Content-Type': 'application/json',
-//             // 認証が必要な場合は適切な認証ヘッダーを追加
-//           },
-//         });
+        if (!response.ok) {
+          throw new Error('Failed to fetch image URLs');
+        }
 
-//         if (!response.ok) {
-//           throw new Error('Failed to fetch image URLs');
-//         }
+        const data = await response.json();
+        console.log(data);
+        setImageUrls(data); // 状態を更新
 
-//         const data = await response.json();
-//         // 取得したデータをもとに状態を更新
-//         setImageUrls(data.map(item => item.image_url)); // 仮定: APIが{ image_url: string }オブジェクトの配列を返す
-//       } catch (error) {
-//         console.error('Error fetching image URLs:', error);
-//       }
-//     }
-//   }
-//   loadImageUrls();
-// }, [session]);
+        // localForageを使用してデータを保存
+        await localForage.setItem('imageUrls', data);
+      } catch (error) {
+        console.error('Error fetching image URLs:', error);
+      }
+    }
+  };
+
+  fetchImageUrls();
+}, [session]);
+
+
+
+
 
   return (
     <div className={styles.root}>
@@ -176,7 +181,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
               
             </ImageUploadModal>
           )}
-           
+          
         </>
       )}
       <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>

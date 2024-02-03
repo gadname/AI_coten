@@ -9,13 +9,30 @@ const Robot = () => {
   const [isTypingThird, setIsTypingThird] = useState(false);
   const [animationKey, setAnimationKey] = useState(0); // アニメーションを再トリガーするためのkey
 
+// publicディレクトリからの相対パスを使用して音声ファイルにアクセス
   useEffect(() => {
-    if (isModalVisible) {
-      // publicディレクトリからの相対パスを使用して音声ファイルにアクセス
-      const audio = new Audio('/se_robo1.mp3');
-      audio.play().catch(error => console.error("Audio play failed", error));
+    if (isModalVisible) { // モーダルが表示されたときだけ音声を再生
+    
+    const audio = new Audio('/se_robo1.mp3');//Audioオブジェクトを作成
+    audio.play().catch(error => console.error("Audio play failed", error));
     }
-  }, [isModalVisible,isTypingSecond,isTypingThird]);
+  }, [isModalVisible,]); 
+
+  useEffect(() => {
+    if (isModalVisible) { // モーダルが表示されたときだけ音声を再生
+    
+    const audio = new Audio('/se_robo1.mp3');//Audioオブジェクトを作成
+    audio.play().catch(error => console.error("Audio play failed", error));
+    }
+  }, [isTypingSecond]); 
+
+  useEffect(() => {
+    if (isModalVisible) { // モーダルが表示されたときだけ音声を再生
+    
+    const audio = new Audio('/se_robo2.mp3');//Audioオブジェクトを作成
+    audio.play().catch(error => console.error("Audio play failed", error));
+    }
+  }, [isTypingThird]); //この変数の変更時に関数を実行
 
   // モーダルを表示する関数
   const onShowModal = () => {
@@ -32,9 +49,24 @@ const Robot = () => {
         setIsTypingSecond(true);
       } else if (!isTypingThird) {
         setIsTypingThird(true);
+      } else {
+        // typing3が終わった後、モーダルを閉じる
+        onHideModal();
+        // モーダルとタイピング状態をリセット
+        resetModalAndTypingState();
       }
       setAnimationKey(prevKey => prevKey + 1); // クリックするたびにkeyを更新
+    } else {
+      // モーダルが非表示の場合は、モーダルを表示する
+      onShowModal();
     }
+  };
+  
+  // モーダルとタイピング状態をリセットする関数
+  const resetModalAndTypingState = () => {
+    setIsTypingSecond(false);
+    setIsTypingThird(false);
+    setAnimationKey(0); // アニメーションキーをリセット
   };
 
   return (

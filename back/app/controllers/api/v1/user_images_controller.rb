@@ -1,6 +1,6 @@
 class Api::V1::UserImagesController < ApplicationController
   before_action :set_current_user
-  
+
   def create
     user_image = UserImage.find_or_initialize_by(user_id: user_image_params[:user_id])
     user_image.image_urls = user_image_params[:image_urls] # 修正: :image_url -> :image_urls
@@ -13,7 +13,7 @@ class Api::V1::UserImagesController < ApplicationController
   end
 
   def update_urls
-    user = current_user
+    user = @current_user
     unless current_user
       render json: { error: "User does not exist." }, status: :not_found
       return
@@ -30,8 +30,13 @@ class Api::V1::UserImagesController < ApplicationController
   end
 
   def index
-    user_images = UserImage.where(user_id: params[:user_id])
-    render json: user_images
+    # current_userを使用して、認証されたユーザーのUserImageを取得
+    user_images = @current_user.user_images
+    if user_images.any?
+      render json: user_images.last.image_urls, status: :ok
+    else
+      render json: {}, status: :not_found
+    end
   end
 
   private

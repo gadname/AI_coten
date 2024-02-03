@@ -27,5 +27,6 @@ const ImageUploadModal: FC<ImageUploadModalProps> = ({ onClose, children }) => {
     </div>
   );
 };
+// モーダルの表示部分
 
 export default ImageUploadModal;

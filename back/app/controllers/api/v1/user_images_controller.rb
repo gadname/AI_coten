@@ -12,20 +12,12 @@ class Api::V1::UserImagesController < ApplicationController
     end # 追加: end キーワード
   end
 
-  def update_urls
-    user = @current_user
-    unless current_user
-      render json: { error: "User does not exist." }, status: :not_found
-      return
-    end
-
-    user_image = UserImage.find_or_initialize_by(user_id: user.id)
-    user_image.image_urls = user_image_params[:image_urls] # 修正: params[:image_urls] -> user_image_params[:image_urls]
-    
-    if user_image.save
-      render json: { message: "Image URLs updated successfully." }, status: :ok
+  def show
+    user_image = UserImage.find(params[:id])
+    if user_image
+      render json: user_image, status: :ok
     else
-      render json: { error: user_image.errors.full_messages.join(", ") }, status: :unprocessable_entity
+      render json: { error: "UserImage not found." }, status: :not_found
     end
   end
 
@@ -36,6 +28,23 @@ class Api::V1::UserImagesController < ApplicationController
       render json: user_images.last.image_urls, status: :ok
     else
       render json: {}, status: :not_found
+    end
+  end
+
+  def update_urls
+    user = @current_user
+    unless current_user
+      render json: { error: "User does not exist." }, status: :not_found
+      return
+    end
+
+    user_image = UserImage.find_or_initialize_by(user_id: user.id)
+    user_image.image_urls = user_image_params[:image_urls] 
+    
+    if user_image.save
+      render json: { message: "Image URLs updated successfully." }, status: :ok
+    else
+      render json: { error: user_image.errors.full_messages.join(", ") }, status: :unprocessable_entity
     end
   end
 

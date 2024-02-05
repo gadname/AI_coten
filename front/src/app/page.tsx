@@ -9,6 +9,10 @@ import Link from 'next/link';
 import Hed from './components/Hed';
 import Ball from './components/Ball';
 import Robot from './components/Robot';
+import Flic from './components/flic';
+import Stars from './components/Stars';
+import { Ticket }  from './components/Card';
+
 import '../styles/robot.css';
 
 export default function Home() {
@@ -30,22 +34,29 @@ const verticalTexts = texts.split('').map((char, index) => (
 
   return (
     <>
-     
-     <Hed />
-     
-     
-      <div style={{ position: 'absolute', top: '80px', left: 0, width: '100%', height: '100%', zIndex: -1 }}>
-        <img src="/AIs.jpg" style={{ width: '100%', height: '100%', objectFit: 'cover', animation: 'fa-bounce 3s ease-in-out, fadeIn 2s ease-in-out forwards, scaleRotate 2s ease-in-out forwards', opacity: 0.5 }} onLoad={(e) => {
-           const target = e.target as HTMLImageElement;
-           target.style.opacity = '1';
-         }} />
-        </div>
-      <Header />
-      <Main />
-      <Ball />
-      <Robot />
     
-      
+      <Ticket />
+      <div className="absolute top-2 left-0 w-full h-full z-[-1]" style={{ 
+  backgroundColor: 'hsla(205,100%,13%,1)',
+  backgroundImage: `
+    radial-gradient(at 49% 49%, hsla(191,77%,26%,1) 0px, transparent 50%),
+    radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
+    radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
+    radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
+    radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)
+  `
+}}>
+  {/* 背景画像 */}
+  <Ball />
+  </div>
+    {/* <Hed /> */}
+    <Flic />
+    <Header />
+    <Main />
+    <Stars />
+    {/* <Robot /> */}
     </>
   )
 }

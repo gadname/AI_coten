@@ -52,6 +52,7 @@
     border-radius: 20px;
     /* その他のスタイル */
   }
+  
 .front,
 .face{
     position : absolute ;
@@ -469,8 +470,8 @@
     position: fixed;
     width: 40%;
     height: 400px;
-    top: 30px;
-    left: 50%; /* 中央揃えに変更 */
+    top: 60%;
+    left: 80%; /* 中央揃えに変更 */
     transform: translateX(-50%); /* 中央揃えのために追加 */
     display: flex;
     flex-direction: column;

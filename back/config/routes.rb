@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :posts 
       resources :user_images do
         collection do
-          post 'update_urls' # user_imagesコントローラーのupdate_urlsアクションに対応するルートを追加
+          post 'update_urls' 
         end
       end
     end

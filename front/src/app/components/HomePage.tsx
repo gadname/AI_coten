@@ -124,7 +124,7 @@ useEffect(() => {
     if (session) {
       try {
         const response = await fetch('http://localhost:3000/api/v1/user_images/', {
-          method: 'GET', // または 'POST', APIの要件に応じて
+          method: 'GET', 
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${session.accessToken}`,

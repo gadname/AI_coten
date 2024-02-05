@@ -6,14 +6,13 @@ import { suspend } from 'suspend-react'
 import { generate } from 'random-words'
 import { easing, geometry } from 'maath'
 
-
 extend(geometry)
 const inter = import('@pmndrs/assets/fonts/inter_regular.woff')
-
 
 export const Ticket = () => (
   <div style={{ width: '100vw', height: '100vh', background: 'transparent'}}>
     <Canvas dpr={[1, 4]}>
+
       <ScrollControls pages={4} infinite>
         <Scene position={[0, 1.5, 0]} />
       </ScrollControls>
@@ -33,13 +32,18 @@ function Scene({ children, ...props }) {
   })
   return (
     <group ref={ref} {...props}>
-      <Cards category="" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="" from={Math.PI / 4} len={Math.PI / 2} position={[0, 0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="" from={Math.PI / 4 + Math.PI / 2} len={Math.PI / 2} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="ALCHEMIST" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="DALL-E3" from={Math.PI / 4} len={Math.PI / 2} position={[0, 0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="AI-image" from={Math.PI / 4 + Math.PI / 2} len={Math.PI / 2} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="perfect" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
+      
       <ActiveCard hovered={hovered} />
+      
     </group>
+    
+    
   )
+  
 }
 
 function Cards({ category, data, from = 0, len = Math.PI * 2, radius = 5.25, onPointerOver, onPointerOut, ...props }) {
@@ -66,7 +70,9 @@ function Cards({ category, data, from = 0, len = Math.PI * 2, radius = 5.25, onP
             hovered={hovered === i}
             url={`/img${Math.floor(i % 10) + 1}.jpg`}
           />
+          
         )
+        
       })}
     </group>
   )
@@ -82,6 +88,7 @@ function Card({ url, active, hovered, ...props }) {
   return (
     <group {...props}>
       <Image ref={ref} url={url} scale={[1.618, 1, 1]} side={THREE.DoubleSide} />
+      
     </group>
   )
 }
@@ -96,12 +103,11 @@ function ActiveCard({ hovered, ...props }) {
   })
   return (
     <Billboard {...props}>
-      {/* <Text font={suspend(inter).default} fontSize={0.5} position={[2.15, 3.85, 0]} anchorX="left" color="black">
-        {hovered !== null && `${name}\n${hovered}`}
-      </Text> */}
+      
       <Image ref={ref} transparent position={[0, 1.5, 0]} url={`/img${Math.floor(hovered % 10) + 1}.jpg`}>
-        <roundedPlaneGeometry parameters={{ width: 3.5, height: 1.618 * 3.5 }} args={[3.5, 1.618 * 3.5, 0.2]} />
+        <roundedPlaneGeometry parameters={{ width: 6, height: 1 * 4 }} args={[6, 1.618 * 4, 0.2]} />
       </Image>
     </Billboard>
+    
   )
 }

@@ -3,7 +3,7 @@ import styles from './Robot.module.css';
 import Link from 'next/link';
 
 const dynamicStyles = {
-  container: `fixed bottom-0 w-1/2 sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5 h-[120px] sm:h-[10px] md:h-[200px] flex flex-col justify-center items-center bg-transparent rounded-lg`,
+  container: `fixed bottom-0 w-1/2 sm:w-3/4 md:w-1/3 lg:w-1/2 xl:w-2/5 h-[120px] sm:h-[10px] md:h-[200px] flex flex-col justify-center items-center bg-transparent rounded-lg`,
 };
 
 const Robot = () => {

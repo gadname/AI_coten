@@ -15,6 +15,7 @@ const Gallery = () => {
   const [image4, setImage4] = useState("./white.png");
   const [image5, setImage5] = useState("./white.png");
 
+  
   const router = useRouter();
   const [loading, setLoading] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)

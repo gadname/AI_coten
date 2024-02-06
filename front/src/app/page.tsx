@@ -64,7 +64,7 @@ const verticalTexts = texts.split('').map((char, index) => (
         radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`
 }}>
   {/* 背景画像 */}
-  <Robot />
+  
   <Ball />
   </div>
     <Hed />
@@ -73,7 +73,7 @@ const verticalTexts = texts.split('').map((char, index) => (
     {/* <Header /> */}
     {/* <Main /> */}
     <Stars />
-    
+    <Robot />
     </>
   )
 }

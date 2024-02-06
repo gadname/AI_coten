@@ -53,16 +53,15 @@ const verticalTexts = texts.split('').map((char, index) => (
     
       <Ticket />
       <div className="absolute top-2 left-0 w-full h-full z-[-1]" style={{ 
-  backgroundColor: 'hsla(205,100%,13%,1)',
-  backgroundImage: `
-    radial-gradient(at 49% 49%, hsla(191,77%,26%,1) 0px, transparent 50%),
-    radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
-    radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
-    radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
-    radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
-    radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)
-  `
+        backgroundColor: 'hsla(205,100%,13%,1)',
+        backgroundImage: `
+        radial-gradient(at 49% 49%, hsla(191,77%,26%,1) 0px, transparent 50%),
+        radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
+        radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
+        radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
+        radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
+        radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`
 }}>
   {/* 背景画像 */}
   <Ball />

@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import styles from './Robot.module.css';
 import Link from 'next/link';
 
+const dynamicStyles = {
+  container: `fixed bottom-0 w-1/2 sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5 h-[120px] sm:h-[10px] md:h-[200px] flex flex-col justify-center items-center bg-transparent rounded-lg`,
+};
+
 const Robot = () => {
   // モーダルの表示状態を管理するためのstate
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -70,7 +74,7 @@ const Robot = () => {
   };
 
   return (
-    <div className={`${styles.container}`}>
+    <div className={dynamicStyles.container} style={{ right: '-20px' }}>
       <div className="box">
         <div className="area area_1"></div>
         <div className="area area_2"></div>

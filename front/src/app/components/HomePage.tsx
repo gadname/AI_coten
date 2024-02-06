@@ -77,7 +77,7 @@ const images = [
         console.log('Server response:', data);
   // サーバーから返された画像のURLで状態を更新
   const newImageUrl = data.url; // サーバーから返されるプロパティ名に合わせてください
-  updateImageUrl(imageKey, newImageUrl);
+  updateImageUrl(imageKey as keyof typeof imageUrls, newImageUrl);
 })
 .catch(error => {
   console.error('アップロード中にエラーが発生しました。', error);

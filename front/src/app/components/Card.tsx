@@ -29,7 +29,7 @@ const inter = import('@pmndrs/assets/fonts/inter_regular.woff')
 
 export const Ticket = () => (
   <div className="flex justify-center items-center w-full h-screen">
-    <div className="w-[100vw] h-[50vh] sm:w-[70vw] sm:h-[70vh] md:w-full md:h-screen bg-transparent relative">
+    <div className="w-[100vw] h-[70vh] sm:w-[70vw] sm:h-[70vh] md:w-full md:h-screen bg-transparent relative">
       <Canvas dpr={[1, 4]}>
         <ScrollControls pages={4} infinite>
           <Scene position={[0, 1.5, 0]} />

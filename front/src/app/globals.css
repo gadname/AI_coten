@@ -1,8 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@1,400;1,600&family=Roboto:wght@100&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+@font-face {
+  font-family: 'MyStylishFont';
+  src: url('/fonts/MyStylishFont.woff2') format('woff2'),
+       url('/fonts/MyStylishFont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 
 body {
     margin: 0px;

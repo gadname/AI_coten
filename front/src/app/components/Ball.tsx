@@ -18,7 +18,7 @@ export default function Ball() {
     { position: [-2.0, 1, 0.4], texture: '/ai5.jpg', scale: [0.2, 0.2, 0.2] },
     { position: [2, 0.3, 0.8], texture: '/ai6.jpg', scale: [0.1, 0.1, 0.1] },
     { position: [-2.8, -0.2, -0.1], texture: '/ai7.jpg', scale: [0.3, 0.3, 0.3] },
-    { position: [-2.8, -0.2, -0.1], texture: '/ai8.jpg', scale: [0.3, 0.3, 0.3] },
+    { position: [-2.8, -0.2, -0.1], texture: '/ai8.jpg', scale: [0.4, 0.4, 0.4] },
   ];
 
   return (

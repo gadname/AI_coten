@@ -6,6 +6,7 @@ function Flic() {
     // 現在のスクロール位置 + ビューポートの高さ
     const nextScrollPosition = window.scrollY + window.innerHeight;
     
+    
     window.scrollTo({
       top: nextScrollPosition,
       behavior: 'smooth' // スムーズスクロール
@@ -14,7 +15,7 @@ function Flic() {
 
   return (
     <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
-      <a href='#about' onClick={handleClick}>
+      <a onClick={handleClick}>
         <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
           {/* motion.divを使用してアニメーションを適用した白い小さなボール */}
           <motion.div

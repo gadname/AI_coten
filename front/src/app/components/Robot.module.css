@@ -469,7 +469,7 @@
 .container{
     position: fixed;
     width: 40%;
-    height: 400px;
+    height: 600px;
     top: 60%;
     left: 80%; /* 中央揃えに変更 */
     transform: translateX(-50%); /* 中央揃えのために追加 */

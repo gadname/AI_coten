@@ -118,9 +118,7 @@ const Gallery = () => {
           throw new Error("Network response was not ok");
         }
   
-        const data = await response.json();
-        // 画像をセット（Base64エンコードされた画像データを直接<img>タグで表示可能な形式に変換して設定）
-        setImage(`data:image/png;base64,${data.photo}`);
+        
       } catch (error) {
         alert(`Fetch error: ${error}`);
       } finally {

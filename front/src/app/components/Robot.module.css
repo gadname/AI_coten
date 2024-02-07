@@ -1,16 +1,36 @@
-.modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    
-    background : linear-gradient( 135deg , rgba(255,255,255,.4) 8% , rgba(255,255,255,.1) 60% , rgba(255,255,255,.2) 92% ) ;
-    transition : all ease .7s ;
-    color : #000000 ;
-    padding: 20px;
-    z-index: 1000;
+@import url('https://fonts.googleapis.com/css2?family=Chokokutai&family=Darumadrop+One&family=DotGothic16&family=Monomaniac+One&family=Rampart+One&family=Stick&display=swap');
 
+
+
+.modal {
+  position: fixed;
+  top: 85%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  background: linear-gradient(135deg, rgba(255,255,255,.4) 8%, rgba(255,255,255,.1) 60%, rgba(255,255,255,.2) 92%);
+  transition: all ease .7s;
+  color: #000000;
+  padding: 20px;
+  z-index: 1000;
+
+  /* 吹き出しのスタイル */
+  border-radius: 20px; /* 角丸の追加 */
+  box-shadow: 0 0 10px rgba(0,0,0,0.2); /* 影の追加 */
 }
+
+.modal::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 100%;
+  transform: translateX(-20%) rotate(-40deg);
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgba(255,255,255,.4) transparent transparent transparent;
+}
+
+
 
 .box{
     position : relative ;
@@ -93,6 +113,34 @@
     box-shadow : 0 0 8px rgba(0,0,0,.6) inset ;
     border-radius: 20px;
 }
+
+.triangleMouth {
+  content: '';
+  position: absolute;
+  bottom: 10px; /* 位置調整はそのまま */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent; /* 左側の透明な境界を小さく */
+  border-right: 8px solid transparent; /* 右側の透明な境界を小さく */
+  border-bottom: 8px solid #ffde55; /* 下向きの三角形を形成し、サイズを小さく */
+  opacity: 1;
+}
+
+/* .face__wrapperにカーソルを当てた時に.triangleMouthのアニメーションを実行 */
+.face__wrapper:hover .triangleMouth {
+  animation: mouthBlink linear 0s forwards;
+}
+
+@keyframes mouthBlink {
+  0%, 49% {
+      opacity: 1;
+  }
+  50%, 100% {
+      opacity: 0;
+  }
+}
 .eye{
     position : absolute ;
     z-index : 1 ;
@@ -104,6 +152,7 @@
     width : 150px ;
     height : 30px ;
     transition : all ease .3s ;
+    
 }
 .eye::before,
 .eye::after{
@@ -121,6 +170,7 @@
     box-shadow : 0 0 8px rgba(255,255,0 ,1)  ;
     animation : eye linear 6s infinite ;
     transition : all ease .2s ;
+    
 }
 .eye::before{
     left : 0 ;
@@ -495,8 +545,15 @@
   }
   
   .modalContent::before {
+    font-family: 'DotGothic16', sans-serif;
+    color: white;
+    /* font-weight: bold; */
     content: "";
     animation: typing1 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
+    text-shadow: 1px 1px 0 rgba(248, 240, 240, 0.7), 
+               2px 2px 0 rgba(159, 150, 150, 0.5), 
+               3px 3px 0 rgba(0,0,0,0.3), 
+               4px 4px 0 rgba(0,0,0,0.1);
   }
 
   .modalContent.typing2::before {
@@ -515,135 +572,56 @@
   }
   
   @keyframes typing1 {
-    0% {
-      content: '';
-    }
-    5% {
-      content: 'こ';
-    }
-    10% {
-      content: 'こん';
-    }
-    15% {
-      content: 'こんに';
-    }
-    20% {
-      content: 'こんにち';
-    }
-    25% {
-      content: 'こんにちは';
-    }
-    30% {
-      content: 'こんにちは！';
-    }
-    35% {
-      content: 'こんにちは！A';
-    }
-    40% {
-      content: 'こんにちは！AL';
-    }
-    45% {
-      content: 'こんにちは！ALC';
-    }
-    50% {
-      content: 'こんにちは！ALCH';
-    }
-    55% {
-      content: 'こんにちは！ALCHE';
-    }
-    60% {
-      content: 'こんにちは！ALCHEM';
-    }
-    65% {
-      content: 'こんにちは！ALCHEMI';
-    }
-    70% {
-      content: 'こんにちは！ALCHEMIS';
-    }
-    75% {
-      content: 'こんにちは！ALCHEMIST';
-    }
-    80% {
-      content: 'こんにちは！ALCHEMISTへ';
-    }
-    85% {
-      content: 'こんにちは！ALCHEMISTへよ';
-    }
-    90% {
-      content: 'こんにちは！ALCHEMISTへよう';
-    }
-    95% {
-      content: 'こんにちは！ALCHEMISTへようこ';
-    }
-    100% {
-      content: 'こんにちは！ALCHEMISTへようこそ！';
-    }
+    0% { content: ''; }
+    5% { content: 'G'; }
+    10% { content: 'Ga'; }
+    15% { content: 'Gal'; }
+    20% { content: 'Gall'; }
+    25% { content: 'Galle'; }
+    30% { content: 'Galler'; }
+    35% { content: 'Gallery'; }
+    40% { content: 'Gallery.'; }
+    45% { content: 'Gallery.a'; }
+    50% { content: 'Gallery.ai'; }
+    55% { content: 'Gallery.aiへ'; }
+    60% { content: 'Gallery.aiへ'; }
+    65% { content: 'Gallery.aiへヨ'; }
+    70% { content: 'Gallery.aiへヨー'; }
+    75% { content: 'Gallery.aiへヨーコ'; }
+    80% { content: 'Gallery.aiへヨーコソ'; }
+    85% { content: 'Gallery.aiへヨーコソ！'; }
+    90% { content: 'Gallery.aiへヨーコソ！ニャ'; }
+    95% { content: 'Gallery.aiへヨーコソ！ニャ！'; }
+    100% { content: 'Gallery.aiへヨーコソ！ニャ！'; }
   }
   @keyframes typing2 {
-    0% {
-      content: '';
-    }
-    5% {
-      content: 'わ';
-    }
-    10% {
-      content: 'わた';
-    }
-    15% {
-      content: 'わたし';
-    }
-    20% {
-      content: 'わたしは';
-    }
-    25% {
-      content: 'わたしはナ';
-    }
-    30% {
-      content: 'わたしはナビ';
-    }
-    35% {
-      content: 'わたしはナビゲ';
-    }
-    40% {
-      content: 'わたしはナビゲー';
-    }
-    45% {
-      content: 'わたしはナビゲーシ';
-    }
-    50% {
-      content: 'わたしはナビゲーショ';
-    }
-    55% {
-      content: 'わたしはナビゲーション';
-    }
-    60% {
-      content: 'わたしはナビゲーションを';
-    }
-    65% {
-      content: 'わたしはナビゲーションを務';
-    }
-    70% {
-      content: 'わたしはナビゲーションを務め';
-    }
-    75% {
-      content: 'わたしはナビゲーションを務めま';
-    }
-    80% {
-      content: 'わたしはナビゲーションを務めます';
-    }
-    85% {
-      content: 'わたしはナビゲーションを務めますA';
-    }
-    90% {
-      content: 'わたしはナビゲーションを務めますAI';
-    }
-    95% {
-      content: 'わたしはナビゲーションを務めますAI「';
-    }
-    100% {
-      content: 'わたしはナビゲーションを務めますAI「195」とお呼びください！！';
-    }
-}
+    0% { content: ''; }
+    4% { content: 'ボ'; }
+    8% { content: 'ボク'; }
+    12% { content: 'ボクは'; }
+    16% { content: 'ボクは「'; }
+    20% { content: 'ボクは「N'; }
+    24% { content: 'ボクは「Ny'; }
+    28% { content: 'ボクは「Nya'; }
+    32% { content: 'ボクは「Nyav'; }
+    36% { content: 'ボクは「Nyavi'; }
+    40% { content: 'ボクは「Nyavi」'; }
+    44% { content: 'ボクは「Nyavi」ニ'; }
+    48% { content: 'ボクは「Nyavi」ニャ'; }
+    52% { content: 'ボクは「Nyavi」ニャビ'; }
+    56% { content: 'ボクは「Nyavi」ニャビゲ'; }
+    60% { content: 'ボクは「Nyavi」ニャビゲー'; }
+    64% { content: 'ボクは「Nyavi」ニャビゲーション'; }
+    68% { content: 'ボクは「Nyavi」ニャビゲーションの'; }
+    72% { content: 'ボクは「Nyavi」ニャビゲーションのエ'; }
+    76% { content: 'ボクは「Nyavi」ニャビゲーションのエキ'; }
+    80% { content: 'ボクは「Nyavi」ニャビゲーションのエキス'; }
+    84% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパ'; }
+    88% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパー'; }
+    92% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパート'; }
+    96% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパートニ'; }
+    100% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパートニャ!'; }
+  }
 @keyframes typing3 {
     0% { content: ''; }
     5% { content: 'A'; }

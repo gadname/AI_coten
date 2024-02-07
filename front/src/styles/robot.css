@@ -40,6 +40,7 @@
     animation : float ease 3s infinite alternate ;
     border-radius: 20px;
 }
+
 .front,
 .face{
     position : absolute ;
@@ -74,7 +75,57 @@
     background: linear-gradient(135deg, rgba(255,255,255,0.4) 8%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0.2) 92%);
     box-shadow: 0 0 8px rgba(86, 79, 79, 0.6) inset;
     border-radius: 20px;
-    border: solid 2px rgba(255,255,255,0.3);
+    border: solid 1px rgba(255,255,255,0.3);
+}
+.face__wrapper::before,
+.face__wrapper::after {
+    content: '';
+    position: absolute;
+    z-index : 1 ;
+    top: -40px; /* 耳の基点を上に移動 */
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: rgba(255,255,255,0.4) transparent;
+    border-width: 0 20px 30px 20px; /* 下向きの三角形を形成 */
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.6)); /* ぼやけた影を追加 */
+}
+.triangleMouth {
+    content: '';
+    position: absolute;
+    bottom: 10px; /* 位置調整はそのまま */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent; /* 左側の透明な境界を小さく */
+    border-right: 8px solid transparent; /* 右側の透明な境界を小さく */
+    border-bottom: 8px solid #ffde55; /* 下向きの三角形を形成し、サイズを小さく */
+    opacity: 1;
+}
+
+/* .face__wrapperにカーソルを当てた時に.triangleMouthのアニメーションを実行 */
+.face__wrapper:hover .triangleMouth {
+    animation: mouthBlink linear 0s forwards;
+}
+
+@keyframes mouthBlink {
+    0%, 49% {
+        opacity: 1;
+    }
+    50%, 100% {
+        opacity: 0;
+    }
+}
+
+.face__wrapper::before {
+    left: 20px; /* 左耳の位置調整 */
+    transform: skewY(0deg); /* 左耳の傾斜を調整 */
+}
+
+.face__wrapper::after {
+    right: 20px; /* 右耳の位置調整 */
+    transform: skewY(0deg); /* 右耳の傾斜を調整 */
 }
 .eye{
     position : absolute ;
@@ -100,12 +151,13 @@
     border-radius : 20px ;
     background : #ffde55 ;
     box-sizing : border-box ;
-    border : solid 0.5px #bebe20 ;
+    border : solid 0.5px #736d6d ;
     box-shadow : 0 0 8px rgba(255,255,0 ,1)  ;
     animation : eye linear 6s infinite ;
     transition : all ease .2s ;
     right : 60% ;
-    left : 60%
+    left : 60% ;
+    
 }
 .eye::before{
     left : 0 ;

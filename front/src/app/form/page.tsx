@@ -18,7 +18,7 @@ import NewStep from "../components/forms/NewStep";
 import AdditionalStep from "../components/forms/AdditionalStep"; // 追加のステップのコンポーネントをインポートします。
 import { HomeTemplate } from "@/app/components/templates/HomeTemplate";
 import TagSelector from "../components/TagSelector";
-import Hed from '../components/Hed';
+import Header from '../components/Header';
 import { useSession, signIn, signOut } from 'next-auth/react'
 
 // ステップの順序に「追加情報」を追加します。

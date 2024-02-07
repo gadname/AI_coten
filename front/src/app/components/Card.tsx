@@ -53,10 +53,10 @@ function Scene({ children, ...props }: { children?: React.ReactNode, [x: string]
   });
   return (
     <group ref={ref} {...props}>
-      <Cards category="Space.ai" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="DALL-E3" from={Math.PI / 4} len={Math.PI / 2} position={[0, 0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="AI-Image" from={Math.PI / 4 + Math.PI / 2} len={Math.PI / 2} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="Space" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="Robot" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="DALL-E-3" from={Math.PI / 4} len={Math.PI / 2} position={[0, 0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="Gallery.ai" from={Math.PI / 4 + Math.PI / 2} len={Math.PI / 2} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="DALL-E-3" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
       
       <ActiveCard hovered={hovered} />
       
@@ -138,7 +138,7 @@ function ActiveCard({ hovered, ...props }: { hovered: number | null, [key: strin
   useLayoutEffect(() => {
     const material = ref.current?.material as CustomMaterial;
     if (material) {
-      material.zoom = 0.8;
+      material.zoom = 1;
     }
   }, [hovered]);
   useFrame((state, delta) => {

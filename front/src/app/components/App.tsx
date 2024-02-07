@@ -101,6 +101,7 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
               <div className="front parts_B"></div>
               <div className="face">
                 <div className="face__wrapper">
+                <div className="triangleMouth"></div> 
                   <div className="eye"></div>
                   <span className="text">Click!</span>
                 </div>

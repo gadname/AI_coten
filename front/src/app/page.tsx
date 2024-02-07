@@ -6,12 +6,12 @@ import Logout from './components/Logout'
 import Header from './components/Header';
 import Main from './components/Main';
 import Link from 'next/link';
-import Hed from './components/Hed';
 import Ball from './components/Ball';
 import Robot from './components/Robot';
 import Flic from './components/flic';
 import Stars from './components/Stars';
 import { Ticket }  from './components/Card';
+import  Hed  from './components/Header';
 
 import '../styles/robot.css';
 
@@ -62,18 +62,17 @@ const verticalTexts = texts.split('').map((char, index) => (
         radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
         radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
         radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`
-}}>
-  {/* 背景画像 */}
-  
-  <Ball />
-  </div>
-    <Hed />
-    {/* <Flic /> */}
-    
-    {/* <Header /> */}
-    {/* <Main /> */}
-    <Stars />
-    <Robot />
+        
+      }}>
+      
+        <Ball />
+      </div>
+      <Header />
+      
+      <Stars />
+      <Robot />
+      {/* ここにsection要素を追加 */}
+      
     </>
   )
 }

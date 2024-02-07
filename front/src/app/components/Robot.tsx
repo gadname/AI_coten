@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Robot.module.css';
 import Link from 'next/link';
+import { HomeTemplate } from "@/app/components/templates/HomeTemplate";
 
 const dynamicStyles = {
   container: `fixed bottom-0 w-1/2 sm:w-3/4 md:w-1/3 lg:w-1/2 xl:w-2/5 h-[120px] sm:h-[10px] md:h-[200px] flex flex-col justify-center items-center bg-transparent rounded-lg`,
@@ -86,13 +87,14 @@ const Robot = () => {
         <div className="area area_8"></div>
         <div className="area area_9"></div>
         
-        <button onClick={() => { isModalVisible ? onHideModal() : onShowModal(); }} className="robot">
+        <button onClick={handleClick} className="robot">
           <div className="front parts_A"></div>
           <div className="front parts_B"></div>
           <div className="face">
             <div className="face__wrapper">
               <div className="eye"></div>
-              <span className="text">Click</span>
+              <div className="triangleMouth"></div> 
+              <span className="text">Click!</span>
             </div>
           </div>
         </button>
@@ -104,6 +106,7 @@ const Robot = () => {
             {/* アニメーションが表示される */}
           </p>
           <ul>
+          {/* <HomeTemplate /> */}
             <li>
               <Link href="/three">
               <a></a> {/* next/linkを使用 */}

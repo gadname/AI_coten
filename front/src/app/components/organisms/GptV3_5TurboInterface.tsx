@@ -18,12 +18,16 @@ export const GptV3_5TurboInterface: FC<GptV3_5TurboInterfaceProps> = ({ setGptOu
   const onSubmit: SubmitHandler<TextPromptFormInputs> = async (data) => {
     try {
       setIsExecuting(true);
+      // ユーザーの入力に裏のプロンプトを追加
+      const modifiedData = {
+        textPrompt: `可愛い文章に変換してください ${data.textPrompt}`, // 'prompt' を 'textPrompt' に変更
+      };
       const response = await fetch("/api/open-ai/gpt-v3-5-turbo", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(modifiedData),
       });
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -41,7 +45,7 @@ export const GptV3_5TurboInterface: FC<GptV3_5TurboInterfaceProps> = ({ setGptOu
 
   return (
     <div className="w-screen max-w-md flex-col flex gap-2 flex-wrap-reverse border-2 border-gray-300 rounded-md p-4 justify-start m-4">
-      <Typography level="h2">調合(GPT-4)</Typography>
+      <Typography level="h2">話しかけてニャ!</Typography>
       <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue="" />
       <div className="flex flex-col gap-2 w-full">
         <FormControl>

@@ -9,7 +9,7 @@ export const ImageWrapper: FC<{ src: string | null }> = ({ src }) => {
         <Image src={src} alt={"generated image"} width={240} height={240} />
       ) : (
         <Typography level="body-md">
-          テキストを入力すると、画像が生成されます。
+         
         </Typography>
       )}
     </div>

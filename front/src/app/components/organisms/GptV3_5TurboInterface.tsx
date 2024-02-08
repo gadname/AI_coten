@@ -1,26 +1,49 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { SubmitHandler } from "react-hook-form";
-import { FormControl, FormLabel, Textarea, Typography } from "@mui/joy";
+import { FormControl, FormLabel, Textarea, Typography, Button } from "@mui/joy";
 import {
   TextPromptForm,
   TextPromptFormInputs,
 } from "@/app/components/molecules/TextPromptForm";
 
 interface GptV3_5TurboInterfaceProps {
-  setGptOutput: (output: string) => void; // 追加
+  setGptOutput: (output: string) => void;
 }
 
 export const GptV3_5TurboInterface: FC<GptV3_5TurboInterfaceProps> = ({ setGptOutput }) => {
   const [answer, setAnswer] = useState<string>("");
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
 
-  const onSubmit: SubmitHandler<TextPromptFormInputs> = async (data) => {
+  useEffect(() => {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'ja-JP';
+    recognition.interimResults = false; // 中間結果は不要
+    recognition.maxAlternatives = 1; // 最も確からしい結果のみを取得
+  
+    let finalTranscript = ''; // 最終的なテキストを格納する変数
+  
+    recognition.onresult = (event) => {
+      const speechToText = event.results[0][0].transcript;
+      finalTranscript += speechToText; // 最終的なテキストに追加
+    };
+  
+    recognition.onend = () => {
+      if (finalTranscript) {
+        setGptOutput(finalTranscript); // GPTの出力を更新してDALL-Eによる画像生成をトリガー
+      }
+    };
+
+    recognition.start();
+
+    return () => recognition.stop();
+  }, []);
+
+  const handleSubmit = async (text: string) => {
     try {
       setIsExecuting(true);
-      // ユーザーの入力に裏のプロンプトを追加
       const modifiedData = {
-        textPrompt: `可愛い文章に変換してください ${data.textPrompt}`, // 'prompt' を 'textPrompt' に変更
+        textPrompt: `更に精密で詳細な英文に修正 ${text}`,
       };
       const response = await fetch("/api/open-ai/gpt-v3-5-turbo", {
         method: "POST",
@@ -46,11 +69,11 @@ export const GptV3_5TurboInterface: FC<GptV3_5TurboInterfaceProps> = ({ setGptOu
   return (
     <div className="w-screen max-w-md flex-col flex gap-2 flex-wrap-reverse border-2 border-gray-300 rounded-md p-4 justify-start m-4">
       <Typography level="h2">話しかけてニャ!</Typography>
-      <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue="" />
+      <TextPromptForm onSubmit={(data) => handleSubmit(data.textPrompt)} isExecuting={isExecuting} initialValue="" />
       <div className="flex flex-col gap-2 w-full">
         <FormControl>
           <FormLabel>Answer</FormLabel>
-          <Textarea maxRows={8} minRows={8} value={answer} />
+          <Textarea maxRows={8} minRows={8} value={answer} readOnly />
         </FormControl>
       </div>
     </div>

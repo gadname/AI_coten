@@ -2,8 +2,13 @@ import React, { useState, useEffect } from "react";
 import Link from 'next/link';
 // 画像やスタイル、ナビゲーションリンクのデータは適宜インポートしてください
 // import { logo, menu, close } from "../assets";
+import styles from './Header.module.css';
 
-const Header = () => {
+interface HeaderProps {
+  color?: string; // 色を指定するためのオプショナルプロパティ
+}
+
+const Header: React.FC<HeaderProps> = ({ color = 'white' }) => { 
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('Home'); // 例として'Home'をアクティブなリンクとして設定
@@ -18,7 +23,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigate = (path) => {
+  const navigate = (path: string) => {
     window.location.href = path;
   };
   const navLinks = [
@@ -33,17 +38,17 @@ const Header = () => {
       <div className='max-w-7xl mx-auto px-4 flex justify-between items-center'>
         <div onClick={() => navigate('/')} className='cursor-pointer flex items-center gap-2'>
           {/* 画像のパスは適宜調整してください */}
-          <img src="/path/to/logo.png" alt='logo' className='w-9 h-9 object-contain' />
-          <p className='text-white text-[18px] font-bold'>
-            <span className='sm:block hidden'> | Gallery.ai</span>
+          <img src="/logo.png" className='w-20 h-20 object-contain' />
+          <p className={`${styles.text} ${styles.textWhite} ${styles.text40px} ${styles.fontBold}`}>
+            <span className='sm:block hidden' style={{ color }}>Gallery.ai</span>
           </p>
         </div>
-
-        <div className='hidden sm:flex flex-row gap-10'>
-          {/* ナビゲーションリンクのデータをmapで展開、適宜調整してください */}
-          <div onClick={() => navigate('/three')} className='text-white text-[18px] font-medium cursor-pointer'>Mygallery</div>
-          <div onClick={() => navigate('/contact')} className='text-white text-[18px] font-medium cursor-pointer'>Forgallery</div>
-          {/* 他のナビゲーションリンク */}
+        <div className='hidden sm:flex flex-row gap-0'>
+        {navLinks.map((nav) => (
+            <div key={nav.id} onClick={() => navigate(nav.path)} className={`${styles.navLink} text-[18px] font-medium cursor-pointer`} style={{ color }}>
+              {nav.title}
+            </div>
+          ))}
         </div>
 
         <div className='sm:hidden flex flex-1 justify-end items-center'>

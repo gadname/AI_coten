@@ -1,3 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.text {
+  font-family: 'Righteous', sans-serif;
+}
+
+.textWhite {
+  color: #ffffff; /* text-white */
+}
+
+.text40px {
+  font-size: 40px; /* text-[40px] */
+}
+
+.fontBold {
+  font-weight: bold; /* font-bold */
+}
+.navLink {
+  font-family: 'Righteous', sans-serif;
+  color: white;
+  font-size: 18px;
+  
+}
+
 .header {
   box-sizing : border-box ;
   backdrop-filter : blur(6px) ;
@@ -20,13 +44,13 @@
 .navLink {
   margin: 0 10px;
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   padding: 10px 15px;
   border-radius: 3px;
   transition: background 0.2s;
 }
 .navLink:hover {
-  background: #eee;
+  background: #0474fc;
 }
 @keyframes slideIn {
   from {

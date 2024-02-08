@@ -20,6 +20,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       textPrompt: initialValue,
     },
   });
+  
   useEffect(() => {
     setValue('textPrompt', initialValue);
   }, [initialValue, setValue]);
@@ -30,18 +31,24 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       const recognition = new window.webkitSpeechRecognition();
       recognition.lang = 'ja-JP';
       recognition.start();
-
+  
       setIsListening(true);
-
+  
       recognition.onresult = (event) => {
         const transcript = Array.from(event.results)
           .map((result) => result[0])
           .map((result) => result.transcript)
           .join('');
-        setValue('textPrompt', transcript);
+        setValue('textPrompt', transcript, { shouldValidate: true }); // データを設定し、バリデーションをトリガー
         setIsListening(false);
+        recognition.stop(); // 音声認識を停止
       };
-
+  
+      recognition.onend = () => {
+        // 音声認識が終了したらフォームを送信
+        handleSubmit(onSubmit)(); // handleSubmitを呼び出してonSubmitをトリガー
+      };
+  
       recognition.onerror = (event) => {
         console.error('Speech recognition error', event.error);
         setIsListening(false);

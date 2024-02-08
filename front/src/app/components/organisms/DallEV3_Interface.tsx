@@ -8,7 +8,11 @@ import {
 } from "../../components/molecules/TextPromptForm";
 import { ImageWrapper } from "../../components/molecules/ImageWrapper";
 
-export const DallE3Interface: FC = () => {
+interface DallE3InterfaceProps {
+  gptOutput: string; // 追加
+}
+
+export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
 
@@ -38,8 +42,8 @@ export const DallE3Interface: FC = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <Typography level="h2">画像生成</Typography>
-      <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue="" />
+      {/* <Typography level="h2">画像生成</Typography> */}
+      <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue={gptOutput} />
       <ImageWrapper src={imageUrl} />
     </div>
   );

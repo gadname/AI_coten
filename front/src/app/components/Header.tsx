@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import Link from 'next/link';
 // 画像やスタイル、ナビゲーションリンクのデータは適宜インポートしてください
 // import { logo, menu, close } from "../assets";
 
@@ -23,7 +23,7 @@ const Header = () => {
   };
   const navLinks = [
     { id: 1, title: 'Home', path: '/' },
-    { id: 2, title: 'About', path: '/three' },
+    { id: 2, title: 'Gallery', path: '/three' },
     { id: 3, title: 'Contact', path: '/contact' },
     // 他のナビゲーションリンク
   ];
@@ -56,14 +56,13 @@ const Header = () => {
           {/* モバイルメニュー */}
           <div className={`${!toggle ? "hidden" : "flex"} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}>
         <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-          {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`font-poppins font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-white" : "text-secondary"}`}
-              onClick={() => setActive(nav.title)} // アクティブなリンクを設定
-            >
-              {nav.title}
-            </li>
+        {navLinks.map((nav) => (
+            <Link key={nav.id} href={nav.path}>
+              <div className={`text-white text-[18px] font-medium cursor-pointer ${active === nav.title ? "underline" : ""}`}
+                 onClick={() => setActive(nav.title)}>
+                {nav.title}
+              </div>
+            </Link>
           ))}
             </ul>
           </div>

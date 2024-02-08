@@ -1,53 +1,80 @@
 "use client";
-import { FormControl, FormLabel, Textarea, Button } from "@mui/joy";
-import { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
+import { FormControl, Button } from "@mui/joy";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
-import { useState } from 'react';
+import { Textarea } from "@mui/joy";
 
 export type TextPromptFormProps = {
   onSubmit: SubmitHandler<TextPromptFormInputs>;
   isExecuting: boolean;
   initialValue: string;
-  insertValues: () => string; // この関数はBasicFormとOptionalFormの値を結合して返します
 };
 
 export type TextPromptFormInputs = {
   textPrompt: string;
 };
 
-export const TextPromptForm: FC<{
-  onSubmit: SubmitHandler<TextPromptFormInputs>;
-  isExecuting: boolean;
-  initialValue: string;
-}> = ({ onSubmit, isExecuting, initialValue  }) => {
-  const { handleSubmit, control } = useForm<TextPromptFormInputs>();
+export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting, initialValue }) => {
+  const { handleSubmit, control, setValue } = useForm<TextPromptFormInputs>({
+    defaultValues: {
+      textPrompt: initialValue,
+    },
+  });
+  useEffect(() => {
+    setValue('textPrompt', initialValue);
+  }, [initialValue, setValue]);
+  const [isListening, setIsListening] = useState(false);
+
+  const startSpeechToText = () => {
+    if ('webkitSpeechRecognition' in window) {
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.lang = 'ja-JP';
+      recognition.start();
+
+      setIsListening(true);
+
+      recognition.onresult = (event) => {
+        const transcript = Array.from(event.results)
+          .map((result) => result[0])
+          .map((result) => result.transcript)
+          .join('');
+        setValue('textPrompt', transcript);
+        setIsListening(false);
+      };
+
+      recognition.onerror = (event) => {
+        console.error('Speech recognition error', event.error);
+        setIsListening(false);
+      };
+    } else {
+      alert('このブラウザは音声認識をサポートしていません。');
+    }
+  };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-2 w-full"
-      
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2 w-full">
       <Controller
         name="textPrompt"
         control={control}
         rules={{ required: "Text prompt is required." }}
-        defaultValue={initialValue}
         render={({ field: { onChange, value }, fieldState: { error } }) => (
           <FormControl>
-            <FormLabel>Text prompt</FormLabel>
             <Textarea
               error={!!error}
               minRows={2}
               onChange={onChange}
               value={value}
-              style={{ width: "100%"  }} 
+              placeholder="ここに文字を打つニャ!"
+              style={{ width: "100%" }}
             />
           </FormControl>
         )}
       />
       <Button variant="outlined" type="submit" loading={isExecuting}>
-        Execute
+        ソウシンニャ!
+      </Button>
+      <Button variant="outlined" onClick={startSpeechToText} disabled={isListening}>
+        {isListening ? '聞いてるニャ...' : '音声入力ニャ'}
       </Button>
     </form>
   );

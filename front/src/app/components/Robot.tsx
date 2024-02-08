@@ -101,12 +101,14 @@ const Robot = () => {
       </div>
       {/* モーダルの表示状態に応じてモーダルを表示 */}
       {isModalVisible && (
-        <div className={styles.modal} onClick={handleClick}>
+        <div className={styles.modal}>
           <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''} ${isTypingThird ? styles.typing3 : ''}`}>
             {/* アニメーションが表示される */}
           </p>
           <ul>
-          {/* <HomeTemplate /> */}
+          {isTypingSecond && !isTypingThird  && (
+            <HomeTemplate />
+            )}
             <li>
               <Link href="/three">
               <a></a> {/* next/linkを使用 */}

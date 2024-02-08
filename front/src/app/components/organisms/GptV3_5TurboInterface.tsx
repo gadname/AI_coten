@@ -7,7 +7,11 @@ import {
   TextPromptFormInputs,
 } from "@/app/components/molecules/TextPromptForm";
 
-export const GptV3_5TurboInterface: FC = () => {
+interface GptV3_5TurboInterfaceProps {
+  setGptOutput: (output: string) => void; // 追加
+}
+
+export const GptV3_5TurboInterface: FC<GptV3_5TurboInterfaceProps> = ({ setGptOutput }) => {
   const [answer, setAnswer] = useState<string>("");
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
 
@@ -26,6 +30,7 @@ export const GptV3_5TurboInterface: FC = () => {
       }
       const result = await response.json();
       setAnswer(result.answer);
+      setGptOutput(result.answer);
     } catch (error) {
       console.error("Fetch error:", error);
       setAnswer("An error occurred. Please try again.");

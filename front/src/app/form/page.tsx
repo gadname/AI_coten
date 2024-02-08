@@ -91,7 +91,7 @@ export default function Home() {
                 
             </div>
             <HomeTemplate />
-            <Hed />
+            <Header />
         </Container>
     );
 }

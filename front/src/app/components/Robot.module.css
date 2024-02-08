@@ -649,20 +649,16 @@
   /* typing4 アニメーション */
   @keyframes typing4 {
     0% { content: ''; }
-    25% { content: 'ロボット'; }
-    50% { content: 'ロボットが'; }
-    75% { content: 'ロボットが動き'; }
-    100% { content: 'ロボットが動きます'; }
+    20% { content: 'アナタの'; }
+    40% { content: 'アナタのニャマエは'; }
+    60% { content: 'アナタのニャマエはナンダ'; }
+    80% { content: 'アナタのニャマエはナンダニャ？'; }
+    100% { content: 'アナタのニャマエはナンダニャ？'; }
   }
   
   /* typing5 アニメーション */
   @keyframes typing5 {
-    0% { content: ''; }
-    20% { content: 'こんにちは、'; }
-    40% { content: 'こんにちは、世界'; }
-    60% { content: 'こんにちは、世界！'; }
-    80% { content: 'こんにちは、世界！！'; }
-    100% { content: 'こんにちは、世界！！！'; }
+    
   }
   
   

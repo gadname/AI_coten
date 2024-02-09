@@ -33,7 +33,9 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
     logoStyle: false,
     disney: false,
     comic: false,
-    
+    genshin_impact: false,
+    final_fantasy: false,
+    persona5: false,
   });
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -100,6 +102,15 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
     }
     if (checkboxStates.comic) {
       promptPrefix += "コミック風に ";
+    }
+    if (checkboxStates.genshin_impact) {
+      promptPrefix += "原神風に ";
+    }
+    if (checkboxStates.final_fantasy) {
+      promptPrefix += "ファイナルファンタジー風に ";
+    }
+    if (checkboxStates.persona5) {
+      promptPrefix += "ペルソナ風に ";
     }
     const modifiedData = {
       textPrompt: `${promptPrefix}画像生成が可能な英文に修正 ${data.textPrompt}`,
@@ -204,7 +215,18 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
   <input type="checkbox" name="comic" checked={checkboxStates.comic} onChange={handleCheckboxChange} />
   コミック風に
 </label>
-    
+    <label>
+      <input type="checkbox" name="genshin_impact" checked={checkboxStates.genshin_impact} onChange={handleCheckboxChange} />
+      原神風に
+    </label>
+    <label>
+      <input type="checkbox" name="final_fantasy" checked={checkboxStates.final_fantasy} onChange={handleCheckboxChange} />
+      ファイナルファンタジー風に
+    </label>
+    <label>
+      <input type="checkbox" name="persona5" checked={checkboxStates.persona5} onChange={handleCheckboxChange} />
+      ペルソナ風に
+    </label>
     
     
       {/* <Typography level="h2">画像生成</Typography> */}

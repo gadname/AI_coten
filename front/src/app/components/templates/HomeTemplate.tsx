@@ -14,5 +14,6 @@ export const HomeTemplate: FC = () => {
         <DallE3Interface gptOutput={gptOutput} />
       </div>
     </main>
+    
   );
 };

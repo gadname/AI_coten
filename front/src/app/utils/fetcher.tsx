@@ -1,6 +1,11 @@
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import { getSession } from 'next-auth/react';
 
+declare module "next-auth" {
+  interface Session {
+    accessToken?: string;
+  }
+}
 // 認証トークンをヘッダーに付加するfetcher関数
 const fetcherWithAuth = async (path: string) => {
   const session = await getSession();

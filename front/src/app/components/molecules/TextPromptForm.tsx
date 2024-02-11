@@ -4,6 +4,17 @@ import { FormControl, Button } from "@mui/joy";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import { Textarea } from "@mui/joy";
 
+interface SpeechRecognitionEvent {
+  results: SpeechRecognitionResultList;
+  // Add other properties as needed
+}
+
+declare global {
+  interface Window {
+    webkitSpeechRecognition: any;
+  }
+}
+
 export type TextPromptFormProps = {
   onSubmit: SubmitHandler<TextPromptFormInputs>;
   isExecuting: boolean;
@@ -34,7 +45,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
   
       setIsListening(true);
   
-      recognition.onresult = (event) => {
+      recognition.onresult = (event: SpeechRecognitionEvent) => {
         const transcript = Array.from(event.results)
           .map((result) => result[0])
           .map((result) => result.transcript)
@@ -49,8 +60,8 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
         handleSubmit(onSubmit)(); // handleSubmitを呼び出してonSubmitをトリガー
       };
   
-      recognition.onerror = (event) => {
-        console.error('Speech recognition error', event.error);
+      recognition.onerror = (event: Event) => {
+        console.error('Speech recognition error', (event as any).error);
         setIsListening(false);
       };
     } else {

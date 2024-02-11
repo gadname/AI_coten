@@ -10,10 +10,11 @@ import { getSession } from 'next-auth/react';
 
 interface CustomSession extends Session {
     user_id: string;
+    accessToken: string;
   }
 export default function HomePage() {
   const { data: session } = useSession();//sessionの状態を取得
-
+  
   const [imageUrls, setImageUrls] = useState({
     image1: '/ai4.jpg',
     image2: '/art1.png',
@@ -101,7 +102,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.accessToken}`,
+          'Authorization': `Bearer ${(session as CustomSession).accessToken}`,
           'UserId': (session as CustomSession).user_id, 
         },
         body: JSON.stringify(requestBody)
@@ -127,7 +128,7 @@ useEffect(() => {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${session.accessToken}`,
+            'Authorization': `Bearer ${(session as CustomSession).accessToken}`,
           },
         });
 
@@ -180,11 +181,14 @@ useEffect(() => {
               ))}
               
             </ImageUploadModal>
+            
           )}
           
         </>
+        
       )}
       <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>
+      
     </div>
   );
 }

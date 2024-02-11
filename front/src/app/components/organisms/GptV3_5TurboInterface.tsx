@@ -11,6 +11,17 @@ interface GptV3_5TurboInterfaceProps {
   setGptOutput: (output: string) => void;
 }
 
+interface SpeechRecognitionEvent {
+  results: SpeechRecognitionResultList;
+  // Add other properties as needed
+}
+
+declare global {
+    interface Window {
+      SpeechRecognition: any;
+    }
+  }
+
 export const GptV3_5TurboInterface: FC<GptV3_5TurboInterfaceProps> = ({ setGptOutput }) => {
   const [answer, setAnswer] = useState<string>("");
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
@@ -23,7 +34,7 @@ export const GptV3_5TurboInterface: FC<GptV3_5TurboInterfaceProps> = ({ setGptOu
   
     let finalTranscript = ''; // 最終的なテキストを格納する変数
   
-    recognition.onresult = (event) => {
+    recognition.onresult = (event: SpeechRecognitionEvent) => {
       const speechToText = event.results[0][0].transcript;
       finalTranscript += speechToText; // 最終的なテキストに追加
     };

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from 'next/link';
-// 画像やスタイル、ナビゲーションリンクのデータは適宜インポートしてください
-// import { logo, menu, close } from "../assets";
+import { useSession, signIn, signOut } from "next-auth/react"; 
 import styles from './Header.module.css';
 
 interface HeaderProps {
@@ -12,6 +11,7 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState('Home'); // 例として'Home'をアクティブなリンクとして設定
+  const { data: session } = useSession();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
   const navLinks = [
     { id: 1, title: 'Home', path: '/' },
     { id: 2, title: 'Gallery', path: '/three' },
-    { id: 3, title: 'Contact', path: '/contact' },
+    { id: 3, title: 'Share', path: '/contact' },
     // 他のナビゲーションリンク
   ];
 
@@ -49,6 +49,16 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
               {nav.title}
             </div>
           ))}
+          {/* ログイン/ログアウトボタンの表示 */}
+          {session ? (
+            <button onClick={() => signOut()} className={`${styles.navLink} text-[18px] font-medium cursor-pointer`} style={{ color }}>
+              LOGOUT
+            </button>
+          ) : (
+            <button onClick={() => signIn()} className={`${styles.navLink} text-[18px] font-medium cursor-pointer`} style={{ color }}>
+              LOGIN
+            </button>
+          )}
         </div>
 
         <div className='sm:hidden flex flex-1 justify-end items-center'>
@@ -78,3 +88,4 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
 };
 
 export default Header;
+

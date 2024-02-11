@@ -106,9 +106,9 @@ const Robot = () => {
             {/* アニメーションが表示される */}
           </p>
           <ul>
-          {isTypingSecond && !isTypingThird  && (
+          {/* {isTypingSecond && !isTypingThird  && (
             <HomeTemplate />
-            )}
+            )} */}
             <li>
               <Link href="/three">
               <a></a> {/* next/linkを使用 */}

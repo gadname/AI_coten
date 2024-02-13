@@ -22,7 +22,7 @@ const ImageUploadModal: FC<ImageUploadModalProps> = ({ onClose, children }) => {
     <div className={styles.sidebarOverlay} onClick={handleClose}>
       <div className={`${styles.sidebar} ${isClosing ? styles.sidebarClosing : ''}`} onClick={e => e.stopPropagation()}>
         {children}
-        <text className={styles.uploadButton}>画像投稿</text>
+        <text className={styles.uploadButton}>画像を投稿できるニャ!!</text>
       </div>
     </div>
   );

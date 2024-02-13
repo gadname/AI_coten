@@ -27,7 +27,6 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
     window.location.href = path;
   };
   const navLinks = [
-    { id: 1, title: 'Home', path: '/' },
     { id: 2, title: 'Gallery', path: '/three' },
     { id: 3, title: 'Share', path: '/contact' },
     // 他のナビゲーションリンク

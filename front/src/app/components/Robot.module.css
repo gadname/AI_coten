@@ -570,6 +570,10 @@
   .modalContent.typing5::before {
     animation: typing5 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
   }
+
+  .modalContent.typing6::before {
+    animation: typing6 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
+  }
   
   @keyframes typing1 {
     0% { content: ''; }
@@ -622,44 +626,127 @@
     96% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパートニ'; }
     100% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパートニャ!'; }
   }
-@keyframes typing3 {
+
+  @keyframes typing3 {
     0% { content: ''; }
-    5% { content: 'A'; }
-    10% { content: 'AL'; }
-    15% { content: 'ALC'; }
-    20% { content: 'ALCH'; }
-    25% { content: 'ALCHE'; }
-    30% { content: 'ALCHEM'; }
-    35% { content: 'ALCHEMI'; }
-    40% { content: 'ALCHEMIS'; }
-    45% { content: 'ALCHEMIST'; }
-    50% { content: 'ALCHEMISTは'; }
-    55% { content: 'ALCHEMISTはA'; }
-    60% { content: 'ALCHEMISTはAI'; }
-    65% { content: 'ALCHEMISTはAI画'; }
-    70% { content: 'ALCHEMISTはAI画像'; }
-    75% { content: 'ALCHEMISTはAI画像生'; }
-    80% { content: 'ALCHEMISTはAI画像生成'; }
-    85% { content: 'ALCHEMISTはAI画像生成サ'; }
-    90% { content: 'ALCHEMISTはAI画像生成サー'; }
-    95% { content: 'ALCHEMISTはAI画像生成サービ'; }
-    100% { content: 'ALCHEMISTはAI画像生成サービスです'; }
-  }
+    5% { content: 'こ'; }
+    10% { content: 'この'; }
+    15% { content: 'このア'; }
+    20% { content: 'このアプ'; }
+    25% { content: 'このアプリ'; }
+    30% { content: 'このアプリで'; }
+    35% { content: 'このアプリでは'; }
+    40% { content: 'このアプリではA'; }
+    45% { content: 'このアプリではAI'; }
+    50% { content: 'このアプリではAIを'; }
+    55% { content: 'このアプリではAIを使'; }
+    60% { content: 'このアプリではAIを使っ'; }
+    65% { content: 'このアプリではAIを使った'; }
+    70% { content: 'このアプリではAIを使った画'; }
+    75% { content: 'このアプリではAIを使った画像'; }
+    80% { content: 'このアプリではAIを使った画像生'; }
+    85% { content: 'このアプリではAIを使った画像生成'; }
+    90% { content: 'このアプリではAIを使った画像生成が'; }
+    95% { content: 'このアプリではAIを使った画像生成がで'; }
+    100% { content: 'このアプリではAIを使った画像生成ができますニャ'; }
+}
   
   /* typing4 アニメーション */
   @keyframes typing4 {
     0% { content: ''; }
-    20% { content: 'アナタの'; }
-    40% { content: 'アナタのニャマエは'; }
-    60% { content: 'アナタのニャマエはナンダ'; }
-    80% { content: 'アナタのニャマエはナンダニャ？'; }
-    100% { content: 'アナタのニャマエはナンダニャ？'; }
-  }
+    5% { content: '生'; }
+    10% { content: '生成'; }
+    15% { content: '生成し'; }
+    20% { content: '生成した'; }
+    25% { content: '生成した画'; }
+    30% { content: '生成した画像'; }
+    35% { content: '生成した画像は'; }
+    40% { content: '生成した画像は自'; }
+    45% { content: '生成した画像は自分'; }
+    50% { content: '生成した画像は自分の'; }
+    55% { content: '生成した画像は自分の個'; }
+    60% { content: '生成した画像は自分の個展'; }
+    65% { content: '生成した画像は自分の個展に'; }
+    70% { content: '生成した画像は自分の個展に飾'; }
+    75% { content: '生成した画像は自分の個展に飾る'; }
+    80% { content: '生成した画像は自分の個展に飾るこ'; }
+    85% { content: '生成した画像は自分の個展に飾ること'; }
+    90% { content: '生成した画像は自分の個展に飾ることも'; }
+    95% { content: '生成した画像は自分の個展に飾ることもで'; }
+    100% { content: '生成した画像は自分の個展に飾ることもできるにゃ！'; }
+}
   
   /* typing5 アニメーション */
   @keyframes typing5 {
-    
-  }
+    0% { content: ''; }
+    5% { content: '他'; }
+    10% { content: '他に'; }
+    15% { content: '他にも'; }
+    20% { content: '他にも他'; }
+    25% { content: '他にも他の'; }
+    30% { content: '他にも他の人'; }
+    35% { content: '他にも他の人の'; }
+    40% { content: '他にも他の人の個'; }
+    45% { content: '他にも他の人の個展'; }
+    50% { content: '他にも他の人の個展を'; }
+    55% { content: '他にも他の人の個展を見'; }
+    60% { content: '他にも他の人の個展を見る'; }
+    65% { content: '他にも他の人の個展を見るこ'; }
+    70% { content: '他にも他の人の個展を見ること'; }
+    75% { content: '他にも他の人の個展を見ることも'; }
+    80% { content: '他にも他の人の個展を見ることもで'; }
+    85% { content: '他にも他の人の個展を見ることもでき'; }
+    90% { content: '他にも他の人の個展を見ることもできる'; }
+    95% { content: '他にも他の人の個展を見ることもできるニャ'; }
+    100% { content: '他にも他の人の個展を見ることもできるニャ！'; }
+}
+
+@keyframes typing5 {
+  0% { content: ''; }
+  5% { content: '他'; }
+  10% { content: '他に'; }
+  15% { content: '他にも'; }
+  20% { content: '他にも他'; }
+  25% { content: '他にも他の'; }
+  30% { content: '他にも他の人'; }
+  35% { content: '他にも他の人の'; }
+  40% { content: '他にも他の人の個'; }
+  45% { content: '他にも他の人の個展'; }
+  50% { content: '他にも他の人の個展を'; }
+  55% { content: '他にも他の人の個展を見'; }
+  60% { content: '他にも他の人の個展を見る'; }
+  65% { content: '他にも他の人の個展を見るこ'; }
+  70% { content: '他にも他の人の個展を見ること'; }
+  75% { content: '他にも他の人の個展を見ることも'; }
+  80% { content: '他にも他の人の個展を見ることもで'; }
+  85% { content: '他にも他の人の個展を見ることもでき'; }
+  90% { content: '他にも他の人の個展を見ることもできる'; }
+  95% { content: '他にも他の人の個展を見ることもできるニャ'; }
+  100% { content: '他にも他の人の個展を見ることもできるニャ！'; }
+}
+@keyframes typing6 {
+  0% { content: ''; }
+  5% { content: 'こ'; }
+  10% { content: 'ここ'; }
+  15% { content: 'ここま'; }
+  20% { content: 'ここまで'; }
+  25% { content: 'ここまで話'; }
+  30% { content: 'ここまで話を'; }
+  35% { content: 'ここまで話を聞'; }
+  40% { content: 'ここまで話を聞い'; }
+  45% { content: 'ここまで話を聞いて'; }
+  50% { content: 'ここまで話を聞いてく'; }
+  55% { content: 'ここまで話を聞いてくれ'; }
+  60% { content: 'ここまで話を聞いてくれて'; }
+  65% { content: 'ここまで話を聞いてくれてあ'; }
+  70% { content: 'ここまで話を聞いてくれてあり'; }
+  75% { content: 'ここまで話を聞いてくれてありが'; }
+  80% { content: 'ここまで話を聞いてくれてありが'; }
+  85% { content: 'ここまで話を聞いてくれてありがと'; }
+  90% { content: 'ここまで話を聞いてくれてありがとニ'; }
+  95% { content: 'ここまで話を聞いてくれてありがとニャ'; }
+  100% { content: 'ここまで話を聞いてくれてありがとニャ！'; }
+}
   
   
   @keyframes blink {

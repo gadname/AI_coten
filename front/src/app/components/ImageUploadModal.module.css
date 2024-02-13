@@ -1,4 +1,3 @@
-/* ImageUploadModal.module.css */
 
 @keyframes fadeIn {
     from {
@@ -73,13 +72,11 @@
     }
   }
   .uploadButton {
-    padding: 10px 20px;
-    position: relative;
-    left: 45%;
-    background-color: #e5e7f0;
-    color: rgb(30, 28, 28);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* 上部に配置 */
+    height: 100vh;
+    font-weight: bold;
+    font-size: 20px;
   }

@@ -27,6 +27,7 @@ class Api::V1::UserImagesController < ApplicationController
       render json: {}, status: :not_found
     end
   end
+  
 
   def update_urls
     user = @current_user

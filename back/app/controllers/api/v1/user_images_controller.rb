@@ -28,6 +28,8 @@ class Api::V1::UserImagesController < ApplicationController
     end
   end
   
+  def show
+  end
 
   def update_urls
     user = @current_user

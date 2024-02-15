@@ -59,6 +59,8 @@ const images = [
   const handleImageUpload = async (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
+      console.log('file', file);
+      console.log('files', event.target.files);
       const formData = new FormData();
       const session = await getSession() as any;
       console.log('Session_log' , session);

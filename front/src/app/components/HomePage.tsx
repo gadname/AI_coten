@@ -65,7 +65,7 @@ const images = [
       formData.append('post[image]', file); // 'image' を 'post[image]' に変更
       formData.append('post[user_id]', session.user_id); // 'user_id' を 'post[user_id]' に変更
       
-      fetch("http://localhost:3000/api/v1/posts", {
+      fetch("https://ai-coten.onrender.com/api/v1/posts", {
         method: 'POST',
         body: formData, // formDataを使用しているため、これが正しいbodyです
         headers: {
@@ -99,7 +99,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
         image_urls: updatedUrls,
       };
 
-      fetch("http://localhost:3000/api/v1/user_images/update_urls", { 
+      fetch("https://ai-coten.onrender.com/api/v1/user_images/update_urls", { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ useEffect(() => {
   const fetchImageUrls = async () => {
     if (session) {
       try {
-        const response = await fetch("http://localhost:3000/api/v1/user_images", {
+        const response = await fetch("https://ai-coten.onrender.com/api/v1/user_images", {
           method: 'GET', 
           headers: {
             'Content-Type': 'application/json',

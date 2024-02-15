@@ -5,7 +5,7 @@ import Header from '../components/Header';
 function SomeComponent() {
   return (
     <div>
-      <Header color="black" />
+      <Header/>
       <HomePage />
       {/* Other components */}
     </div>

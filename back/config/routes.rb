@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :posts 
-      resources :user_images do
+      resources :user_images, except: [:show] do
         collection do
           post 'update_urls' 
         end

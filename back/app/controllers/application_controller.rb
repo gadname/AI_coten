@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     else
       session.delete(:access_token)
       user_info = fetch_user_info_from_google(received_access_token)
-      @current_user = User.find_by(uid: user_info['sub']) # GoogleのユーザーIDは 'sub' キーにあります
+      @current_user = User.find_by(uid: user_info['sub']) 
 
       session[:user_id] = @current_user.id
       session[:access_token] = received_access_token

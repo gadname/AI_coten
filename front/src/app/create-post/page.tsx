@@ -32,7 +32,7 @@ const CreatePost = () => {
 
         try {
             console.log("Session:", session);
-            await axios.post("http://localhost:3000/api/v1/posts/", formData, {
+            await axios.post("https://ai-coten.onrender.com/api/v1/posts/", formData, {
                 
               headers: {
                 

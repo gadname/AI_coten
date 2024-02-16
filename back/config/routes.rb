@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :posts 
-      resources :user_images, except: [:show] do
+      resources :user_images do
         collection do
           post 'update_urls' 
+          get 'random_user_image'
         end
       end
     end

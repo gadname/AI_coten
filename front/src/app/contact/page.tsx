@@ -1,12 +1,12 @@
 'use client';
-import HomePage from '../components/HomePage';
+import HomePages from '../components/HomePages';
 import Header from '../components/Header';
 
 function SomeComponent() {
   return (
     <div>
-      <Header />
-      <HomePage />
+      <Header color="black" />
+      <HomePages />
       {/* Other components */}
     </div>
   );

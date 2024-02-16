@@ -30,23 +30,6 @@ class Api::V1::UserImagesController < ApplicationController
       render json: {}, status: :not_found
     end
   end
-  
-  def random_user_image
-    return if User.all.count < 2 
-    random_number = loop do
-      number = rand(1..User.last.id)
-      break number unless number == @current_user.id
-    end
-    Rails.logger.info "random_number: #{random_number}"
-    user_image = UserImage.find_by(user_id: random_number)
-    Rails.logger.info "user_image: #{user_image}"
-    if user_image.present?
-      render json: user_image.image_urls, status: :ok
-    else
-      render json: {}, status: :not_found
-    end
-  end
-end
 
   def update_urls
     user = @current_user

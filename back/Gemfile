@@ -42,6 +42,8 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
   gem 'pry'
   gem 'pry-byebug'
+  gem 'fog-aws'
+  gem "aws-sdk-s3", require: false
 end
 
 group :development do

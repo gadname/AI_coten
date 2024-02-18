@@ -19,6 +19,7 @@
 !/tmp/pids/.keep
 
 # local env files
+.env
 .env*.local
 
 # Ignore uploaded files in development.

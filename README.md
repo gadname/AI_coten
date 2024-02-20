@@ -3,7 +3,7 @@
 
 # サービス概要
 
-▼サービスURL
+🌎 サービスURL 🌎
 
 ▼紹介記事(Qiita)
 
@@ -65,3 +65,6 @@ Figma https://www.figma.com/file/XIGmq8AnWjoV1kPRTPrA4x/%E7%84%A1%E9%A1%8C?type=
 
 ER図
 https://app.diagrams.net/#G1BNecqmVT4mcvx4kreQ_sa9qpeW4pQ1FU
+
+インフラ構成図
+

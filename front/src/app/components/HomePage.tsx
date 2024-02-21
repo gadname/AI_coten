@@ -123,6 +123,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
 };
 
 // 画像 URL を更新する関数
+
 useEffect(() => {
   const fetchImageUrls = async () => {
     if (session) {
@@ -135,6 +136,7 @@ useEffect(() => {
           },
         });
 
+        
         if (!response.ok) {
           throw new Error('Failed to fetch image URLs');
         }
@@ -150,6 +152,7 @@ useEffect(() => {
       }
     }
   };
+
 
   fetchImageUrls();
 }, [session]);

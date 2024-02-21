@@ -53,10 +53,10 @@ function Scene({ children, ...props }: { children?: React.ReactNode, [x: string]
   });
   return (
     <group ref={ref} {...props}>
-      <Cards category="Robot" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="DALL-E-3" from={Math.PI / 4} len={Math.PI / 2} position={[0, 0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="Gallery.ai" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="DALL-E 3" from={Math.PI / 4} len={Math.PI / 2} position={[0, 0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
       <Cards category="Gallery.ai" from={Math.PI / 4 + Math.PI / 2} len={Math.PI / 2} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="DALL-E-3" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="DALL-E 3" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
       
       <ActiveCard hovered={hovered} />
       

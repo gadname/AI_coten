@@ -16,7 +16,10 @@ interface AdditionalStepProps {
     AdditionalStepForm?: MyFormAdditionalStep;
     // 他の必要なプロパティがあればここに追加
   };
+
 }
+
+
 const schema = yup
   .object({
     additionalField: yup.string().required("必須項目です"), // 追加フィールドのバリデーションルール

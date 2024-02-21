@@ -11,6 +11,10 @@ class Api::V1::PostsController < ApplicationController
     render json: @post
   end
 
+
+  
+
+
   def create 
     @post = @current_user.posts.build(post_params) #新しいpostオブジェクトを作成
     if @post.save

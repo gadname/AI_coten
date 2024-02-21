@@ -602,29 +602,29 @@
     0% { content: ''; }
     4% { content: 'ボ'; }
     8% { content: 'ボク'; }
-    12% { content: 'ボクは'; }
-    16% { content: 'ボクは「'; }
-    20% { content: 'ボクは「N'; }
-    24% { content: 'ボクは「Ny'; }
-    28% { content: 'ボクは「Nya'; }
-    32% { content: 'ボクは「Nyav'; }
-    36% { content: 'ボクは「Nyavi'; }
-    40% { content: 'ボクは「Nyavi」'; }
-    44% { content: 'ボクは「Nyavi」ニ'; }
-    48% { content: 'ボクは「Nyavi」ニャ'; }
-    52% { content: 'ボクは「Nyavi」ニャビ'; }
-    56% { content: 'ボクは「Nyavi」ニャビゲ'; }
-    60% { content: 'ボクは「Nyavi」ニャビゲー'; }
-    64% { content: 'ボクは「Nyavi」ニャビゲーション'; }
-    68% { content: 'ボクは「Nyavi」ニャビゲーションの'; }
-    72% { content: 'ボクは「Nyavi」ニャビゲーションのエ'; }
-    76% { content: 'ボクは「Nyavi」ニャビゲーションのエキ'; }
-    80% { content: 'ボクは「Nyavi」ニャビゲーションのエキス'; }
-    84% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパ'; }
-    88% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパー'; }
-    92% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパート'; }
-    96% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパートニ'; }
-    100% { content: 'ボクは「Nyavi」ニャビゲーションのエキスパートニャ!'; }
+    12% { content: 'ボクの'; }
+    16% { content: 'ボクのニ'; }
+    20% { content: 'ボクのニャ'; }
+    24% { content: 'ボクのニャマ'; }
+    28% { content: 'ボクのニャマエ'; }
+    32% { content: 'ボクのニャマエは'; }
+    36% { content: 'ボクのニャマエは「'; }
+    40% { content: 'ボクのニャマエは「ニ'; }
+    44% { content: 'ボクのニャマエは「ニャ'; }
+    48% { content: 'ボクのニャマエは「ニャビ'; }
+    52% { content: 'ボクのニャマエは「ニャビ！'; }
+    56% { content: 'ボクのニャマエは「ニャビ！」'; }
+    60% { content: 'ボクのニャマエは「ニャビ！」'; } 
+    64% { content: 'ボクのニャマエは「ニャビ！」'; }
+    68% { content: 'ボクのニャマエは「ニャビ！」'; }
+    72% { content: 'ボクのニャマエは「ニャビ！」'; }
+    76% { content: 'ボクのニャマエは「ニャビ！」'; }
+    80% { content: 'ボクのニャマエは「ニャビ！」'; }
+    84% { content: 'ボクのニャマエは「ニャビ！」'; }
+    88% { content: 'ボクのニャマエは「ニャビ！」'; }
+    92% { content: 'ボクのニャマエは「ニャビ！」'; }
+    96% { content: 'ボクのニャマエは「ニャビ！」'; }
+    100% { content: 'ボクのニャマエは「ニャビ！」'; }
   }
 
   @keyframes typing3 {

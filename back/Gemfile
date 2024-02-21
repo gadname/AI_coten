@@ -37,14 +37,21 @@ gem 'image_processing', '~> 1.12'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem "rack-cors"
 gem 'jwt'
+gem 'fog-aws'
+gem "aws-sdk-s3", require: false
+gem 'fog-google'
+gem 'dotenv-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  
   gem 'pry'
   gem 'pry-byebug'
   gem 'fog-aws'
   gem "aws-sdk-s3", require: false
   gem 'fog-google'
+  
 end
 
 group :development do

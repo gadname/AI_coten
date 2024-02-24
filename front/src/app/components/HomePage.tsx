@@ -7,7 +7,7 @@ import localForage from 'localforage';
 import { useSession } from "next-auth/react";
 import { Session } from "next-auth";
 import { getSession } from 'next-auth/react';
-
+import Stars from '../components/Stars';
 
 interface CustomSession extends Session {
     user_id: string;
@@ -194,8 +194,7 @@ useEffect(() => {
         </>
         
       )}
-      <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>
-      
+      <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>  
     </div>
   );
 }

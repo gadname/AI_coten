@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import styles from './Robot.module.css';
 import Link from 'next/link';
 import { HomeTemplate } from "@/app/components/templates/HomeTemplate";
@@ -34,21 +34,37 @@ const Robot = () => {
 
   // スタイルの分岐
   const style = isMobile 
-    ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '150px', bottom: '50px' }
+    ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '100px', bottom: '50px' }
     : isTablet // タブレットサイズの場合のスタイル
       ? { transform: 'scale(0.9)', right: '100px', bottom: '10px' } // iPadサイズに適したスタイル
       : { right: '0px', top: '550px' };
 
-    const modalStyle = isMobile 
-? { 
-  position: 'relative' as const,
-  left: '0%',
-  right: '10%',
-  transform: 'translateY(-80%)',
-  padding: '24px',
-  borderRadius: '12px',
-  boxShadow: '0 5px 8px rgba(0, 0, 0, 0.15)',
+    const modalStyle: CSSProperties = isMobile 
+?  { 
+  position: 'fixed',
+  top: '-250%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)', // 中央に配置
+  width: '250%', // モバイルデバイスに適した幅
+  maxHeight: '500%', // ビューポートに対して最大高さを設定
+  overflow: 'auto', // 内容がオーバーフローした場合にスクロールを可能にする
+  padding: '20px', // 内容とボーダーの間のスペース
+  borderRadius: '10px', // 角の丸み
+  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // 影のスタイル
+}: isTablet
+? {
+  position: 'fixed',
+  top: '-50%',
+  left: '20%',
+  transform: 'translate(-50%, -50%)', // 中央に配置
+  width: '200%', // タブレットに適した幅
+  maxHeight: '150%', // ビューポートに対して最大高さを設定
+  overflow: 'auto', // 内容がオーバーフローした場合にスクロールを可能にする
+  padding: '20px', // 内容とボーダーの間のスペース
+  borderRadius: '10px', // 角の丸み
+  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // 影のスタイル
 }
+
 : isTypingThird && !isTypingFourth
   ? {
     backgroundColor: 'white', // 背景色を白に変更

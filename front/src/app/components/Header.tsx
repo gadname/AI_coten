@@ -6,7 +6,7 @@ import Login from '../components/Login'
 import Logout from '../components/Logout'
 
 interface HeaderProps {
-  color?: string; // 色を指定するためのオプショナルプロパティ
+  color?: string; 
 }
 
 const Header: React.FC<HeaderProps> = ({ color = 'white' }) => { 
@@ -30,7 +30,6 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
   const navLinks = [
     { id: 2, title: 'Gallery', path: '/three' },
     { id: 3, title: 'Share', path: '/contact' },
-    // 他のナビゲーションリンク
   ];
 
   return (
@@ -39,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
         <div onClick={() => navigate('/')} className='cursor-pointer flex items-center gap-2'>
           <img src="/logo.png" className='w-20 h-20 object-contain' />
           <p className={`${styles.text} ${styles.textWhite} ${styles.text40px} ${styles.fontBold}`}>
-            <span className='sm:block hidden' style={{ color }}>Gallery.ai</span>
+            <span className='block' style={{ color }}>Gallery.ai</span>
           </p>
         </div>
         <div className='hidden sm:flex flex-row gap-0'>

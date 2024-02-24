@@ -2,6 +2,8 @@
 import React, { FC, useState, useEffect } from "react";
 import { FormControl, Button } from "@mui/joy";
 import { SubmitHandler, useForm, Controller } from "react-hook-form";
+import MicIcon from '@mui/icons-material/Mic';
+import MicOffIcon from '@mui/icons-material/MicOff';
 import { Textarea } from "@mui/joy";
 
 interface SpeechRecognitionEvent {
@@ -71,6 +73,14 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2 w-full">
+      <Button variant="outlined" onClick={startSpeechToText} disabled={isListening} style={{ backgroundColor: 'transparent', boxShadow: 'none', border: 'none' }}>
+  {isListening ? (
+    <MicOffIcon style={{ color: 'white', border: '2px solid white', borderRadius: '50%', padding: '4px', fontSize: '28px', backgroundColor: 'red' }} />
+  ) : (
+    <MicIcon style={{ color: 'white', border: '2px solid white', borderRadius: '50%', padding: '4px', fontSize: '28px', backgroundColor: 'red' }} />
+  )}
+  <span style={{ marginLeft: 8, display: isListening ? 'inline' : 'none' }}>聞いてるニャ...</span>
+</Button>
       <Controller
         name="textPrompt"
         control={control}
@@ -88,12 +98,11 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
           </FormControl>
         )}
       />
+      
       <Button variant="outlined" type="submit" loading={isExecuting}>
         ソウシンニャ!
       </Button>
-      <Button variant="outlined" onClick={startSpeechToText} disabled={isListening}>
-        {isListening ? '聞いてるニャ...' : '音声入力ニャ'}
-      </Button>
+      
     </form>
   );
 };

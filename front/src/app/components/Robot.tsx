@@ -16,6 +16,50 @@ const Robot = () => {
   const [isTypingFourth, setIsTypingFourth] = useState(false);
   const [isTypingFifth, setIsTypingFifth] = useState(false);
   const [isTypingSixth, setIsTypingSixth] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // 初期値を設定
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // SP表示の際と非SP表示の際のスタイルを分岐
+  const style = isMobile 
+    ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '150px', bottom: '50px' }
+    : { right: '0px', top: '550px' };
+
+    const modalStyle = isMobile 
+? { 
+  position: 'relative' as const,
+  left: '0%',
+  right: '10%',
+  transform: 'translateY(-80%)',
+  padding: '24px',
+  borderRadius: '12px',
+  boxShadow: '0 5px 8px rgba(0, 0, 0, 0.15)',
+}
+: isTypingThird && !isTypingFourth
+  ? {
+    backgroundColor: 'white', // 背景色を白に変更
+    backgroundImage: `
+      radial-gradient(at 49% 49%, hsla(191,77%,50%,1) 0px, transparent 50%),
+      radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
+      radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
+      radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
+      radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
+      radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`,
+  }
+: {
+    backgroundColor: 'initial',
+  };
+
 
 // publicディレクトリからの相対パスを使用して音声ファイルにアクセス
 useEffect(() => {
@@ -80,8 +124,10 @@ useEffect(() => {
     setAnimationKey(0);
   };
 
+  const backgroundStyle = isTypingThird && !isTypingFourth ? { backgroundColor: 'white' } : {};
+
   return (
-    <div className={dynamicStyles.container} style={{ right: '-20px' }}>
+    <div className={dynamicStyles.container} style={style}>
       <div className="box">
         <div className="area area_1"></div>
         <div className="area area_2"></div>
@@ -107,13 +153,15 @@ useEffect(() => {
       </div>
       {/* モーダルの表示状態に応じてモーダルを表示 */}
       {isModalVisible && (
-        <div className={styles.modal}>
+        <div className={styles.modal} style={modalStyle}>
           <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''} ${isTypingThird ? styles.typing3 : ''} ${isTypingFourth ? styles.typing4 : ''} ${isTypingFifth ? styles.typing5 : ''} ${isTypingSixth ? styles.typing6 : ''}`}>
             {/* アニメーションが表示される */}
           </p>
           <ul>
-          {isTypingSecond && !isTypingThird  && (
+          {isTypingThird && !isTypingFourth  && (
+            
             <HomeTemplate />
+         
             )}
             <li>
               <Link href="/three">

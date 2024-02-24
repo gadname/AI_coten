@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.text {
+    /* 共通のテキストスタイルにRighteousフォントを適用 */
+    font-family: 'Righteous', sans-serif;
+  }
+
+.textWhite {
+  color: white;
+}
+
+.text40px {
+  font-size: 20px;
+}
+
+.fontBold {
+  font-weight: bold;
+}

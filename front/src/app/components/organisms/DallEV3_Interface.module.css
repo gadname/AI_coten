@@ -1,0 +1,48 @@
+.checkboxInput {
+    margin-right: 0px; /* または必要な間隔 */
+    vertical-align: middle; /* チェックボックスの垂直方向の位置を調整 */
+    /* チェックボックスのデフォルトのスタイルをリセット */
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+  
+  .checkboxLabel {
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: flex-start; /* 水平方向の左揃え */
+    gap: 8px; /* チェックボックスとテキストの間隔 */
+    /* 必要に応じて、親要素のスタイルを調整 */
+    padding: 0;
+    margin: 0;
+  }
+
+  .labelWithHoverEffect {
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .labelWithHoverEffect::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #f6f3f3; /* 下線の色 */
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .labelWithHoverEffect:hover::after {
+    visibility: visible;
+    width: 50%;
+  }
+
+.checkboxLabel {
+    display: flex;
+    align-items: center; /* 垂直方向の中央揃え */
+    justify-content: flex-start; /* 水平方向の左揃え */
+    gap: 8px; /* チェックボックスとテキストの間隔 */
+  }

@@ -159,7 +159,7 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
     }
   }, [gptOutput, onSubmit]);
 
-  const flexContainerStyle = {
+  const flexContainerStyle: React.CSSProperties = {
     display: 'flex',
     flexWrap: 'wrap', // コンテンツがコンテナを超える場合に折り返す
     justifyContent: 'space-between',

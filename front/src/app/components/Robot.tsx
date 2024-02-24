@@ -17,10 +17,13 @@ const Robot = () => {
   const [isTypingFifth, setIsTypingFifth] = useState(false);
   const [isTypingSixth, setIsTypingSixth] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false); // タブレットサイズの状態
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      const screenWidth = window.innerWidth;
+      setIsMobile(screenWidth <= 768);
+      setIsTablet(screenWidth > 768 && screenWidth <= 1024); // 768pxより大きく、1024px以下の場合はタブレットと判断
     };
 
     window.addEventListener('resize', handleResize);
@@ -29,10 +32,12 @@ const Robot = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // SP表示の際と非SP表示の際のスタイルを分岐
+  // スタイルの分岐
   const style = isMobile 
     ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '150px', bottom: '50px' }
-    : { right: '0px', top: '550px' };
+    : isTablet // タブレットサイズの場合のスタイル
+      ? { transform: 'scale(0.9)', right: '100px', bottom: '10px' } // iPadサイズに適したスタイル
+      : { right: '0px', top: '550px' };
 
     const modalStyle = isMobile 
 ? { 

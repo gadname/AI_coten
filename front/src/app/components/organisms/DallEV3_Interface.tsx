@@ -159,7 +159,7 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
     }
   }, [gptOutput, onSubmit]);
 
-  const flexContainerStyle: React.CSSProperties = {
+  const flexContainerStyle = {
     display: 'flex',
     flexWrap: 'wrap', // コンテンツがコンテナを超える場合に折り返す
     justifyContent: 'space-between',
@@ -177,125 +177,87 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
     <div style={{ width: "100%" }}>
       <div style={flexContainerStyle}>
 
-  <input type="checkbox" className={styles.checkboxLabel} id="precisionCheckbox" name="precision" checked={checkboxStates.precision} onChange={handleCheckboxChange} />
-  <label htmlFor="precisionCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-    <span onClick={(event) => {
-      event.preventDefault(); // チェックボックスの状態変更を防ぐ
-      handleImageClick({ name: '浮世絵風', imageUrl: 'AIs.jpg' });
-    }}>浮世絵風に</span>
-  </label>
-  
-  <input type="checkbox" className={styles.checkboxLabel} id="acrylicCheckbox" name="acrylic" checked={checkboxStates.acrylic} onChange={handleCheckboxChange} />
-  <label htmlFor="acrylicCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-    <span onClick={(event) => {
-      event.preventDefault(); // チェックボックスの状態変更を防ぐ
-      handleImageClick({ name: 'アクリル風', imageUrl: 'AIs.jpg' });
-    }}>アクリル風に</span>
-  </label>
-        
-  <input type="checkbox" className={styles.checkboxLabel} id="pastelArtCheckbox" name="pastelArt" checked={checkboxStates.pastelArt} onChange={handleCheckboxChange} />
-<label htmlFor="pastelArtCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // チェックボックスの状態変更を防ぐ
-    handleImageClick({ name: 'パステル画風', imageUrl: 'path/to/pastel.jpg' });
-  }}>パステル画風に</span>
+      <label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="precision" checked={checkboxStates.precision} onChange={handleCheckboxChange} />
+  浮世絵風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="watercolor" checked={checkboxStates.watercolor} onChange={handleCheckboxChange} />
+  水彩画風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="acrylic" checked={checkboxStates.acrylic} onChange={handleCheckboxChange} />
+  アクリル画風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="pastelArt" checked={checkboxStates.pastelArt} onChange={handleCheckboxChange} />
+  パステル画風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="penAndInk" checked={checkboxStates.penAndInk} onChange={handleCheckboxChange} />
+  ペンとインク風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="brushStroke" checked={checkboxStates.brushStroke} onChange={handleCheckboxChange} />
+  筆風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="lineStamp" checked={checkboxStates.lineStamp} onChange={handleCheckboxChange} />
+  LINEスタンプ風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="crayon" checked={checkboxStates.crayon} onChange={handleCheckboxChange} />
+  クレヨン画風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="pencilDrawing" checked={checkboxStates.pencilDrawing} onChange={handleCheckboxChange} />
+  鉛筆画風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="coloredPencil" checked={checkboxStates.coloredPencil} onChange={handleCheckboxChange} />
+  色鉛筆画風に
+</label>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="oilPainting" checked={checkboxStates.oilPainting} onChange={handleCheckboxChange} />
+  油絵画
 </label>
 
-<input type="checkbox" className={styles.checkboxInput} id="crayonCheckbox" name="crayon" checked={checkboxStates.crayon} onChange={handleCheckboxChange} />
-<label htmlFor="crayonCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault();
-    handleImageClick({ name: 'クレヨン画風', imageUrl: 'path/to/crayon.jpg' });
-  }}>クレヨン画風に</span>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="vanGogh" checked={checkboxStates.vanGogh} onChange={handleCheckboxChange} />
+  ゴッホ風に
 </label>
 
-<input type="checkbox" className={styles.checkboxInput} id="pencilDrawingCheckbox" name="pencilDrawing" checked={checkboxStates.pencilDrawing} onChange={handleCheckboxChange} />
-<label htmlFor="pencilDrawingCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault();
-    handleImageClick({ name: '鉛筆画風', imageUrl: 'path/to/pencil.jpg' });
-  }}>鉛筆画風に</span>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="Manet" checked={checkboxStates.Manet} onChange={handleCheckboxChange} />
+  モネ風に
 </label>
 
-<input type="checkbox" className={styles.checkboxInput} id="coloredPencilCheckbox" name="coloredPencil" checked={checkboxStates.coloredPencil} onChange={handleCheckboxChange} />
-<label htmlFor="coloredPencilCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault();
-    handleImageClick({ name: '色鉛筆画風', imageUrl: 'path/to/colored_pencil.jpg' });
-  }}>色鉛筆画風に</span>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="picasso" checked={checkboxStates.picasso} onChange={handleCheckboxChange} />
+  ピカソ風に
 </label>
 
-<input type="checkbox" className={styles.checkboxLabel} id="pastelArtCheckbox" name="pastelArt" checked={checkboxStates.pastelArt} onChange={handleCheckboxChange} />
-<label htmlFor="pastelArtCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // チェックボックスの状態変更を防ぐ
-    handleImageClick({ name: 'パステル画風', imageUrl: '' });
-  }}>パステル画風に</span>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="Leonardo_da_Vinci" checked={checkboxStates.Leonardo_da_Vinci} onChange={handleCheckboxChange} />
+  ダヴィンチ風に
 </label>
 
-<input type="checkbox" className={styles.checkboxInput} id="brushStrokeCheckbox" name="brushStroke" checked={checkboxStates.brushStroke} onChange={handleCheckboxChange} />
-<label htmlFor="brushStrokeCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // チェックボックスの状態変更を防ぐ
-    handleImageClick({ name: '筆風', imageUrl: 'AIs.jpg' });
-  }}>書道風に</span>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="logoStyle" checked={checkboxStates.logoStyle} onChange={handleCheckboxChange} />
+  ロゴ風に
 </label>
 
-<input type="checkbox" className={styles.checkboxInput} id="lineStampCheckbox" name="lineStamp" checked={checkboxStates.lineStamp} onChange={handleCheckboxChange} />
-<label htmlFor="lineStampCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // チェックボックスの状態変更を防ぐ
-    handleImageClick({ name: 'LINEスタンプ風', imageUrl: 'neko.line.webp' });
-  }}>LINEスタンプ風に</span>
+
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="comic" checked={checkboxStates.comic} onChange={handleCheckboxChange} />
+  コミック風に
 </label>
 
-<input type="checkbox" className={styles.checkboxInput} id="oilPaintingCheckbox" name="oilPainting" checked={checkboxStates.oilPainting} onChange={handleCheckboxChange} />
-<label htmlFor="oilPaintingCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // Prevent checkbox state change
-    handleImageClick({ name: '油絵画風', imageUrl: 'path/to/oil_painting.jpg' });
-  }}>油絵画風に</span>
+<label style={flexItemStyle}>
+  <input type="checkbox" className={styles.checkboxInput} name="disney" checked={checkboxStates.disney} onChange={handleCheckboxChange} />
+  ディズニー風に
 </label>
 
-<input type="checkbox" className={styles.checkboxInput} id="vanGoghCheckbox" name="vanGogh" checked={checkboxStates.vanGogh} onChange={handleCheckboxChange} />
-<label htmlFor="vanGoghCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // Prevent checkbox state change
-    handleImageClick({ name: 'ゴッホ風', imageUrl: 'path/to/van_gogh.jpg' });
-  }}>ゴッホ風に</span>
-</label>
-
-<input type="checkbox" className={styles.checkboxInput} id="ManetCheckbox" name="Manet" checked={checkboxStates.Manet} onChange={handleCheckboxChange} />
-<label htmlFor="ManetCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // Prevent checkbox state change
-    handleImageClick({ name: 'モネ風', imageUrl: 'path/to/manet.jpg' });
-  }}>モネ風に</span>
-</label>
-
-<input type="checkbox" className={styles.checkboxInput} id="daVinciCheckbox" name="Leonardo_da_Vinci" checked={checkboxStates.Leonardo_da_Vinci} onChange={handleCheckboxChange} />
-<label htmlFor="daVinciCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // Prevent checkbox state change
-    handleImageClick({ name: 'ダヴィンチ風', imageUrl: 'path/to/da_vinci.jpg' });
-  }}>ダヴィンチ風に</span>
-</label>
-
-<input type="checkbox" className={styles.checkboxInput} id="logoStyleCheckbox" name="logoStyle" checked={checkboxStates.logoStyle} onChange={handleCheckboxChange} />
-<label htmlFor="logoStyleCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // Prevent checkbox state change
-    handleImageClick({ name: 'ロゴ風に', imageUrl: 'path/to/logo_style.jpg' });
-  }}>ロゴ風に</span>
-</label>
-
-<input type="checkbox" className={styles.checkboxInput} id="disneyStyleCheckbox" name="disney" checked={checkboxStates.disney} onChange={handleCheckboxChange} />
-<label htmlFor="disneyStyleCheckbox" style={flexItemStyle} className={styles.labelWithHoverEffect}>
-  <span onClick={(event) => {
-    event.preventDefault(); // Prevent checkbox state change
-    handleImageClick({ name: 'ディズニー風に', imageUrl: 'path/to/disney_style.jpg' });
-  }}>ディズニー風に</span>
-</label>
 
 
 

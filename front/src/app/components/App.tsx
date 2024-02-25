@@ -40,13 +40,13 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
     <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }} style={{ width: isMobile ? '100vw' : '100%', height: isMobile ? '100%' : '100vh' }}>
       <color attach="background" args={['#050505']} />
       <Stars
-    radius={100} // 星が分布する球の半径
-    depth={100} // 星の分布の深さ
-    count={10000} // 星の数
-    factor={6} // 星のクラスタリング係数
-    saturation={3} // 星の色の彩度
+    radius={300} // 星が分布する球の半径
+    depth={50} // 星の分布の深さ
+    count={8000} // 星の数
+    factor={10} // 星のクラスタリング係数
+    saturation={1} // 星の色の彩度
     fade={true} // 星が視点に近づくにつれてフェードアウトするかどうか
-    speed={0.5} // 星の動きの速度
+    speed={0.8} // 星の動きの速度
   />
       <fog attach="fog" args={['#050505', 0, 15]} />
       

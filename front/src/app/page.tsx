@@ -65,7 +65,7 @@ const verticalTexts = texts.split('').map((char, index) => (
         
       }}>
       
-        <Ball />
+      <Ball />
       </div>
       <Header />
       

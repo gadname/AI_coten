@@ -1,10 +1,10 @@
 development:
-      cloud_name: dfl9ckhqx
-      api_key: 124152821256578
-      api_secret: CNSMRJQiDi5YjS1YjVUt1DPfLLU
+      cloud_name: darjfu5u1
+      api_key: 635357462542361
+      api_secret: 5NZsyJ3alIyuRGy5pw18qmDay_A
       secure: true
     production:
-      cloud_name: dfl9ckhqx
-      api_key: 124152821256578
-      api_secret: CNSMRJQiDi5YjS1YjVUt1DPfLLU
+      cloud_name: darjfu5u1
+      api_key: 635357462542361
+      api_secret: 5NZsyJ3alIyuRGy5pw18qmDay_A
       secure: true

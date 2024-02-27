@@ -8,6 +8,33 @@ import { useSession } from "next-auth/react";
 import { Session } from "next-auth";
 import { getSession } from 'next-auth/react';
 import Stars from '../components/Stars';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
+};
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage();
+
+// 'file' comes from the Blob or File API
+
+
+// Initialize Firebase
+
 
 interface CustomSession extends Session {
     user_id: string;
@@ -55,39 +82,58 @@ const images = [
     setIsModalVisible(false);
   };
 
-
+  
   // 画像をアップロードするためのハンドラー
   const handleImageUpload = async (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
       const file = event.target.files[0];
-      console.log('file', file);
-      console.log('files', event.target.files);
-      const formData = new FormData();
-      const session = await getSession() as any;
-      console.log('Session_log' , session);
-      formData.append('post[image]', file); // 'image' を 'post[image]' に変更
-      formData.append('post[user_id]', session.user_id); // 'user_id' を 'post[user_id]' に変更
-      
-      fetch("https://ai-coten.onrender.com/api/v1/posts", {
-        method: 'POST',
-        body: formData, // formDataを使用しているため、これが正しいbodyです
-        headers: {
-          'Authorization': `Bearer ${session.accessToken}`,
-          'UserId': session.user_id, 
-        },
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Server response:', data);
-  // サーバーから返された画像のURLで状態を更新
-  const newImageUrl = data.url; // サーバーから返されるプロパティ名に合わせてください
-  updateImageUrl(imageKey as keyof typeof imageUrls, newImageUrl);
-})
-.catch(error => {
-  console.error('アップロード中にエラーが発生しました。', error);
-});
-}
-};
+      const now = new Date();
+      const timestamp = now.toISOString().replace(/:/g, '-').replace(/\..+/, '');
+      const fileNameWithTimestamp = `${timestamp}_${file.name}`;
+      const storageRef = ref(storage, fileNameWithTimestamp);
+      uploadBytes(storageRef, file).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          // ここでダウンロードURLを使用してステートを更新
+          updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
+        });
+      }).catch((error) => {
+        console.error("Upload failed", error);
+      });
+    }
+  };
+
+//     if (event.target.files && event.target.files.length > 0) {
+//       const file = event.target.files[0];
+//       console.log('file', file);
+//       console.log('files', event.target.files);
+//       const formData = new FormData();
+//       const session = await getSession() as any;
+//       console.log('Session_log' , session);
+//       formData.append('post[image]', file); // 'image' を 'post[image]' に変更
+//       formData.append('post[user_id]', session.user_id); // 'user_id' を 'post[user_id]' に変更
+//       uploadBytes(storageRef, file).then((snapshot) => {
+//         console.log('Uploaded a blob or file!');
+//       });
+//       fetch("https://ai-coten.onrender.com/api/v1/posts", {
+//         method: 'POST',
+//         body: formData, // formDataを使用しているため、これが正しいbodyです
+//         headers: {
+//           'Authorization': `Bearer ${session.accessToken}`,
+//           'UserId': session.user_id, 
+//         },
+//       })
+//       .then(response => response.json())
+//       .then(data => {
+//         console.log('Server response:', data);
+//   // サーバーから返された画像のURLで状態を更新
+//   // const newImageUrl = data.url; // サーバーから返されるプロパティ名に合わせてください
+//   // updateImageUrl(imageKey as keyof typeof imageUrls, newImageUrl);
+// })
+// .catch(error => {
+//   console.error('アップロード中にエラーが発生しました。', error);
+// });
+// }
 
 const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
   setImageUrls((prevUrls: typeof imageUrls) => {
@@ -157,10 +203,6 @@ useEffect(() => {
 
   fetchImageUrls();
 }, [session]);
-
-
-
-
 
   return (
     <div className={styles.root}>

@@ -9,6 +9,7 @@ import { Html } from '@react-three/drei'
 import '../../styles/robot.css';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
+import { TextureLoader } from 'three';
 
 import { Stars } from '@react-three/drei';
 
@@ -40,13 +41,13 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
     <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }} style={{ width: isMobile ? '100vw' : '100%', height: isMobile ? '100%' : '100vh' }}>
       <color attach="background" args={['#050505']} />
       <Stars
-    radius={300} // 星が分布する球の半径
-    depth={50} // 星の分布の深さ
-    count={8000} // 星の数
-    factor={10} // 星のクラスタリング係数
-    saturation={1} // 星の色の彩度
-    fade={true} // 星が視点に近づくにつれてフェードアウトするかどうか
-    speed={0.8} // 星の動きの速度
+      radius={300} // 星が分布する球の半
+      depth={50} // 星の分布の深さ
+      count={8000} // 星の数
+      factor={10} // 星のクラスタリング係数
+      saturation={1} // 星の色の彩度
+      fade={true} // 星が視点に近づくにつれてフェードアウトするかどうか
+      speed={0.8} // 星の動きの速度
   />
       <fog attach="fog" args={['#050505', 0, 15]} />
       
@@ -175,6 +176,7 @@ function Frame({ url, c = new THREE.Color(), ...props }: FrameProps) {
   const [hovered, hover] = useState(false)
   const [rnd] = useState(() => Math.random())
   console.log('url', url);
+
   const name = getUuid(url)
   const isActive = params?.id === name
   useCursor(hovered)

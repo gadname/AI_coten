@@ -1,13 +1,15 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { FC, useState, useEffect, CSSProperties } from 'react';
 import styles from './Robot.module.css';
 import Link from 'next/link';
 import { HomeTemplate } from "@/app/components/templates/HomeTemplate";
+import { usePathname } from 'next/navigation';
+import { DallE3Interface } from './organisms/DallEV3_Interface';
 
 const dynamicStyles = {
   container: `fixed bottom-0 w-1/2 sm:w-3/4 md:w-1/3 lg:w-1/2 xl:w-2/5 h-[120px] sm:h-[10px] md:h-[200px] flex flex-col justify-center items-center bg-transparent rounded-lg`,
 };
 
-const Robot = () => {
+const Robot: FC<any> = ({onUpload}) => {
   // モーダルの表示状態を管理するためのstate
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isTypingSecond, setIsTypingSecond] = useState(false);
@@ -18,6 +20,9 @@ const Robot = () => {
   const [isTypingSixth, setIsTypingSixth] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false); // タブレットサイズの状態
+  const [isThreePath, setIsThreePath] = useState(false);
+
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleResize = () => {
@@ -114,6 +119,13 @@ useEffect(() => {
   const onHideModal = () => setIsModalVisible(false);
 
   const handleClick = () => {
+
+    if (pathname === '/three') {
+      setIsThreePath(true);
+      setIsModalVisible(true);
+      return;
+    } 
+
     if (isModalVisible) {
       if (!isTypingSecond) {
         setIsTypingSecond(true);
@@ -175,15 +187,12 @@ useEffect(() => {
       {/* モーダルの表示状態に応じてモーダルを表示 */}
       {isModalVisible && (
         <div className={styles.modal} style={modalStyle}>
-          <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''} ${isTypingThird ? styles.typing3 : ''} ${isTypingFourth ? styles.typing4 : ''} ${isTypingFifth ? styles.typing5 : ''} ${isTypingSixth ? styles.typing6 : ''}`}>
+            { !isThreePath ? <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''} ${isTypingThird ? styles.typing3 : ''} ${isTypingFourth ? styles.typing4 : ''} ${isTypingFifth ? styles.typing5 : ''} ${isTypingSixth ? styles.typing6 : ''}`}>
             {/* アニメーションが表示される */}
-          </p>
+          </p> : <></>}
+          
           <ul>
-          {isTypingThird && !isTypingFourth  && (
-            
-            <HomeTemplate />
-         
-            )}
+            { isTypingThird && !isTypingFourth || isThreePath ? <DallE3Interface onUpload={onUpload} /> : <></>}
             <li>
               <Link href="/three">
               <a></a> {/* next/linkを使用 */}

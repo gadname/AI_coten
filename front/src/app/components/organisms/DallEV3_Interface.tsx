@@ -10,17 +10,18 @@ import {
 } from "../../components/molecules/TextPromptForm";
 import { ImageWrapper } from "../../components/molecules/ImageWrapper";
 
-interface DallE3InterfaceProps {
-  gptOutput: string; // 追加
-}
 interface ImageItem {
   name: string;
   imageUrl: string;
 }
+interface DallE3InterfaceProps {
+  gptOutput: string;
+  isUpload: boolean;
+  // include other properties as necessary
+}
 
 
-
-export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
+export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
   const [checkboxStates, setCheckboxStates] = useState({
     precision: false,
     watercolor: false,
@@ -171,7 +172,6 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
     justifyContent: 'space-between',
     minWidth: '200px', // 最小幅を設定して、内容に応じて伸縮するが、あまりにも小さくならないようにする
   };
-
   
   return (
     <div style={{ width: "100%" }}>
@@ -283,18 +283,21 @@ export const DallE3Interface: FC<DallE3InterfaceProps> = ({ gptOutput }) => {
   
     {/* <Typography level="h2">画像生成</Typography> */}
     <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue={gptOutput} />
-      <ImageWrapper src={imageUrl} />
+    <ImageWrapper src={imageUrl} onUpload={() => onUpload()} />
       {isExecuting && (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <img src={LoadingSVG} alt="Loading" />
         </div>
       )}
     {selectedImage && (
+        <>
      <div style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCloseModal}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-100%)' }}>
             <img src={selectedImage.imageUrl} style={{ width: '300px', height: '300px'}}/>
         </div>
     </div>
+   
+    </>
 )}
     
   </div>

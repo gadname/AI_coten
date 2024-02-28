@@ -3,6 +3,12 @@
 @tailwind utilities;
 
 
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+}
+
 body {
     margin: 0px;
     padding: 0;

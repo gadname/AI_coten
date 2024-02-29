@@ -36,15 +36,15 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const backgroundStyle = {
-    backgroundColor: 'hsla(205,100%,13%,1)',
+    backgroundColor: 'hsla(235,100%,23%,1)',
     backgroundImage: `
-      radial-gradient(at 49% 49%, hsla(191,77%,26%,1) 0px, transparent 50%),
-      radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
-      radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
-      radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
-      radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
-      radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`,
+    radial-gradient(at 49% 49%, hsla(191,77%,50%,1) 0px, transparent 50%),
+    radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
+    radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
+    radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
+    radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`,
     width: '100%',
     height: '100%',
     overflow: 'hidden'
@@ -52,19 +52,19 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
   return (
     <div style={backgroundStyle}>
     <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }} style={{ width: isMobile ? '100vw' : '100%', height: isMobile ? '100%' : '100vh', marginTop: 0, paddingTop: 0 }}>
-      
+    
       <Stars
      radius={300}
      depth={50}
      count={200000}
      factor={4}
      fade={true}
-     speed={1}
+     speed={0.2}
      saturation={8}
      // @ts-ignore
      randomness={1}
    />
-   <Environment preset="studio" />
+   <Environment preset="dawn" />
       <fog attach="fog" args={['hsla(205,100%,13%,1)', 0, 15]} />
       
       <group position={[0, -0.5, 0]}>
@@ -73,22 +73,22 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
           <planeGeometry args={[50, 50]} />
           <MeshReflectorMaterial
   blur={[0, 0]} // ぼかしを減らす
-  color="#ffffff" // 色を非常に薄い白に設定
+  color="#050505" // 色を非常に薄い白に設定
   depthScale={1.2}
   metalness={0.1} // 金属質を低く保つ
   minDepthThreshold={0.4}
   maxDepthThreshold={1.4}
   mirror={0.5}
   mixBlur={0} // ぼかしを減らす
-  mixStrength={10} // 反射の強度を調整
-  opacity={0.75} // 透明度を調整
+  mixStrength={400} // 反射の強度を調整
+  opacity={0.65} // 透明度を調整
   resolution={1024} // 解像度を高く設定
-  roughness={0.05} // 表面をより滑らかに
+  roughness={0.1} // 表面をより滑らかに
   transparent={true} // 透明性を有効にする
 />
         </mesh>
       </group>
-      <Environment preset="studio" />
+      
       
     </Canvas>
     </div>

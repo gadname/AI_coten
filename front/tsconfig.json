@@ -20,8 +20,9 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".", // この行を追加
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/App.js"],

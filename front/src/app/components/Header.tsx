@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-10 ${scrolled ? "bg-primary py-2" : "bg-transparent py-0"}`}>
+    <nav className={`fixed top-0 w-full z-10 py-10 ${scrolled ? "bg-primary" : "bg-transparent"}`}>
       <div className='max-w-7xl mx-auto px-4 flex justify-between items-center'>
         <div onClick={() => navigate('/')} className='cursor-pointer flex items-center gap-2'>
           <img src="/logo.png" className='w-20 h-20 object-contain' />

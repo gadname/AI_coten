@@ -11,7 +11,6 @@ class Api::V1::PostsController < ApplicationController
     render json: @post
   end
 
-
   
 
 

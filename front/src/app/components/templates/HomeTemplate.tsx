@@ -13,7 +13,7 @@ export const HomeTemplate: FC<any> = ({onUpload}) => {
     <main className="w-auto h-screen p-5">
       <div className="flex justify-center w-full">
         {/* <GptV3_5TurboInterface setGptOutput={setGptOutput} /> */}
-        <DallE3Interface onUpload={handleUpload} gptOutput={gptOutput} />
+       <DallE3Interface onUpload={handleUpload} gptOutput={gptOutput} />
       </div>
     </main>
     

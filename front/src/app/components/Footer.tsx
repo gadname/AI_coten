@@ -1,34 +1,26 @@
-// front/src/app/components/Footer.tsx
-'use client';
-import React from 'react';
-
+import React from "react";
+import Link from "next/link";
+import Image from "next/image";
+import styles from './Header.module.css'; // Headerのスタイルを適用する場合
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-800 text-white p-4 mt-10">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-        <div className="flex items-center space-x-2">
-          <div className="text-4xl text-indigo-400" />
-          <span className="text-xl font-bold">PairDev</span>
+    <footer className={`fixed bottom-0 w-full z-10 py-10 bg-transparent`}>
+      <div className='max-w-7xl mx-auto px-4 flex flex-col items-center'>
+        <div className='mb-4 cursor-pointer'>
         </div>
-        <nav className="flex justify-center items-center space-x-6">
-          <a href="/terms" className="flex flex-col items-center">
-            <div className="text-2xl text-indigo-400" />
-            <span className="mt-1">利用規約</span>
-          </a>
-          <a href="/privacy" className="flex flex-col items-center">
-            <div className="text-2xl text-indigo-400" />
-            <span className="mt-1">プライバシーポリシー</span>
-          </a>
-          <a href="/contact" className="flex flex-col items-center">
-            <div className="text-2xl text-indigo-400" />
-            <span className="mt-1">連絡先</span>
-          </a>
+        <nav className={`flex gap-6 mb-3 ${styles.text} ${styles.textWhite}`}>
+          <Link href="/" data-testid="privacy-policy">
+            <div className="hover:opacity-50 transition-all duration-100">プライバシーポリシー</div>
+          </Link>
+          <Link href="/" data-testid="terms-of-service">
+            <div className="hover:opacity-50 transition-all duration-100">利用規約</div>
+          </Link>
+          <Link href="/faq" data-testid="faq">
+            <div className="hover:opacity-50 transition-all duration-100">よくあるご質問</div>
+          </Link>
         </nav>
-        <div className="text-sm">
-          <p>&copy; {new Date().getFullYear()} PairDev. All rights reserved.</p>
-          <p>ロボットによって構築された未来</p>
-        </div>
+        <small className={`text-xs md:text-base ${styles.textWhite}`}>© 2024 Gallery.ai</small>
       </div>
     </footer>
   );

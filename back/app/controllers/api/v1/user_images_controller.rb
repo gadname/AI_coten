@@ -38,7 +38,7 @@ class Api::V1::UserImagesController < ApplicationController
       return
     end
 
-    user_image = UserImage.find_or_initialize_by(user_id: user.id)
+    user_image = UserImage.find_or_initialize_by(user_id: user.id) 
     user_image.image_urls = user_image_params[:image_urls] 
     
     if user_image.save

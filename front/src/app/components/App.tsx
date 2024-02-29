@@ -51,7 +51,7 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
   };
   return (
     <div style={backgroundStyle}>
-    <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }} style={{ width: isMobile ? '100vw' : '100%', height: isMobile ? '100%' : '100vh' }}>
+    <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }} style={{ width: isMobile ? '100vw' : '100%', height: isMobile ? '100%' : '100vh', marginTop: 0, paddingTop: 0 }}>
       
       <Stars
      radius={300}

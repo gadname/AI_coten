@@ -12,6 +12,7 @@ import Flic from './components/flic';
 import Stars from './components/Stars';
 import { Ticket }  from './components/Card';
 import  Hed  from './components/Header';
+import  Footer  from './components/Footer';
 
 import '../styles/robot.css';
 
@@ -52,7 +53,7 @@ const verticalTexts = texts.split('').map((char, index) => (
     <>
     
       <Ticket />
-      <div className="absolute top-2 left-0 w-full h-full z-[-1]" style={{ 
+      <div className="absolute top-0 left-0 w-full h-full z-[-1]" style={{ 
         backgroundColor: 'hsla(205,100%,13%,1)',
         backgroundImage: `
         radial-gradient(at 49% 49%, hsla(191,77%,26%,1) 0px, transparent 50%),
@@ -72,7 +73,7 @@ const verticalTexts = texts.split('').map((char, index) => (
       <Stars />
       <Robot />
       {/* ここにsection要素を追加 */}
-      
+      <Footer />
     </>
   )
 }

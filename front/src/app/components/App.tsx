@@ -45,8 +45,8 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
       radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
       radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
       radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`,
-    width: '100vw',
-    height: '100vh',
+    width: '100%',
+    height: '100%',
     overflow: 'hidden'
   };
   return (

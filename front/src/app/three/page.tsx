@@ -5,9 +5,10 @@ import Robot from '../components/Robot';
 function SomeComponent() {
   return (
     <div>
-      <Header />
+      <Header color="black" />
       <HomePage />
       <Robot />
+      
       {/* Other components */}
     </div>
   );

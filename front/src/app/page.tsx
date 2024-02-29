@@ -13,7 +13,6 @@ import Stars from './components/Stars';
 import { Ticket }  from './components/Card';
 import  Hed  from './components/Header';
 import  Footer  from './components/Footer';
-
 import '../styles/robot.css';
 
 const styles = {

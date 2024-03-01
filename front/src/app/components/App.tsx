@@ -12,6 +12,7 @@ import { useMediaQuery } from 'react-responsive';
 import { TextureLoader } from 'three';
 
 import { Stars } from '@react-three/drei';
+import { Points, PointMaterial } from '@react-three/drei';
 
 const GOLDENRATIO = 1.61803398875
 interface AppProps {
@@ -36,7 +37,7 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
 
   const backgroundStyle = {
-    backgroundColor: 'hsla(235,100%,23%,1)',
+    backgroundColor: 'hsla(205,100%,13%,1)',
     backgroundImage: `
     radial-gradient(at 49% 49%, hsla(191,77%,50%,1) 0px, transparent 50%),
     radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
@@ -65,7 +66,7 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
      randomness={1}
    />
    <Environment preset="dawn" />
-      <fog attach="fog" args={['hsla(205,100%,13%,1)', 0, 15]} />
+      <fog attach="fog" args={['#ffffff', 0, 15]} />
       
       <group position={[0, -0.5, 0]}>
         <Frames images={images} onShowModal={onShowModal} onHideModal={onHideModal} isModalVisible={isModalVisible}/>
@@ -81,9 +82,9 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
   mirror={0.5}
   mixBlur={0} // ぼかしを減らす
   mixStrength={400} // 反射の強度を調整
-  opacity={0.65} // 透明度を調整
+  opacity={0.55} // 透明度を調整
   resolution={1024} // 解像度を高く設定
-  roughness={0.1} // 表面をより滑らかに
+  roughness={0.55} // 表面をより滑らかに
   transparent={true} // 透明性を有効にする
 />
         </mesh>

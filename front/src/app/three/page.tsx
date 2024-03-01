@@ -5,7 +5,7 @@ import Robot from '../components/Robot';
 function SomeComponent() {
   return (
     <div>
-      <Header color="black" />
+      <Header />
       <HomePage />
       <Robot />
       

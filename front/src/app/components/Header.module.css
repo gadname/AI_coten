@@ -1,7 +1,89 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-.text {
-  font-family: 'Righteous', sans-serif;
+
+.iconGlow {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+.slogan {
+  position: absolute;
+  font-size: 60px;
+  font-family: var(--font-neoneon);
+  font-weight: bold;
+  text-align: center;
+  top: calc(50% - var(--header-height));
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  color: var(--white);
+  text-shadow: 0 0 30px var(--white);
+  color: #ffffff; /* 文字の色を白に設定 */
+  background-color: linear-gradient(135deg, rgba(255,255,255,.4) 8%, rgba(255,255,255,.1) 60%, rgba(255,255,255,.2) 92%);
+  filter: drop-shadow(0 0 10px #FFFFFF);
+}
+
+.logos {
+  position: fixed;
+  top: -200px; /* 上から20pxの位置 */
+  left: 50px; /* 左から50pxの位置 */
+}
+
+@keyframes glowing {
+  0% { filter: drop-shadow(0 0 5px #FFFFFF); }
+  50% { filter: drop-shadow(0 0 20px #FFFFFF); }
+  100% { filter: drop-shadow(0 0 5px #FFFFFF); }
+}
+
+.customLogo {
+  position: absolute;
+  top: -30px;
+  left: 400px;
+  width: 100px;
+  height: 100px;
+  filter: drop-shadow(0 0 2px #FFFFFF);
+}
+
+/* モバイルデバイス用のスタイル */
+@media (max-width: 600px) {
+  .customLogo {
+    top: -40px; /* モバイル用の位置調整 */
+    left: 0px; /* モバイル用の位置調整 */
+    width: 50px; /* オプションでサイズ調整 */
+    height: 50px; /* オプションでサイズ調整 */
+  }
+}
+
+/* タブレット用のスタイル */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .customLogo {
+    top: -40px; /* タブレット用の位置調整 */
+    left: 400px; /* タブレット用の位置調整 */
+    width: 100px; /* オプションでサイズ調整 */
+    height: 100px; /* オプションでサイズ調整 */
+  }
+}
+.logoContainer {
+  position: relative;
+}
+
+.slogan span {
+  display: block;
+}
+
+@media screen and (min-width: 768px) {
+  .slogan {
+    font-size: 64px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .slogan {
+    font-size:100px;
+  }
+
+  .slogan span {
+    display: inline-block;
+  }
 }
 
 
@@ -15,11 +97,6 @@
 
 .fontBold {
   font-weight: bold; /* font-bold */
-}
-.navLink {
-  font-family: 'Righteous', sans-serif;
-  color: white;
-  font-size: 18px;  
 }
 
 .header {
@@ -41,16 +118,28 @@
   
 }
 
+.navContainer {
+  display: flex;
+  justify-content: center; /* 水平方向の中央揃え */
+  align-items: center; /* 垂直方向の中央揃え */
+}
+
 .navLink {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #ffffff;
-  padding: 10px 15px;
-  border-radius: 3px;
-  transition: background 0.2s;
+  font-size: 30px; /* 文字の大きさ */
+  font-family: var(--font-neoneon); /* フォントファミリー */
+  font-weight: bold; /* フォントの太さ */
+  text-align: center; /* テキストを中央揃え */
+  color: #ffffff; /* 文字の色 */
+  filter: drop-shadow(0 0 10px #FFFFFF); /* ドロップシャドウを適用 */
+  margin: 0 10px; /* マージン */
+  text-decoration: none; /* テキストの下線をなくす */
+  padding: 5px 10px; /* パディング */
+  border-radius: 3px; /* ボーダーの角を丸くする */
+  transition: background 0.2s; /* 背景色の変化を滑らかに */
+  
 }
 .navLink:hover {
-  background: #0474fc;
+  background: #02c4ff;
 }
 @keyframes slideIn {
   from {

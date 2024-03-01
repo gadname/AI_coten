@@ -6,8 +6,6 @@ import { suspend } from 'suspend-react'
 import { generate } from 'random-words'
 import { easing, geometry } from 'maath'
 
-
-
 interface CardProps {
   url?: string;
   active?: boolean;
@@ -22,6 +20,7 @@ interface CardProps {
   data?: any;
   radius?: number;
   index?: number; // Add this line
+  className?: string;
 }
 
 extend(geometry)
@@ -52,12 +51,11 @@ function Scene({ children, ...props }: { children?: React.ReactNode, [x: string]
     }
   });
   return (
-    <group ref={ref} {...props}>
-      <Cards category="Gallery.ai" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
+    <group ref={ref} {...props} >
+      <Cards category="generation" from={0} len={Math.PI / 4} onPointerOver={hover} onPointerOut={hover} />
       <Cards category="DALL-E 3" from={Math.PI / 4} len={Math.PI / 2} position={[0, 0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="Gallery.ai" from={Math.PI / 4 + Math.PI / 2} len={Math.PI / 2} onPointerOver={hover} onPointerOut={hover} />
-      <Cards category="DALL-E 3" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
-      
+      <Cards category="AI_ART" from={Math.PI / 4 + Math.PI / 2} len={Math.PI / 2} onPointerOver={hover} onPointerOut={hover} />
+      <Cards category="Gallery" from={Math.PI * 1.25} len={Math.PI * 2 - Math.PI * 1.25} position={[0, -0.4, 0]} onPointerOver={hover} onPointerOut={hover} />
       <ActiveCard hovered={hovered} />
       
     </group>
@@ -78,8 +76,11 @@ function Cards({ category, data, from = 0, len = Math.PI * 2, radius = 5.25, onP
   return (
     <group {...props}>
       <Billboard position={[Math.sin(textPosition) * radius * 1.4, 0.5, Math.cos(textPosition) * radius * 1.4]}>
-      <Text font={(suspend(inter) as FontModule).default} fontSize={0.25} anchorX="center" color="white">
+      <Text font="/fonts/DESIGNER.otf" fontSize={0.55} anchorX="center" color="black" position={[0, 0, -0.02]}>
         {category}
+        </Text>
+        <Text font="/fonts/DESIGNER.otf" fontSize={0.55} anchorX="center" color="white">
+          {category}
         </Text>
       </Billboard>
       {Array.from({ length: amount - 3 /* minus 3 images at the end, creates a gap */ }, (_, i) => {

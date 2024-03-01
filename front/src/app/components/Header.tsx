@@ -33,55 +33,46 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-10 py-10 ${scrolled ? "bg-primary" : "bg-transparent"}`}>
+    <nav className={`fixed top-10 w-full z-10 py-10 ${scrolled ? "bg-primary" : "bg-transparent"}`}>
       <div className='max-w-7xl mx-auto px-4 flex justify-between items-center'>
         <div onClick={() => navigate('/')} className='cursor-pointer flex items-center gap-2'>
-          <img src="/logo.png" className='w-20 h-20 object-contain' />
-          <p className={`${styles.text} ${styles.textWhite} ${styles.text40px} ${styles.fontBold}`}>
-            <span className='block' style={{ color }}>Gallery.ai</span>
+          <img src="/image/logo.svg" alt="Logo" className={styles.customLogo} />
+          <p className={`${styles.text} ${styles.text40px} ${styles.fontBold}`}>
+            <span className={`${styles.slogan}`} style={{
+              background: 'linear-gradient(135deg, rgba(255,255,255,.6) 8%, rgba(255,255,255,.1) 120%, rgba(255,255,255,.2) 92%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent'
+            }}>Gallery.ai</span>
           </p>
         </div>
-        <div className='hidden sm:flex flex-row gap-0'>
-        {navLinks.map((nav) => (
-            <div key={nav.id} onClick={() => navigate(nav.path)} className={`${styles.navLink} text-[18px] font-medium cursor-pointer`} style={{ color }}>
-              {nav.title}
-            </div>
-          ))}
-          {/* ログイン/ログアウトボタンの表示 */}
-          {session ? (
-            <>
-              <Logout />
-            </>
-          ) : (
-            <>
-              <Login />
-            </>
-          )}
-        </div>
 
-        <div className='sm:hidden flex flex-1 justify-end items-center'>
-          <img
-            src={toggle ? "/close.svg" : "/menu.svg"}
-            className='w-[28px] h-[28px] object-contain cursor-pointer'
-            onClick={() => setToggle(!toggle)}
-          />
-          {/* モバイルメニュー */}
-          <div className={`${!toggle ? "hidden" : "flex"} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}>
-            <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
-              {navLinks.map((nav) => (
-                <Link key={nav.id} href={nav.path}>
-                  <div className={`text-white text-[18px] font-medium cursor-pointer`}>
-                    {nav.title}
-                  </div>
-                </Link>
-              ))}
-              {session ? (
-                <li onClick={() => signOut()} className={`text-white text-[18px] font-medium cursor-pointer`}>LOGOUT</li>
-              ) : (
-                <li onClick={() => signIn()} className={`text-white text-[18px] font-medium cursor-pointer`}>LOGIN</li>
-              )}
-            </ul>
-          </div>
+        {/* トグルボタンを全てのビューポートサイズで表示 */}
+        <img
+          src={toggle ? "/close.svg" : "/menu.svg"}
+          className={`w-[28px] h-[28px] object-contain cursor-pointer ${styles.iconGlow}`} 
+          onClick={() => setToggle(!toggle)}
+        />
+
+        {/* メニュー */}
+        <div className={`${!toggle ? "hidden" : "flex"} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl ${styles.navContainer} `}>
+          <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
+            {navLinks.map((nav) => (
+              <Link key={nav.id} href={nav.path}>
+                <div className={styles.navLink}>
+                  {nav.title}
+                </div>
+              </Link>
+            ))}
+            {session ? (
+              <li>
+                <Logout />
+              </li>
+            ) : (
+              <li>
+                <Login />
+              </li>
+            )}
+          </ul>
         </div>
       </div>
     </nav>

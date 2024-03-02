@@ -1,6 +1,6 @@
 {
   "functions": {
-    "api/some-function.ts": {
+    "api/open-ai/dall-e-v3/route.ts": {
       "maxDuration": 60
     }
   }

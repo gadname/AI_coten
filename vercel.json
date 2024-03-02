@@ -1,7 +1,0 @@
-{
-    "functions": {
-      "api/some-function.ts": {
-        "maxDuration": 5
-      }
-    }
-  }

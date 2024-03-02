@@ -150,6 +150,9 @@
   transition: background 0.2s; /* 背景色の変化を滑らかに */
   
 }
+.navContainer li {
+  pointer-events: auto; /* リストアイテムに対するポインタイベントを有効に */
+}
 .navLink:hover {
   background: #02c4ff;
 }

@@ -547,16 +547,10 @@
   }
   
   .modalContent::before {
-    font-family: 'DotGothic16', sans-serif;
     font-family: var(--font-dot);
     color: white;
-    /* font-weight: bold; */
     content: "";
     animation: typing1 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
-    text-shadow: 1px 1px 0 rgba(248, 240, 240, 0.7), 
-               2px 2px 0 rgba(159, 150, 150, 0.5), 
-               3px 3px 0 rgba(0,0,0,0.3), 
-               4px 4px 0 rgba(0,0,0,0.1);
   }
 
   .modalContent.typing2::before {

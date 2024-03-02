@@ -38,7 +38,7 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
         <div onClick={() => navigate('/')} className='cursor-pointer flex items-center gap-2'>
           <img src="/image/logo.svg" alt="Logo" className={styles.customLogo} />
           <p className={`${styles.text} ${styles.text40px} ${styles.fontBold}`}>
-            <span className={`${styles.slogan}`} style={{
+            <span className={`${styles.symbol}`} style={{
               background: 'linear-gradient(135deg, rgba(255,255,255,.6) 8%, rgba(255,255,255,.1) 120%, rgba(255,255,255,.2) 92%)',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent'
@@ -54,8 +54,8 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
         />
 
         {/* メニュー */}
-        <div className={`${!toggle ? "hidden" : "flex"} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl ${styles.navContainer} `}>
-          <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
+        <div className={`${!toggle ? "hidden" : "flex"} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl `}>
+          <ul className={`${styles.navContainer} list-none flex justify-end items-start flex-1 flex-col gap-4`} >
             {navLinks.map((nav) => (
               <Link key={nav.id} href={nav.path}>
                 <div className={styles.navLink}>

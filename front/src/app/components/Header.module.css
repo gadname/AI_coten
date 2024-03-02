@@ -5,7 +5,7 @@
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
 }
 
-.slogan {
+.symbol {
   position: absolute;
   font-size: 60px;
   font-family: var(--font-neoneon);
@@ -66,22 +66,22 @@
   position: relative;
 }
 
-.slogan span {
+.symbol span {
   display: block;
 }
 
 @media screen and (min-width: 768px) {
-  .slogan {
+  .symbol {
     font-size: 64px;
   }
 }
 
 @media screen and (min-width: 1280px) {
-  .slogan {
+  .symbol {
     font-size:100px;
   }
 
-  .slogan span {
+  .symbol span {
     display: inline-block;
   }
 }
@@ -119,9 +119,21 @@
 }
 
 .navContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 98;
   display: flex;
-  justify-content: center; /* 水平方向の中央揃え */
-  align-items: center; /* 垂直方向の中央揃え */
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* コンテナとその子要素に対するポインタイベントを無視 */
+}
+
+.navLink {
+  pointer-events: auto; /* ナビゲーションリンクに対するポインタイベントを有効に */
 }
 
 .navLink {

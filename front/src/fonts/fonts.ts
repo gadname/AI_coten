@@ -1,13 +1,4 @@
-import { Sawarabi_Gothic } from "next/font/google";
 import localFont from "next/font/local";
-
-// グローバルフォント
-const sawarabiGothic = Sawarabi_Gothic({
-  weight: "400",
-  display: "swap",
-  variable: "--font-sawarabi-gothic",
-  preload: false,
-});
 
 // カスタムローカルフォント
 const neoneon = localFont({
@@ -17,4 +8,14 @@ const neoneon = localFont({
   preload: false,
 });
 
-export { neoneon, sawarabiGothic };
+const dot = localFont({
+  src: "../../public/fonts/BoutiqueBitmap9x9_1.5.ttf", // フォントファイルのパスを指定
+  display: "swap",
+  variable: "--font-dot", // CSS変数名を指定
+  preload: false,
+});
+
+
+
+
+export { neoneon, dot };

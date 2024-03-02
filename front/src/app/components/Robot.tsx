@@ -70,18 +70,6 @@ const Robot: FC<any> = ({onUpload}) => {
   boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // 影のスタイル
 }
 
-: isTypingThird && !isTypingFourth
-  ? {
-    backgroundColor: 'white', // 背景色を白に変更
-    backgroundImage: `
-      radial-gradient(at 49% 49%, hsla(191,77%,50%,1) 0px, transparent 50%),
-      radial-gradient(at 99% 44%, hsla(208,62%,38%,1) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, hsla(208,39%,40%,1) 0px, transparent 50%),
-      radial-gradient(at 62% 100%, hsla(192,71%,38%,1) 0px, transparent 50%),
-      radial-gradient(at 1% 100%, hsla(196,77%,18%,1) 0px, transparent 50%),
-      radial-gradient(at 7% 69%, hsla(200,45%,39%,1) 0px, transparent 50%),
-      radial-gradient(at 0% 0%, hsla(191,52%,49%,1) 0px, transparent 50%)`,
-  }
 : {
     backgroundColor: 'initial',
   };
@@ -176,28 +164,27 @@ useEffect(() => {
           <div className="front parts_A"></div>
           <div className="front parts_B"></div>
           <div className="face">
+          <div className={styles.speechBubble}>touch me !</div>
+          
             <div className="face__wrapper">
               <div className="eye"></div>
               <div className="triangleMouth"></div> 
               <span className="text">Click!</span>
             </div>
+            
           </div>
         </button>
       </div>
       {/* モーダルの表示状態に応じてモーダルを表示 */}
       {isModalVisible && (
-        <div className={styles.modal} style={modalStyle}>
+        <div className={styles.modal} style={modalStyle} onClick={handleClick}>
             { !isThreePath ? <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''} ${isTypingThird ? styles.typing3 : ''} ${isTypingFourth ? styles.typing4 : ''} ${isTypingFifth ? styles.typing5 : ''} ${isTypingSixth ? styles.typing6 : ''}`}>
             {/* アニメーションが表示される */}
           </p> : <></>}
           
           <ul>
-            { isTypingThird && !isTypingFourth || isThreePath ? <DallE3Interface onUpload={onUpload} /> : <></>}
-            <li>
-              <Link href="/three">
-              <a></a> {/* next/linkを使用 */}
-              </Link>
-            </li>
+            {/* { isTypingThird && !isTypingFourth || isThreePath ? <DallE3Interface onUpload={onUpload} /> : <></>} */}
+          
             {/* 他のリンク */}
           </ul>
           

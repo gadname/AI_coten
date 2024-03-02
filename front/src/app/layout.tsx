@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NextAuthProvider from '@/providers/NextAuth';
 import { neoneon } from "@/fonts/fonts";
+import { dot } from "@/fonts/fonts";
 const inter = Inter({ subsets: ['latin'] });
 
 // 統合されたmetadataの定義
@@ -28,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${inter.className} ${neoneon.variable}`}>
+      <body className={`${inter.className} ${neoneon.variable} ${dot.variable}`}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>

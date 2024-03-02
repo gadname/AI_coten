@@ -1,5 +1,6 @@
-import { Canvas, useFrame, useLoader } from '@react-three/fiber'; // useLoaderをここに統合
+import { Canvas, useFrame } from '@react-three/fiber';
 import { Environment } from '@react-three/drei';
+import { useLoader } from '@react-three/fiber';
 import { useRef } from 'react';
 import { TextureLoader } from 'three';
 import * as THREE from 'three';

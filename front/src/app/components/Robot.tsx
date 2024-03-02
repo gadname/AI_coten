@@ -42,7 +42,7 @@ const Robot: FC<any> = ({onUpload}) => {
     ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '100px', bottom: '50px' }
     : isTablet // タブレットサイズの場合のスタイル
       ? { transform: 'scale(0.9)', right: '100px', bottom: '10px' } // iPadサイズに適したスタイル
-      : { right: '0px', top: '550px' };
+      : { right: '0px', top: '500px' };
 
     const modalStyle: CSSProperties = isMobile 
 ?  { 

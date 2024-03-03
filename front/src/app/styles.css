@@ -10,4 +10,5 @@ body, html {
 body {
   color: white;
   user-select: none;
+  overflow: hidden;
 }

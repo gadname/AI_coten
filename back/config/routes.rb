@@ -8,8 +8,12 @@ Rails.application.routes.draw do
       resources :user_images do
         collection do
           post 'update_urls' 
-          get 'random_user_image'
         end
+        resources :our_images do
+          collection do
+            post 'update_urls' 
+          end
+        end # このendが不足していました
       end
     end
   end

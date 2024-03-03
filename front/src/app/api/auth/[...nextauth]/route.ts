@@ -45,8 +45,9 @@ const nextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt" as const,
-    maxAge: 60 * 24 * 24
+    strategy: "jwt"as const,
+    maxAge: 60 * 60 * 24, // 1日の秒数
+    updateAge: 60 * 60, // 1時間ごとにセッションを更新
   },
   secret: process.env.NEXTAUTH_SECRET || '',
   callbacks: {

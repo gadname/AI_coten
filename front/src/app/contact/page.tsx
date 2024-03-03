@@ -1,12 +1,12 @@
 'use client';
-import HomePage from '../components/HomePage';
+import Share from '../components/Share';
 import Header from '../components/Header';
 import Robot from '../components/Robot';
 function SomeComponent() {
   return (
     <div>
       <Header />
-      <HomePage />
+      <Share />
       {/* <Robot /> */}
       
       {/* Other components */}

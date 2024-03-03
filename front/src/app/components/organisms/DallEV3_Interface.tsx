@@ -177,7 +177,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     <div style={{ width: "100%" }}>
       <div style={flexContainerStyle}>
 
-      <label style={flexItemStyle}>
+  <label style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="precision" checked={checkboxStates.precision} onChange={handleCheckboxChange} />
   浮世絵風に
 </label>

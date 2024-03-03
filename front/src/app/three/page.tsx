@@ -7,7 +7,7 @@ function SomeComponent() {
     <div>
       <Header />
       <HomePage />
-      <Robot />
+      {/* <Robot /> */}
       
       {/* Other components */}
     </div>

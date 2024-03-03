@@ -155,33 +155,33 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
       {images.map((props) => <Frame key={props.url} {...props} /> /* prettier-ignore */)}
-      {/* <Html position={[0, 0, 0]}> */}
-        {/* <div className="container" style={buttonStyle}>
-          <div className="box"style={buttonStyle}>
-            <div className="area area_1"></div>
-            <div className="area area_2"></div>
-            <div className="area area_3"></div>
-            <div className="area area_4"></div>
-            <div className="area area_5"></div>
-            <div className="area area_6"></div>
-            <div className="area area_7"></div>
-            <div className="area area_8"></div>
-            <div className="area area_9"></div>
-            
-            <button onClick={() => { isModalVisible ? onHideModal() : onShowModal(); }} className="robot" >
-              <div className="front parts_A"></div>
-              <div className="front parts_B"></div>
-              <div className="face">
-                <div className="face__wrapper">
-                <div className="triangleMouth"></div> 
-                  <div className="eye"></div>
-                  <span className="text">Click!</span>
+        <Html position={[0, 0, 0]} zIndexRange={[2, 0]}>
+          <div className="container" style={buttonStyle}>
+            <div className="box"style={buttonStyle}>
+              <div className="area area_1"></div>
+              <div className="area area_2"></div>
+              <div className="area area_3"></div>
+              <div className="area area_4"></div>
+              <div className="area area_5"></div>
+              <div className="area area_6"></div>
+              <div className="area area_7"></div>
+              <div className="area area_8"></div>
+              <div className="area area_9"></div>
+              
+              <button onClick={() => { isModalVisible ? onHideModal() : onShowModal(); }} className="robot" >
+                <div className="front parts_A"></div>
+                <div className="front parts_B"></div>
+                <div className="face">
+                  <div className="face__wrapper">
+                  <div className="triangleMouth"></div> 
+                    <div className="eye"></div>
+                    <span className="text">Click!</span>
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            </div>
           </div>
-        </div>
-      </Html> */}
+        </Html>
     </group>
   )
 }

@@ -77,6 +77,35 @@
     top: 60%;
     left: 90%;
   }
+  .modalWrapper {
+    position: relative;
+  }
+
+  @media (max-width: 600px) {
+    .modal {
+      width: 90vw;
+      background-color: white;
+      border-radius: 24px;
+      padding: 16px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @media (min-width: 600px) {
+    .modal {
+      width: 50vw;
+      background-color: white;
+      border-radius: 24px;
+      padding: 16px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
   
   
   /* 中画面デバイス用のスタイル */

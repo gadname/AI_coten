@@ -1,5 +1,5 @@
 "use client";
-import React, { FC, useState, useEffect, useCallback } from "react";
+import React, { FC, useState, useEffect, useCallback, MouseEventHandler } from "react";
 import styles from './DallEV3_Interface.module.css';
 import { SubmitHandler } from "react-hook-form";
 import LoadingSVG from '../../../assets/loading.svg';
@@ -64,6 +64,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
   };
 
   const onSubmit: SubmitHandler<TextPromptFormInputs> = useCallback(async (data) => {
+    console.log("onSubmit", data);
     setIsExecuting(true);
     
     let promptPrefix = "";
@@ -154,6 +155,13 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     }
   }, [checkboxStates]); // 依存配列を空にしてonSubmit関数が再生成されないようにする
 
+
+  const addImage: MouseEventHandler<HTMLDivElement> = () => {
+    // ここで何かの処理をする
+    console.log('ここまできてるよ')
+    onUpload(imageUrl)
+  };
+
   useEffect(() => {
     if (gptOutput) {
       onSubmit({ textPrompt: gptOutput }); // gptOutputが変更されたときに自動的に送信
@@ -170,7 +178,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
   const flexItemStyle = {
     flex: '1 1 calc(33.333% 20px)', // 3列で表示するための設定
     justifyContent: 'space-between',
-    minWidth: '200px', // 最小幅を設定して、内容に応じて伸縮するが、あまりにも小さくならないようにする
+    minWidth: '49%', // 最小幅を設定して、内容に応じて伸縮するが、あまりにも小さくならないようにする
   };
   
   return (
@@ -289,17 +297,17 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
           <img src={LoadingSVG} alt="Loading" />
         </div>
       )}
-    {selectedImage && (
-        <>
-     <div style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCloseModal}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-100%)' }}>
-            <img src={selectedImage.imageUrl} style={{ width: '300px', height: '300px'}}/>
+      {imageUrl ? <div onClick={addImage}>個展に画像を追加するa</div> : <></>}
+    {/* {selectedImage && (
+      <>
+        <div style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCloseModal}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-100%)' }}>
+              <img src={selectedImage.imageUrl} style={{ width: '300px', height: '300px'}}/>
+          </div>
         </div>
-    </div>
-   
-    </>
-)}
-    
+        <span>個展に画像を追加するb</span>
+      </>
+    )} */}
   </div>
 );
  

@@ -29,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={`${inter.className} ${neoneon.variable} ${dot.variable}`}>
+      <body className={`${inter.className} ${neoneon.variable} ${dot.variable}`} style={{ overflow: 'hidden' }}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>

@@ -6,6 +6,7 @@
     padding: 0;
     margin: 0;
     border: none;
+    
   }
   
   .checkboxLabel {
@@ -17,8 +18,6 @@
     padding: 0;
     margin: 0;
   }
-
-  
 
   .labelWithHoverEffect {
     position: relative;
@@ -47,4 +46,5 @@
     align-items: center; /* 垂直方向の中央揃え */
     justify-content: flex-start; /* 水平方向の左揃え */
     gap: 8px; /* チェックボックスとテキストの間隔 */
+    
   }

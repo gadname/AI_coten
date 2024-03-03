@@ -155,8 +155,8 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
       {images.map((props) => <Frame key={props.url} {...props} /> /* prettier-ignore */)}
-      {/* <Html position={[0, 0, 0]}> */}
-        {/* <div className="container" style={buttonStyle}>
+       <Html position={[0, 0, 0]}> 
+         <div className="container" style={buttonStyle}>
           <div className="box"style={buttonStyle}>
             <div className="area area_1"></div>
             <div className="area area_2"></div>
@@ -181,7 +181,7 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
             </button>
           </div>
         </div>
-      </Html> */}
+      </Html> 
     </group>
   )
 }

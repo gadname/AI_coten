@@ -11,6 +11,8 @@ import Stars from '../components/Stars';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { DallE3Interface } from '@/app/components/organisms/DallEV3_Interface';
+import { Dialog, Modal } from "@mui/material";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -68,10 +70,12 @@ const images = [
 ];
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const showModal = () => {
     if (session) {
-      setIsModalVisible(true);
+      setIsModalVisible(true)
+      setOpen(true)
     } else {
       alert('ログインしてください');
     }
@@ -81,26 +85,87 @@ const images = [
     setIsModalVisible(false);
   };
 
+  const handleClose = () => {
+    setOpen(false)
+    setIsModalVisible(false);
+  }
+
+  const handleImageUpload = (fileUrl: string) => {
+    const now = new Date();
+    const timestamp = now.toISOString().replace(/:/g, '-').replace(/\..+/, '');
+    const fileNameWithTimestamp = `${timestamp}`;
+
+
+    const fileName = `${fileNameWithTimestamp}.jpg`;
+    let imageKey: any;
+
+    let array = JSON.parse(localStorage.getItem('setImageNumber') as any) || [];
+    // localStorageにない数字を取得
+    const availableNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(n => !array.includes(n));
+    let randomNumber;
+    
+    if (availableNumbers.length === 0) {
+        randomNumber = array[Math.floor(Math.random() * array.length)];
+        array.push(randomNumber);
+        imageKey = `image${randomNumber.toString()}`;
+        localStorage.setItem('setImageNumber', JSON.stringify(array));
+    } else {
+        randomNumber = availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
+    }
+
+    array.push(randomNumber);
+    imageKey = `image${randomNumber.toString()}`;
+    localStorage.setItem('setImageNumber', JSON.stringify(array));
+
+    createFileFromUrl(fileUrl, fileName).then((file) => {
+        const storageRef = ref(storage, fileName);
+        uploadBytes(storageRef, file).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((downloadURL) => {
+            console.log('File available at', downloadURL);
+            // ここでダウンロードURLを使用してステートを更新
+            updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
+            });
+        }).catch((error) => {
+            console.error("Upload failed", error);
+        });
+    })
+  };
+
+  async function createFileFromUrl(url: string, fileName: string): Promise<File> {
+    // URLからデータをフェッチ
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Network response was not ok.');
+  
+    // レスポンスのデータをBlobとして取得
+    const blob = await response.blob();
+  
+    // BlobからFileオブジェクトを作成
+    const file = new File([blob], fileName, { type: blob.type });
+  
+    return file;
+  }
+
 
   // 画像をアップロードするためのハンドラー
-  const handleImageUpload = async (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const now = new Date();
-      const timestamp = now.toISOString().replace(/:/g, '-').replace(/\..+/, '');
-      const fileNameWithTimestamp = `${timestamp}_${file.name}`;
-      const storageRef = ref(storage, fileNameWithTimestamp);
-      uploadBytes(storageRef, file).then((snapshot) => {
-        getDownloadURL(snapshot.ref).then((downloadURL) => {
-          console.log('File available at', downloadURL);
-          // ここでダウンロードURLを使用してステートを更新
-          updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
-        });
-      }).catch((error) => {
-        console.error("Upload failed", error);
-      });
-    }
-  };
+  // const handleImageUpload = async (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
+
+  //   if (event.target.files && event.target.files.length > 0) {
+  //     const file = event.target.files[0];
+  //     const now = new Date();
+  //     const timestamp = now.toISOString().replace(/:/g, '-').replace(/\..+/, '');
+  //     const fileNameWithTimestamp = `${timestamp}_${file.name}`;
+  //     const storageRef = ref(storage, fileNameWithTimestamp);
+  //     uploadBytes(storageRef, file).then((snapshot) => {
+  //       getDownloadURL(snapshot.ref).then((downloadURL) => {
+  //         console.log('File available at', downloadURL);
+  //         // ここでダウンロードURLを使用してステートを更新
+  //         updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
+  //       });
+  //     }).catch((error) => {
+  //       console.error("Upload failed", error);
+  //     });
+  //   }
+  // };
 
 //     if (event.target.files && event.target.files.length > 0) {
 //       const file = event.target.files[0];
@@ -204,33 +269,29 @@ useEffect(() => {
   fetchImageUrls();
 }, [session]);
 
+const upload = (url: string) => {
+  console.log('url', url);
+  handleImageUpload(url)
+}
+
+
+
   return (
     <div className={styles.root}>
       {/* セッションが存在する場合にのみ画像アップロード関連のUIを表示 */}
       {session && (
         <>
-          <button onClick={showModal}></button>
+          {/* <button onClick={showModal}></button> */}
           {isModalVisible && (
-            <ImageUploadModal onClose={hideModal}>
-              {Object.keys(imageUrls).map((key, index) => (
-                <div key={key} className={styles.labelContainer}>
-                  <input
-                    type="file"
-                    onChange={(event) => handleImageUpload(key, event)}
-                    id={`file-input-${key}`}
-                    style={{ display: 'none' }}
-                  />
-                  <label
-                    htmlFor={`file-input-${key}`}
-                    className={styles[`labelPosition${index + 1}`]}
-                  >
-                    Click!
-                  </label>
-                </div>
-              ))}
-              
-            </ImageUploadModal>
-            
+            <Modal 
+              open={open}
+              onClose={handleClose}
+              className={styles.modalWrapper}
+             >
+            <div className={styles.modal}>
+              <DallE3Interface onUpload={upload}  gptOutput={""}/>
+            </div>
+            </Modal>
           )}
           
         </>

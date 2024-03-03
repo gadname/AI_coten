@@ -498,7 +498,6 @@
     flex-direction : column ;
     justify-content : center ;
     align-items : center ;
-    background :transparent ;
     border-radius: 20px;
 }
 .button:not(:last-child){

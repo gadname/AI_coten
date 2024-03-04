@@ -20,9 +20,9 @@ function SomeComponent() {
       const hashtags = "GalleryAI"; // ハッシュタグを"GalleryAI"に設定
   
       // Twitter Intentでテキスト、URL、ハッシュタグを含めてツイート
-      // テキストとURLの間に改行を1つ、URLとハッシュタグの間に改行を2つ挿入
+      // URLの直後に改行を挿入してからハッシュタグを配置
       window.open(
-        `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}%0a${encodeURIComponent(shareUrl)}%0a%0a&hashtags=${encodeURIComponent(hashtags)}`,
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}${encodeURIComponent(shareUrl)}%0a&hashtags=${encodeURIComponent(hashtags)}`,
         '_blank'
       );
     }

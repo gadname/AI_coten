@@ -48,15 +48,15 @@ export default function HomePage() {
 
   
   const [imageUrls, setImageUrls] = useState({
-    image1: '/ai4.jpg',
-    image2: '/art1.png',
-    image3: '/art2.png',
-    image4: '/art3.png',
-    image5: '/AIs.jpg',
-    image6: '/ai8.jpg',
+    image1: '/AIs.jpg',
+    image2: '/img9.jpg',
+    image3: '/aicat5.png',
+    image4: '/ai8.jpg',
+    image5: '/ai4.jpg',
+    image6: '/ai1.jpg',
     image7: '/ai6.jpg',
     image8: '/ai7.jpg',
-    image9: '/aicat.png',
+    image9: '/art3.png',
   });
 
 // 画像のデータを配列に変換

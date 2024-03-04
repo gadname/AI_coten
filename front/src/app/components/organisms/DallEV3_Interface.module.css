@@ -48,3 +48,11 @@
     gap: 8px; /* チェックボックスとテキストの間隔 */
     
   }
+  .fontDot {
+    font-family: var(--font-dot);
+  }
+
+  .fontDot input[type="checkbox"] {
+    margin-right: 8px; /* チェックボックスとテキストの間にスペースを追加 */
+  }
+  

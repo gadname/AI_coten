@@ -71,18 +71,24 @@ const images = [
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
-
-  const showModal = () => {
+  const [modalType, setModalType] = useState<null | 'imageUpload' | 'dalle'>();
+  
+  const showModal = (type: 'imageUpload' | 'dalle' = 'imageUpload') => {
     if (session) {
-      setIsModalVisible(true)
-      setOpen(true)
+      setIsModalVisible(true);
+      setOpen(true);
+      setModalType(type); // モーダルの種類を設定
     } else {
       alert('ログインしてください');
     }
   };
 
+  const showImageUploadModal = () => showModal('imageUpload');
+  const showDalleModal = () => showModal('dalle');
+
   const hideModal = () => {
     setIsModalVisible(false);
+    setOpen(false);
   };
 
   const handleClose = () => {
@@ -90,60 +96,24 @@ const images = [
     setIsModalVisible(false);
   }
 
-  const handleImageUpload = (fileUrl: string) => {
-    const now = new Date();
-    const timestamp = now.toISOString().replace(/:/g, '-').replace(/\..+/, '');
-    const fileNameWithTimestamp = `${timestamp}`;
-
-
-    const fileName = `${fileNameWithTimestamp}.jpg`;
-    let imageKey: any;
-
-    let array = JSON.parse(localStorage.getItem('setImageNumber') as any) || [];
-    // localStorageにない数字を取得
-    const availableNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9].filter(n => !array.includes(n));
-    let randomNumber;
-    
-    if (availableNumbers.length === 0) {
-        randomNumber = array[Math.floor(Math.random() * array.length)];
-        array.push(randomNumber);
-        imageKey = `image${randomNumber.toString()}`;
-        localStorage.setItem('setImageNumber', JSON.stringify(array));
-    } else {
-        randomNumber = availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
-    }
-
-    array.push(randomNumber);
-    imageKey = `image${randomNumber.toString()}`;
-    localStorage.setItem('setImageNumber', JSON.stringify(array));
-
-    createFileFromUrl(fileUrl, fileName).then((file) => {
-        const storageRef = ref(storage, fileName);
-        uploadBytes(storageRef, file).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((downloadURL) => {
-            console.log('File available at', downloadURL);
-            // ここでダウンロードURLを使用してステートを更新
-            updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
-            });
-        }).catch((error) => {
-            console.error("Upload failed", error);
+  const handleImageUpload = async (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const now = new Date();
+      const timestamp = now.toISOString().replace(/:/g, '-').replace(/\..+/, '');
+      const fileNameWithTimestamp = `${timestamp}_${file.name}`;
+      const storageRef = ref(storage, fileNameWithTimestamp);
+      uploadBytes(storageRef, file).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          // ここでダウンロードURLを使用してステートを更新
+          updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
         });
-    })
+      }).catch((error) => {
+        console.error("Upload failed", error);
+      });
+    }
   };
-
-  async function createFileFromUrl(url: string, fileName: string): Promise<File> {
-    // URLからデータをフェッチ
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Network response was not ok.');
-  
-    // レスポンスのデータをBlobとして取得
-    const blob = await response.blob();
-  
-    // BlobからFileオブジェクトを作成
-    const file = new File([blob], fileName, { type: blob.type });
-  
-    return file;
-  }
 
 
   // 画像をアップロードするためのハンドラー
@@ -269,36 +239,67 @@ useEffect(() => {
   fetchImageUrls();
 }, [session]);
 
-const upload = (url: string) => {
-  console.log('url', url);
-  handleImageUpload(url)
-}
+// const upload = (url: string) => {
+//   console.log('url', url);
+//   handleImageUpload(url)
+// }
 
 
 
-  return (
-    <div className={styles.root}>
-      {/* セッションが存在する場合にのみ画像アップロード関連のUIを表示 */}
-      {session && (
-        <>
-          {/* <button onClick={showModal}></button> */}
-          {isModalVisible && (
-            <Modal 
-              open={open}
-              onClose={handleClose}
-              className={styles.modalWrapper}
-             >
+return (
+  <div className={styles.root}>
+    {/* セッションが存在する場合にのみ画像アップロード関連のUIを表示 */}
+    {session && (
+      <>
+        {/* モーダル表示のためのボタンを追加 */}
+
+        {/* modalTypeに基づいて条件的にモーダルを表示 */}
+        {isModalVisible && modalType === 'imageUpload' && (
+          <ImageUploadModal onClose={hideModal}>
+            {Object.keys(imageUrls).map((key, index) => (
+              <div key={key} className={styles.labelContainer}>
+                <input
+                  type="file"
+                  onChange={(event) => handleImageUpload(key, event)}
+                  id={`file-input-${key}`}
+                  style={{ display: 'none' }}
+                />
+                <label htmlFor={`file-input-${key}`} className={styles[`labelPosition${index + 1}`]}>
+                  <div
+          title="Add New"
+          className="group cursor-pointer outline-none hover:rotate-90 duration-300"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="50px"
+            height="50px"
+            viewBox="0 0 24 24"
+            className="stroke-zinc-400 fill-none group-hover:fill-zinc-800 group-active:stroke-zinc-200 group-active:fill-zinc-600 group-active:duration-0 duration-300"
+          >
+            <path
+              d="M12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22Z"
+              strokeWidth="1.5"
+            ></path>
+            <path d="M8 12H16" strokeWidth="1.5"></path>
+            <path d="M12 16V8" strokeWidth="1.5"></path>
+          </svg>
+        </div>
+                </label>
+              </div>
+            ))}
+          </ImageUploadModal>
+        )}
+
+        {isModalVisible && modalType === 'dalle' && (
+          <Modal open={open} onClose={handleClose} className={styles.modalWrapper}>
             <div className={styles.modal}>
-              <DallE3Interface onUpload={upload}  gptOutput={""}/>
+              <DallE3Interface  gptOutput={""}/>
             </div>
-            </Modal>
-          )}
-          
-        </>
-        
-      )}
-      <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>
-      
-    </div>
-  );
+          </Modal>
+        )}
+      </>
+    )}
+    <App images={images} onShowModal={showModal} onHideModal={hideModal} isModalVisible={isModalVisible}/>
+  </div>
+);
 }

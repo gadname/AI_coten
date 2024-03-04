@@ -15,3 +15,21 @@
 .fontBold {
   font-weight: bold;
 }
+
+.symbol {
+  position: absolute;
+  font-size: 10px;
+  font-family: var(--font-dot);
+  font-weight: bold;
+  text-align: center;
+  top: calc(50% - var(--header-height));
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  color: var(--white);
+  text-shadow: 0 0 30px var(--white);
+  color: #ff0000; /* 文字の色を白に設定 */
+  background-color: linear-gradient(135deg, rgba(255,255,255,.4) 8%, rgba(255,255,255,.1) 60%, rgba(255,255,255,.2) 92%);
+  filter: drop-shadow(0 0 10px #FFFFFF);
+}

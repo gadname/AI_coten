@@ -1,0 +1,40 @@
+.speechBubble {
+    position: absolute;
+    top: 200px; /* 顔の上端からさらに上に配置 */
+    left: 0%; /* 顔の右端から少し離れた位置に配置 */
+    transform: translate(0, -100%); /* Y軸方向の中心を上にずらし、さらに上方向に少し移動 */
+    background: linear-gradient(135deg, rgba(255,255,255,.4) 8%, rgba(255,255,255,.1) 60%, rgba(255,255,255,.2) 92%);
+    border-radius: 50%; /* 丸みを増やす */
+    padding: 10px 20px;
+    color: #f1e9e9;
+    font-size: 14px;
+    font-family: var(--font-dot);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 3;
+}
+
+.speechBubble::after {
+    content: "";
+    position: absolute;
+    bottom: -10px; /* 尾っぽの基点を吹き出しの下部に設定 */
+    left: 20%; /* 尾っぽの左右の位置を調整 */
+    width: 20px;
+    height: 20px;
+    background: inherit; /* 吹き出しと同じ背景色を使用 */
+    border-radius: 50%;
+    transform: translateX(-50%) rotate(45deg); /* 尾っぽを適切な角度に回転 */
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.1); /* 尾っぽにも影を追加 */
+  }
+
+  .speechBubble::before {
+    content: "";
+    position: absolute;
+    bottom: -20px; /* 尾っぽの基点より下に配置 */
+    left: 50%; /* 尾っぽの中心に配置 */
+    width: 10px; /* 小さな丸のサイズ */
+    height: 10px; /* 小さな丸のサイズ */
+    background: inherit; /* 吹き出しと同じ背景色を使用 */
+    border-radius: 50%; /* 完全な円形に */
+    transform: translateX(-50%) translateY(50%) rotate(45deg); /* 尾っぽの左下に配置し、角度を調整 */
+    box-shadow: -1px 1px 2px rgba(0,0,0,0.1); /* 小さな丸にも影を追加 */
+  }

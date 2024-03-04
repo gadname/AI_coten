@@ -17,10 +17,10 @@ export const ImageWrapper: React.FC<any> = ({ src, onUpload }) => {
         <Image src={src} alt={"generated image"} width={240} height={240} />
       ) : (
         <Typography level="body-md">
-         
+      
         </Typography>
       )}
-      <button onClick={onUpload}>ギャラリーに画像を追加</button>
+      {/* <button onClick={onUpload}>ギャラリーに画像を追加</button> */}
     </div>
     
   );

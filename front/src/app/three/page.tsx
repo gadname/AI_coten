@@ -15,19 +15,14 @@ function SomeComponent() {
     if (!session) {
       alert('ログインしてください');
     } else {
-      
-      const tweetOptions = [
-        "Gallery.aiで個展を作成しました！",
-        
-      ];
-      const tweetText = tweetOptions[Math.floor(Math.random() * tweetOptions.length)];
-      const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}`;
-      const pageUrl = encodeURIComponent(shareUrl);
-      const hashtags = "MISERY";
+      const tweetText = "「Gallery AI」で個展を作成しました！";
+      const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}&v=20231006`;
+      const hashtags = "GalleryAI"; // ハッシュタグを"GalleryAI"に設定
   
-      // Twitter Intentでテキストとハッシュタグを含めてツイート
+      // Twitter Intentでテキスト、URL、ハッシュタグを含めてツイート
+      // URLの直後に改行を挿入してからハッシュタグを配置
       window.open(
-        `https://twitter.com/share?url=${pageUrl}&text=${encodeURIComponent(tweetText)}&hashtags=${hashtags}`,
+        `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}${encodeURIComponent(shareUrl)}%0a&hashtags=${encodeURIComponent(hashtags)}`,
         '_blank'
       );
     }

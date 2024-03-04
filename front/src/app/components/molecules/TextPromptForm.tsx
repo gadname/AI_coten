@@ -112,7 +112,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       loading={isExecuting}
       style={{ fontFamily: 'var(--font-dot)' }}
       >
-  ソウシンニャ!
+  ガゾウを作るニャ!
   </Button>
       
     </form>

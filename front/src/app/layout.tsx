@@ -27,7 +27,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="ja">
       <head>
-        <GoogleAnalytics gaId="G-28QGP35N58" /> 
+        <GoogleAnalytics gaId="G-L4HRCZGH9H" /> 
       </head>
       <body className={`${inter.className} ${neoneon.variable} ${dot.variable}`} style={{ overflow: 'hidden' }}>
         <NextAuthProvider>{children}</NextAuthProvider>

@@ -56,11 +56,21 @@ const verticalTexts = texts.split('').map((char, index) => (
     if (!session) {
       alert('ログインしてください');
     } else {
-      const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}`
-      console.log('shareUrl', shareUrl)
-      navigator.clipboard.writeText(shareUrl).then(() => {
-        hundleOpen(true)
-      })
+      // ランダムなテキストを選択
+      const tweetOptions = [
+        "Gallery.aiで個展を作成しました！",
+        // 他のテキストオプション...
+      ];
+      const tweetText = tweetOptions[Math.floor(Math.random() * tweetOptions.length)];
+      const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}`;
+      const pageUrl = encodeURIComponent(shareUrl);
+      const hashtags = "MISERY";
+  
+      // Twitter Intentでテキストとハッシュタグを含めてツイート
+      window.open(
+        `https://twitter.com/share?url=${pageUrl}&text=${encodeURIComponent(tweetText)}&hashtags=${hashtags}`,
+        '_blank'
+      );
     }
   }
 

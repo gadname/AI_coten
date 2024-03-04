@@ -1,4 +1,4 @@
-# Gallery.ai / AI画像生成 & デジタル個展サービス
+# Gallery.ai / AI個展サービス
 
 
 # サービス概要
@@ -25,21 +25,12 @@ MVPリリース
 - 画像アップロード機能
 - OpenAI APIを用いた画像生成
 - ユーザー登録機能
-- 投稿機能
-- 投稿詳細機能
-- 投稿一覧機能
 - OpenAI APIによるDALL_E3を使った画像生成機能
-  
-本リリース
-- コメント機能
-- タグ検索機能
-- お気に入り機能
-- おすすめ機能
 - Xシェア機能
   
 ■ 機能の実装方針予定
-- CarrierWave/MiniMagick
-- AWS S3
+- CarrierWave
+- firebase storage
 - renderでのデプロイ
 - Vercelでのデプロイ
 

@@ -2,9 +2,8 @@ import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import NextAuthProvider from '@/providers/NextAuth';
-import { neoneon, dot } from "@/fonts/fonts"; // 簡潔にするために一行にまとめました
-import { GoogleAnalytics } from "@next/third-parties/google"; // GoogleAnalyticsをインポート
-
+import { neoneon } from "@/fonts/fonts";
+import { dot } from "@/fonts/fonts";
 const inter = Inter({ subsets: ['latin'] });
 
 // 統合されたmetadataの定義
@@ -23,18 +22,16 @@ export const metadata: Metadata = {
   },
 };
 
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ja">
-      <head>
-        <GoogleAnalytics gaId="G-28QGP35N58" /> 
-      </head>
       <body className={`${inter.className} ${neoneon.variable} ${dot.variable}`} style={{ overflow: 'hidden' }}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>
   );
-};
-
-
-export default Layout;
+}

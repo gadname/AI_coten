@@ -918,6 +918,13 @@
   resolved "https://registry.npmjs.org/@next/swc-darwin-x64/-/swc-darwin-x64-14.0.4.tgz"
   integrity sha512-IZQ3C7Bx0k2rYtrZZxKKiusMTM9WWcK5ajyhOZkYYTCc8xytmwSzR1skU7qLgVT/EY9xtXDG0WhY6fyujnI3rw==
 
+"@next/third-parties@^14.1.2-canary.4":
+  version "14.1.2-canary.4"
+  resolved "https://registry.npmjs.org/@next/third-parties/-/third-parties-14.1.2-canary.4.tgz"
+  integrity sha512-s7xjylGtA/6z3jERnt7OEvq9j4ewbBTgUzTTDKWD/WqxS4YLq3kbEIOVOOaV4yHp/AZ8B8lZrrdBkbjNwKEZrA==
+  dependencies:
+    third-party-capital "1.0.20"
+
 "@nextui-org/accordion@2.0.28":
   version "2.0.28"
   resolved "https://registry.npmjs.org/@nextui-org/accordion/-/accordion-2.0.28.tgz"
@@ -5240,7 +5247,7 @@ next-auth@^4.24.5:
     preact-render-to-string "^5.1.19"
     uuid "^8.3.2"
 
-"next@^12.2.5 || ^13 || ^14", next@^14.0.4:
+"next@^12.2.5 || ^13 || ^14", "next@^13.0.0 || ^14.0.0", next@^14.0.4:
   version "14.0.4"
   resolved "https://registry.npmjs.org/next/-/next-14.0.4.tgz"
   integrity sha512-qbwypnM7327SadwFtxXnQdGiKpkuhaRLE2uq62/nRul9cj9KhQ5LhHmlziTNqUidZotw/Q1I9OjirBROdUJNgA==
@@ -6260,6 +6267,11 @@ thenify-all@^1.0.0:
   integrity sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==
   dependencies:
     any-promise "^1.0.0"
+
+third-party-capital@1.0.20:
+  version "1.0.20"
+  resolved "https://registry.npmjs.org/third-party-capital/-/third-party-capital-1.0.20.tgz"
+  integrity sha512-oB7yIimd8SuGptespDAZnNkzIz+NWaJCu2RMsbs4Wmp9zSDUM8Nhi3s2OOcqYuv3mN4hitXc8DVx+LyUmbUDiA==
 
 three-mesh-bvh@^0.7.0:
   version "0.7.0"

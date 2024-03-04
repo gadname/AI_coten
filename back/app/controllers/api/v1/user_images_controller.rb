@@ -1,6 +1,5 @@
 class Api::V1::UserImagesController < ApplicationController
-  before_action :set_current_user, only: [:create, show, update_urls]
-
+  before_action :set_current_user, only: [:create, :show, :update_urls]
   def create
     user_image = UserImage.find_or_initialize_by(user_id: user_image_params[:user_id])
     user_image.image_urls = user_image_params[:image_urls] # 修正: :image_url -> :image_urls

@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 function SomeComponent() {
   return (
     <div>
-      <Header />
+
       <Share />
       {/* <Robot /> */}
       

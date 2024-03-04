@@ -1,5 +1,5 @@
 'use client';
-import React from 'react'
+import React, { useState } from 'react'
 import { useSession, signIn, signOut } from 'next-auth/react'
 import Login from './components/Login'
 import Logout from './components/Logout'
@@ -14,6 +14,8 @@ import { Ticket }  from './components/Card';
 import  Hed  from './components/Header';
 import  Footer  from './components/Footer';
 import '../styles/robot.css';
+import { Snackbar } from "@mui/material";
+
 
 const styles = {
   paddingX: "sm:px-16 px-6",
@@ -46,7 +48,21 @@ const verticalTexts = texts.split('').map((char, index) => (
     {char}
   </div>
 ));
-  const { data: session, status } = useSession()
+  const { data: session, status } = useSession() as any
+
+  const [open, hundleOpen] = useState(false)
+
+  const share = () => {
+    if (!session) {
+      alert('ログインしてください');
+    } else {
+      const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}`
+      console.log('shareUrl', shareUrl)
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        hundleOpen(true)
+      })
+    }
+  }
 
   return (
     <>
@@ -67,12 +83,19 @@ const verticalTexts = texts.split('').map((char, index) => (
       
       <Ball />
       </div>
-      <Header />
+      <Header onShare={share}/>
       
       <Stars />
       <Robot />
       {/* ここにsection要素を追加 */}
       <Footer />
+
+      <Snackbar
+        open={open}
+        autoHideDuration={2000}
+        onClose={() => {hundleOpen(false)}}
+        message="シェア用のURLをコピーしました"
+      />
     </>
   )
 }

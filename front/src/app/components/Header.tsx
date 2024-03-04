@@ -7,9 +7,10 @@ import Logout from '../components/Logout'
 
 interface HeaderProps {
   color?: string; 
+  onShare: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ color = 'white' }) => { 
+const Header: React.FC<HeaderProps> = ({ color = 'white', onShare }) => { 
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { data: session } = useSession();
@@ -56,24 +57,25 @@ const Header: React.FC<HeaderProps> = ({ color = 'white' }) => {
         {/* メニュー */}
         <div className={`${!toggle ? "hidden" : "flex"} p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl `}>
           <ul className={`${styles.navContainer} list-none flex justify-end items-start flex-1 flex-col gap-4`} >
+              <Link key='2' href='/three'>
+                <div className={styles.navLink}>
+                  Gallery
+                </div>
+              </Link>
+              <div className={styles.navLink} onClick={onShare}>
+                Share
+              </div>
             {session ? (
-      <li>
-        <Logout />
-      </li>
-    ) : (
-      <li>
-        <Login />
-      </li>
-    )}
-    {navLinks.map((nav) => (
-      <Link key={nav.id} href={nav.path}>
-        <div className={styles.navLink}>
-          {nav.title}
+              <li>
+                <Logout />
+              </li>
+            ) : (
+              <li>
+                <Login />
+              </li>
+            )}
+          </ul>
         </div>
-      </Link>
-    ))}
-  </ul>
-      </div>
       </div>
     </nav>
   );

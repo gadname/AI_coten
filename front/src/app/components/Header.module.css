@@ -148,6 +148,7 @@
   padding: 5px 10px; /* パディング */
   border-radius: 3px; /* ボーダーの角を丸くする */
   transition: background 0.2s; /* 背景色の変化を滑らかに */
+  cursor: pointer; /* カーソルをポインターに変更 */
   
 }
 .navContainer li {

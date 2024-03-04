@@ -10,17 +10,26 @@ import '../../styles/robot.css';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { TextureLoader } from 'three';
-
+import styles from './App.module.css';
 import { Stars } from '@react-three/drei';
 import { Points, PointMaterial } from '@react-three/drei';
 
+
+
+
 const GOLDENRATIO = 1.61803398875
+
+// Modify the onShowModal prop type in AppProps to accept a string argument
 interface AppProps {
-  images: { url: string }[]; // Replace this with the actual type structure of your images
-  onShowModal: () => void;
+  images: { url: string }[];
+  onShowModal: (type: 'imageUpload' | 'dalle') => void; // Updated to accept a string argument
   onHideModal: () => void;
   isModalVisible: boolean;
 }
+
+// Ensure the onShowModal function in the parent component of <App /> is implemented to accept a string argument
+
+
 interface Image {
   url: string;
   // Add any other properties that each image object might have
@@ -29,12 +38,18 @@ interface FrameProps {
   url: string;
   c?: THREE.Color;
   [key: string]: any; // for the rest of the properties
+  images: Image[];
+  onShowModal: (type: 'imageUpload' | 'dalle') => void;
+  onHideModal: () => void;
+  isModalVisible: boolean;
 }
 interface CustomMaterial extends THREE.Material {
   zoom: number;
 }
-export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppProps) => {
+
+export const App = ({ images, onShowModal, onHideModal, isModalVisible, }: AppProps) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  const [modalType, setModalType] = useState('');
 
   const backgroundStyle = {
     backgroundColor: 'hsla(205,100%,13%,1)',
@@ -69,7 +84,12 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
       <fog attach="fog" args={['#ffffff', 0, 15]} />
       
       <group position={[0, -0.5, 0]}>
-        <Frames images={images} onShowModal={onShowModal} onHideModal={onHideModal} isModalVisible={isModalVisible}/>
+      <Frames 
+    images={images} 
+    onShowModal={(type) => onShowModal(type as 'imageUpload' | 'dalle')} // Directly pass the type
+    onHideModal={onHideModal} 
+    isModalVisible={isModalVisible}
+  />
         <mesh rotation={[-Math.PI / 2, 0, 0]}>
           <planeGeometry args={[50, 50]} />
           <MeshReflectorMaterial
@@ -96,7 +116,7 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible }: AppPro
   );
 }
 
-function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THREE.Quaternion(), p = new THREE.Vector3() }: { images: Image[]; onShowModal: () => void; onHideModal: () => void; isModalVisible: boolean; q?: THREE.Quaternion; p?: THREE.Vector3 }) {
+function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THREE.Quaternion(), p = new THREE.Vector3() }: { images: Image[]; onShowModal: (type: string) => void; onHideModal: () => void; isModalVisible: boolean; q?: THREE.Quaternion; p?: THREE.Vector3 }) {
   const ref = useRef<THREE.Group>(null);
   const clicked = useRef<THREE.Object3D<THREE.Object3DEventMap> | undefined>();
   const [, params] = useRoute('/item/:id')
@@ -149,13 +169,30 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
   } : {};
 
   
+  const [selectedModalType, setSelectedModalType] = useState('');
+
+  const toggleModalType = () => {
+    const newModalType = selectedModalType === 'dalle' ? 'imageUpload' : 'dalle';
+    setSelectedModalType(newModalType);
+    onShowModal(newModalType);
+  };
+  
   return (
     <group
       ref={ref}
       onClick={(e) => (e.stopPropagation(), setLocation(clicked.current === e.object ? '/' : '/item/' + e.object.name))}
       onPointerMissed={() => setLocation('/')}>
-      {images.map((props) => <Frame key={props.url} {...props} /> /* prettier-ignore */)}
+      {images.map((props) =>  <Frame 
+    key={props.url} 
+    {...props} 
+    images={images}  
+    onShowModal={onShowModal} 
+    onHideModal={onHideModal} 
+    isModalVisible={isModalVisible}
+  /> /* prettier-ignore */)}
         <Html position={[0, 0, 0]} zIndexRange={[2, 0]}>
+        {/* <button onClick={() => onShowModal('imageUpload')} className={styles.speechBubble}>投稿ニャ</button>
+        <button onClick={() => onShowModal('dalle')} >Dall-E モーダル</button> */}
           <div className="container" style={buttonStyle}>
             <div className="box"style={buttonStyle}>
               <div className="area area_1"></div>
@@ -168,17 +205,24 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
               <div className="area area_8"></div>
               <div className="area area_9"></div>
               
-              <button onClick={() => { isModalVisible ? onHideModal() : onShowModal(); }} className="robot" >
+              <button onClick={toggleModalType} className="robot">
+                {selectedModalType === 'dalle' ? '' : ''}
                 <div className="front parts_A"></div>
                 <div className="front parts_B"></div>
+                 {/* 画像アップロードボタン */}
+      
                 <div className="face">
                   <div className="face__wrapper">
                   <div className="triangleMouth"></div> 
                     <div className="eye"></div>
-                    <span className="text">Click!</span>
+                    
+                    
+                    <span className="text">{selectedModalType === '' ? 'POST!' : 'CREATE！'}
+                    </span>
                   </div>
                 </div>
               </button>
+             
             </div>
           </div>
         </Html>

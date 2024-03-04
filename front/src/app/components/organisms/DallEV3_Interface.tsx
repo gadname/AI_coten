@@ -3,6 +3,7 @@ import React, { FC, useState, useEffect, useCallback, MouseEventHandler } from "
 import styles from './DallEV3_Interface.module.css';
 import { SubmitHandler } from "react-hook-form";
 import LoadingSVG from '../../../assets/loading.svg';
+import commonStyles from '../CommonStyles.module.css';
 import { Typography } from "@mui/joy";
 import {
   TextPromptForm,
@@ -185,83 +186,83 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     <div style={{ width: "100%" }}>
       <div style={flexContainerStyle}>
 
-  <label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="precision" checked={checkboxStates.precision} onChange={handleCheckboxChange} />
   浮世絵風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="watercolor" checked={checkboxStates.watercolor} onChange={handleCheckboxChange} />
   水彩画風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="acrylic" checked={checkboxStates.acrylic} onChange={handleCheckboxChange} />
   アクリル画風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="pastelArt" checked={checkboxStates.pastelArt} onChange={handleCheckboxChange} />
   パステル画風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="penAndInk" checked={checkboxStates.penAndInk} onChange={handleCheckboxChange} />
   ペンとインク風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="brushStroke" checked={checkboxStates.brushStroke} onChange={handleCheckboxChange} />
   筆風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="lineStamp" checked={checkboxStates.lineStamp} onChange={handleCheckboxChange} />
   LINEスタンプ風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="crayon" checked={checkboxStates.crayon} onChange={handleCheckboxChange} />
   クレヨン画風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="pencilDrawing" checked={checkboxStates.pencilDrawing} onChange={handleCheckboxChange} />
   鉛筆画風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="coloredPencil" checked={checkboxStates.coloredPencil} onChange={handleCheckboxChange} />
   色鉛筆画風に
 </label>
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`} style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="oilPainting" checked={checkboxStates.oilPainting} onChange={handleCheckboxChange} />
-  油絵画
+  油絵画風に
 </label>
 
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`}　style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="vanGogh" checked={checkboxStates.vanGogh} onChange={handleCheckboxChange} />
   ゴッホ風に
 </label>
 
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`}　style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="Manet" checked={checkboxStates.Manet} onChange={handleCheckboxChange} />
   モネ風に
 </label>
 
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`}　style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="picasso" checked={checkboxStates.picasso} onChange={handleCheckboxChange} />
   ピカソ風に
 </label>
 
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`}　style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="Leonardo_da_Vinci" checked={checkboxStates.Leonardo_da_Vinci} onChange={handleCheckboxChange} />
   ダヴィンチ風に
 </label>
 
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`}　style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="logoStyle" checked={checkboxStates.logoStyle} onChange={handleCheckboxChange} />
   ロゴ風に
 </label>
 
 
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`}　style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="comic" checked={checkboxStates.comic} onChange={handleCheckboxChange} />
   コミック風に
 </label>
 
-<label style={flexItemStyle}>
+<label className={`${styles.fontDot}`}　style={flexItemStyle}>
   <input type="checkbox" className={styles.checkboxInput} name="disney" checked={checkboxStates.disney} onChange={handleCheckboxChange} />
   ディズニー風に
 </label>
@@ -292,12 +293,8 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     {/* <Typography level="h2">画像生成</Typography> */}
     <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue={gptOutput} />
     <ImageWrapper src={imageUrl} onUpload={() => onUpload()} />
-      {isExecuting && (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <img src={LoadingSVG} alt="Loading" />
-        </div>
-      )}
-      {imageUrl ? <div onClick={addImage}>個展に画像を追加するa</div> : <></>}
+      
+    {imageUrl ? <div style={{ textAlign: 'center', fontFamily: 'var(--font-dot)', color: 'blue' }}>気に入ったら左クリック→「名前をつけて画像を保存」してニャ</div> : <></>}
     {/* {selectedImage && (
       <>
         <div style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCloseModal}>
@@ -305,7 +302,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
               <img src={selectedImage.imageUrl} style={{ width: '300px', height: '300px'}}/>
           </div>
         </div>
-        <span>個展に画像を追加するb</span>
+        <span>画像を追加するb</span>
       </>
     )} */}
   </div>

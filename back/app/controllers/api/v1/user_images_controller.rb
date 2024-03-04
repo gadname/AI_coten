@@ -49,7 +49,7 @@ class Api::V1::UserImagesController < ApplicationController
       render json: { error: "User does not exist." }, status: :not_found
       return
     end
-
+    logger.debug "+++++: #{@current_user}"
     user_image = UserImage.find_or_initialize_by(user_id: user.id) 
     user_image.image_urls = user_image_params[:image_urls] 
     

@@ -124,14 +124,14 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
       ...prevUrls,
       [imageKey]: newUrl
     };
-
+    
     if (session) {
       console.log('Session_logs' , session);
       const requestBody = {
         image_urls: updatedUrls,
       };
-
-      fetch("http://ai-coten.onrender.com/api/v1/user_images/update_urls", { 
+      console.log('updatedUrls', updatedUrls);
+      fetch("https://ai-coten.onrender.com/api/v1/user_images/update_urls", { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -157,7 +157,31 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
 const fetchImageUrls = async () => {
   const shareQuery = params.get('share_id')
   // sessionがある場合は自分の画像URLを取得
-  if (session) {
+  if (shareQuery) {
+    // shareQueryから画像データを取得する
+    console.log("**********aaaaa")
+    try {
+      const response = await fetch(`https://ai-coten.onrender.com/api/v1/user_images/share?user_id=${shareQuery}`, {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch image URLs');
+      }
+
+      const data = await response.json();
+      console.log('imageUrls_data', data);
+      setImageUrls(data); // 状態を更新
+
+      // localForageを使用してデータを保存
+      await localForage.setItem('imageUrls', data);
+    } catch (error) {
+      console.error('Error fetching image URLs:', error);
+    }
+  } else if (session) {
     try {
       const response = await fetch("https://ai-coten.onrender.com/api/v1/user_images", {
         method: 'GET', 
@@ -181,41 +205,21 @@ const fetchImageUrls = async () => {
     } catch (error) {
       console.error('Error fetching image URLs:', error);
     }
-  } else if (shareQuery) {
-    // shareQueryから画像データを取得する
-    try {
-      const response = await fetch(`https://ai-coten.onrender.com/api/v1/user_images/share?user_id=${shareQuery}`, {
-        method: 'GET', 
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to fetch image URLs');
-      }
-
-      const data = await response.json();
-      console.log('imageUrls_data', data);
-      setImageUrls(data); // 状態を更新
-
-      // localForageを使用してデータを保存
-      await localForage.setItem('imageUrls', data);
-    } catch (error) {
-      console.error('Error fetching image URLs:', error);
-    }
   }
 };
 
 useEffect(() => {
   fetchImageUrls();
-}, []);
+}, [session]);
 
 // const upload = (url: string) => {
 //   console.log('url', url);
 //   handleImageUpload(url)
 // }
 
+useEffect(() => {
+  fetchImageUrls();
+}, []);
 
 
 return (

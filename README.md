@@ -1,4 +1,3 @@
-# Gallery.ai 
 ![GOGP](https://github.com/gadname/AI_coten/assets/59115863/264ff173-3a6d-4d6e-a3ba-526f2db72ad1)
 ## 🌎 サービスのURL 🌎
 https://ai-coten-nu.vercel.app/

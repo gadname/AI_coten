@@ -217,7 +217,7 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
                     <div className="eye"></div>
                     
                     
-                    <span className="text">{selectedModalType === '' ? 'POST!' : 'CREATE！'}
+                    <span className="text">{selectedModalType === 'dalle' ? 'POST!' : 'CREATE'}
                     </span>
                   </div>
                 </div>

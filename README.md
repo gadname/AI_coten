@@ -1,9 +1,11 @@
-# Gallery.ai / AI個展サービス
+# Gallery.ai 
 
+🌎 サービスのURL 🌎
+https://ai-coten-nu.vercel.app/
 
 # サービス概要
 
-🌎 サービスURL 🌎
+
 
 ▼紹介記事(Qiita)
 

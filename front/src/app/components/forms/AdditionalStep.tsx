@@ -26,6 +26,8 @@ const schema = yup
   })
   .required();
 
+
+  
   function AdditionalStep(props: AdditionalStepProps) {
   const {
     control,

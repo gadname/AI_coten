@@ -294,7 +294,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue={gptOutput} />
     <ImageWrapper src={imageUrl} onUpload={() => onUpload()} />
       
-    {imageUrl ? <div style={{ textAlign: 'center', fontFamily: 'var(--font-dot)', color: 'blue' }}>気に入ったら左クリック→「名前をつけて画像を保存」してニャ</div> : <></>}
+    {imageUrl ? <div style={{ textAlign: 'center', fontFamily: 'var(--font-dot)', color: 'blue' }}>気に入ったら右クリック→「名前をつけて画像を保存」してニャ</div> : <></>}
     {/* {selectedImage && (
       <>
         <div style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCloseModal}>

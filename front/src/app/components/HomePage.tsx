@@ -184,7 +184,7 @@ const fetchImageUrls = async () => {
   } else if (shareQuery) {
     // shareQueryから画像データを取得する
     try {
-      const response = await fetch(`https://ai-coten.onrender.com/api/v1/user_images?user_id=${shareQuery}`, {
+      const response = await fetch(`https://ai-coten.onrender.com/api/v1/user_images/share?user_id=${shareQuery}`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',

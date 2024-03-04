@@ -1,5 +1,6 @@
 class Api::V1::UserImagesController < ApplicationController
-  before_action :set_current_user, only: [:create, :show, :update_urls]
+  before_action :set_current_user, only: [:create, :show, :update_urls, :index]
+
   def create
     user_image = UserImage.find_or_initialize_by(user_id: user_image_params[:user_id])
     user_image.image_urls = user_image_params[:image_urls] # 修正: :image_url -> :image_urls
@@ -20,15 +21,21 @@ class Api::V1::UserImagesController < ApplicationController
     end
   end
 
-  def index
-    # current_userを使用して、認証されたユーザーのUserImageを取得
-    if params[:user_id]
-      user = User.find(uid: params[:user_id])
+  def share 
+    user = User.where(uid: params[:user_id]).last
+    if user.present?
       user_images = user.user_images
-    elsif @current_user
-      user_images = @current_user.user_images
     end
 
+    if user.present? && user_images.any?
+      render json: user_images.last.image_urls, status: :ok
+    else
+      render json: {}, status: :not_found
+    end
+  end
+
+  def index
+    user_images = @current_user.user_images
     if user_images.any?
       render json: user_images.last.image_urls, status: :ok
     else

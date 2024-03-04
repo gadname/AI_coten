@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="ja">
       <head>
@@ -35,3 +35,6 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     </html>
   );
 };
+
+
+export default Layout;

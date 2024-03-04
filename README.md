@@ -1,6 +1,6 @@
 # Gallery.ai 
 
-🌎 サービスのURL 🌎
+# 🌎 サービスのURL 🌎
 https://ai-coten-nu.vercel.app/
 
 # サービス概要

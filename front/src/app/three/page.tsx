@@ -15,15 +15,14 @@ function SomeComponent() {
     if (!session) {
       alert('ログインしてください');
     } else {
-      // ランダムなテキストを選択
       const tweetOptions = [
         "Gallery.aiで個展を作成しました！",
-        // 他のテキストオプション...
+        
       ];
       const tweetText = tweetOptions[Math.floor(Math.random() * tweetOptions.length)];
       const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}`;
       const pageUrl = encodeURIComponent(shareUrl);
-      const hashtags = "MISERY";
+      const hashtags = "Gallery.ai";
   
       // Twitter Intentでテキストとハッシュタグを含めてツイート
       window.open(

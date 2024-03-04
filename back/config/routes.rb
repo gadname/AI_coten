@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :user_images do
         collection do
           post 'update_urls' 
+          get 'share'
         end
         resources :our_images do
           collection do

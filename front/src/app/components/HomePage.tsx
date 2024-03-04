@@ -13,6 +13,7 @@ import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { DallE3Interface } from '@/app/components/organisms/DallEV3_Interface';
 import { Dialog, Modal } from "@mui/material";
+import { useSearchParams } from "next/navigation"
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -43,17 +44,19 @@ interface CustomSession extends Session {
   }
 export default function HomePage() {
   const { data: session } = useSession();//sessionの状態を取得
+  const params = useSearchParams();
+
   
   const [imageUrls, setImageUrls] = useState({
-    image1: '/AIs.jpg',
-    image2: '/aicat5.png',
-    image3: '/img9.jpg',
-    image4: '/ai8.jpg',
-    image5: '/ai4.jpg',
-    image6: '/ai1.jpg',
+    image1: '/ai4.jpg',
+    image2: '/art1.png',
+    image3: '/art2.png',
+    image4: '/art3.png',
+    image5: '/AIs.jpg',
+    image6: '/ai8.jpg',
     image7: '/ai6.jpg',
     image8: '/ai7.jpg',
-    image9: '/art3.png',
+    image9: '/aicat.png',
   });
 
 // 画像のデータを配列に変換
@@ -115,61 +118,6 @@ const images = [
     }
   };
 
-
-  // 画像をアップロードするためのハンドラー
-  // const handleImageUpload = async (imageKey: string, event: React.ChangeEvent<HTMLInputElement>) => {
-
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     const file = event.target.files[0];
-  //     const now = new Date();
-  //     const timestamp = now.toISOString().replace(/:/g, '-').replace(/\..+/, '');
-  //     const fileNameWithTimestamp = `${timestamp}_${file.name}`;
-  //     const storageRef = ref(storage, fileNameWithTimestamp);
-  //     uploadBytes(storageRef, file).then((snapshot) => {
-  //       getDownloadURL(snapshot.ref).then((downloadURL) => {
-  //         console.log('File available at', downloadURL);
-  //         // ここでダウンロードURLを使用してステートを更新
-  //         updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
-  //       });
-  //     }).catch((error) => {
-  //       console.error("Upload failed", error);
-  //     });
-  //   }
-  // };
-
-//     if (event.target.files && event.target.files.length > 0) {
-//       const file = event.target.files[0];
-//       console.log('file', file);
-//       console.log('files', event.target.files);
-//       const formData = new FormData();
-//       const session = await getSession() as any;
-//       console.log('Session_log' , session);
-//       formData.append('post[image]', file); // 'image' を 'post[image]' に変更
-//       formData.append('post[user_id]', session.user_id); // 'user_id' を 'post[user_id]' に変更
-//       uploadBytes(storageRef, file).then((snapshot) => {
-//         console.log('Uploaded a blob or file!');
-//       });
-//       fetch("https://ai-coten.onrender.com/api/v1/posts", {
-//         method: 'POST',
-//         body: formData, // formDataを使用しているため、これが正しいbodyです
-//         headers: {
-//           'Authorization': `Bearer ${session.accessToken}`,
-//           'UserId': session.user_id, 
-//         },
-//       })
-//       .then(response => response.json())
-//       .then(data => {
-//         console.log('Server response:', data);
-//   // サーバーから返された画像のURLで状態を更新
-//   // const newImageUrl = data.url; // サーバーから返されるプロパティ名に合わせてください
-//   // updateImageUrl(imageKey as keyof typeof imageUrls, newImageUrl);
-// })
-// .catch(error => {
-//   console.error('アップロード中にエラーが発生しました。', error);
-// });
-// }
-
-
 const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
   setImageUrls((prevUrls: typeof imageUrls) => {
     const updatedUrls = {
@@ -183,7 +131,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
         image_urls: updatedUrls,
       };
 
-      fetch("https://ai-coten.onrender.com/api/v1/user_images/update_urls", { 
+      fetch("http://ai-coten.onrender.com/api/v1/user_images/update_urls", { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -206,38 +154,62 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
 
 // 画像 URL を更新する関数
 
-useEffect(() => {
-  const fetchImageUrls = async () => {
-    if (session) {
-      try {
-        const response = await fetch("https://ai-coten.onrender.com/api/v1/user_images", {
-          method: 'GET', 
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${(session as CustomSession).accessToken}`,
-          },
-        });
+const fetchImageUrls = async () => {
+  const shareQuery = params.get('share_id')
+  // sessionがある場合は自分の画像URLを取得
+  if (session) {
+    try {
+      const response = await fetch("https://ai-coten.onrender.com/api/v1/user_images", {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${(session as CustomSession).accessToken}`,
+        },
+      });
 
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch image URLs');
-        }
-
-        const data = await response.json();
-        console.log('imageUrls_data', data);
-        setImageUrls(data); // 状態を更新
-
-        // localForageを使用してデータを保存
-        await localForage.setItem('imageUrls', data);
-      } catch (error) {
-        console.error('Error fetching image URLs:', error);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch image URLs');
       }
+
+      const data = await response.json();
+      console.log('imageUrls_data', data);
+      setImageUrls(data); // 状態を更新
+
+      // localForageを使用してデータを保存
+      await localForage.setItem('imageUrls', data);
+    } catch (error) {
+      console.error('Error fetching image URLs:', error);
     }
-  };
+  } else if (shareQuery) {
+    // shareQueryから画像データを取得する
+    try {
+      const response = await fetch(`https://ai-coten.onrender.com/api/v1/user_images?user_id=${shareQuery}`, {
+        method: 'GET', 
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch image URLs');
+      }
 
+      const data = await response.json();
+      console.log('imageUrls_data', data);
+      setImageUrls(data); // 状態を更新
 
+      // localForageを使用してデータを保存
+      await localForage.setItem('imageUrls', data);
+    } catch (error) {
+      console.error('Error fetching image URLs:', error);
+    }
+  }
+};
+
+useEffect(() => {
   fetchImageUrls();
-}, [session]);
+}, []);
 
 // const upload = (url: string) => {
 //   console.log('url', url);

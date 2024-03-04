@@ -23,7 +23,14 @@ class Api::V1::UserImagesController < ApplicationController
 
   def index
     # current_userを使用して、認証されたユーザーのUserImageを取得
-    user_images = @current_user.user_images
+    logger.debug "params_user_id: #{params[:user_id]}"
+    if @current_user
+      user_images = @current_user.user_images
+    elsif params[:user_id]
+      user = User.find(uid: params[:user_id])
+      user_images = user.user_images
+    end
+
     if user_images.any?
       render json: user_images.last.image_urls, status: :ok
     else

@@ -16,7 +16,7 @@ function SomeComponent() {
       alert('ログインしてください');
     } else {
       const tweetText = "「Gallery AI」で個展を作成しました！";
-      const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}`;
+      const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}&v=20231006`;
       const hashtags = "GalleryAI"; // ハッシュタグを"GalleryAI"に設定
   
       // Twitter Intentでテキスト、URL、ハッシュタグを含めてツイート

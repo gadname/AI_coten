@@ -15,7 +15,7 @@ function SomeComponent() {
     if (!session) {
       alert('ログインしてください');
     } else {
-      const tweetText = "オリジナル個展を公開しました！ぜひ展示をお楽しみください🖼️";
+      const tweetText = "「Gallery AI」で個展を作成しました！";
       const shareUrl = `https://ai-coten-nu.vercel.app/three?share_id=${session.user_id}&v=20231006`;
       const hashtags = "GalleryAI"; // ハッシュタグを"GalleryAI"に設定
   

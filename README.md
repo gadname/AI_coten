@@ -3,7 +3,6 @@
 ## 🌎 サービスのURL 🌎
 https://ai-coten-nu.vercel.app/
 
-![service-image](https://raw.githubusercontent.com/keynyaan/hayabusatrip-frontend/main/public/images/ogp.png)
 [![CI/CD](https://github.com/keynyaan/hayabusatrip-frontend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/keynyaan/hayabusatrip-frontend/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/keynyaan/hayabusatrip-frontend/graph/badge.svg?token=LCPY7L2MHO)](https://codecov.io/gh/keynyaan/hayabusatrip-frontend)
 [![Ruby](https://img.shields.io/badge/Ruby-v3.2.2-CC342D?logo=Ruby&logoColor=CC342D)](https://www.ruby-lang.org/ja/news/2023/03/30/ruby-3-2-2-released)

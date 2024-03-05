@@ -107,17 +107,6 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     }
   
     setIsExecuting(true);
-    setRequestCount(current => {
-      if (current >= 29) {
-        setIsLimitReached(true);
-        // リクエストカウントが9に達した時点で、リセット時間を設定
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1); // 現在の日付+1日
-        setResetTime(tomorrow);
-        localStorage.setItem('resetTime', tomorrow.toISOString()); // リセット時間をローカルストレージに保存
-      }
-      return current + 1;
-    });
     
     let promptPrefix = "";
     if (checkboxStates.precision) {
@@ -195,13 +184,27 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
         body: JSON.stringify(modifiedData),
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("リクエストに失敗したニャ...もう一度試してみてニャ");
       }
+
       const result = await response.json();
       setImageUrl(result.srcUrl);
+
+      setRequestCount(current => current + 1);
+      if (requestCount >= 19) {
+        setIsLimitReached(true);
+        // リセット時間を設定
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1);
+        setResetTime(tomorrow);
+        localStorage.setItem('resetTime', tomorrow.toISOString());
+      }
     } catch (error) {
-      console.error("Fetch error:", error);
-      setImageUrl(null);
+      if (error instanceof Error) {
+        alert(error.message); // Now safely accessing error.message
+      } else {
+        alert("リクエストに失敗したニャ...もう一度試してみてニャ");
+      }
     } finally {
       setIsExecuting(false);
     }

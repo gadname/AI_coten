@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { HomeTemplate } from "@/app/components/templates/HomeTemplate";
 import { usePathname } from 'next/navigation';
 import { DallE3Interface } from './organisms/DallEV3_Interface';
+import Login from '../components/Login';
 
 const dynamicStyles = {
   container: `fixed bottom-0 w-1/2 sm:w-3/4 md:w-1/3 lg:w-1/2 xl:w-2/5 h-[120px] sm:h-[10px] md:h-[200px] flex flex-col justify-center items-center bg-transparent rounded-lg`,
@@ -181,9 +182,13 @@ useEffect(() => {
             { !isThreePath ? <p key={animationKey} className={`${styles.modalContent} ${isTypingSecond ? styles.typing2 : ''} ${isTypingThird ? styles.typing3 : ''} ${isTypingFourth ? styles.typing4 : ''} ${isTypingFifth ? styles.typing5 : ''} ${isTypingSixth ? styles.typing6 : ''}`}>
             {/* アニメーションが表示される */}
           </p> : <></>}
-          
+        
+    
           <ul>
-            {/* { isTypingThird && !isTypingFourth || isThreePath ? <DallE3Interface onUpload={onUpload} /> : <></>} */}
+            
+          {isTypingSixth ? (<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', marginTop: '10px'  }}>
+            <Login />
+            </div>) : <></>} 
           
             {/* 他のリンク */}
           </ul>

@@ -173,3 +173,9 @@
   width: auto;
   height: 20px;
 }
+
+.shareLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

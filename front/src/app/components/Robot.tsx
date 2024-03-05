@@ -40,23 +40,24 @@ const Robot: FC<any> = ({onUpload}) => {
 
   // スタイルの分岐
   const style = isMobile 
-    ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '100px', bottom: '50px' }
+    ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '130px', bottom: '130px' }
     : isTablet // タブレットサイズの場合のスタイル
       ? { transform: 'scale(0.9)', right: '100px', bottom: '10px' } // iPadサイズに適したスタイル
       : { right: '0px', top: '500px' };
 
     const modalStyle: CSSProperties = isMobile 
-?  { 
-  position: 'fixed',
-  top: '-300%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)', // 中央に配置
-  width: '250%', // モバイルデバイスに適した幅
-  maxHeight: '500%', // ビューポートに対して最大高さを設定
-  overflow: 'auto', // 内容がオーバーフローした場合にスクロールを可能にする
-  padding: '20px', // 内容とボーダーの間のスペース
-  borderRadius: '10px', // 角の丸み
-  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', // 影のスタイル
+?  {  
+      position: 'fixed',
+      top: '-140%', // 画面の中央に配置
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '200%', // モバイルデバイスの幅に合わせて調整
+      maxHeight: '90%', // ビューポートの高さに合わせて調整
+      overflow: 'auto', // 内容がオーバーフローした場合にスクロールを可能にする
+      padding: '20px',
+      borderRadius: '10px',
+      boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+      
 }: isTablet
 ? {
   position: 'fixed',

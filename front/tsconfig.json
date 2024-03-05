@@ -2,7 +2,7 @@
   "compilerOptions": {
     "typeRoots": ["./node_modules/@types", "./types"],
     "types": ["maath-random"],
-    "target": "es5",
+    "target": "es2015", // es5からes2015に変更
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -20,7 +20,7 @@
         "name": "next"
       }
     ],
-    "baseUrl": ".", // この行を追加
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
     }

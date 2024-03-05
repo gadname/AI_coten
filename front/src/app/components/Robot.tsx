@@ -48,7 +48,7 @@ const Robot: FC<any> = ({onUpload}) => {
     const modalStyle: CSSProperties = isMobile 
 ?  { 
   position: 'fixed',
-  top: '-250%',
+  top: '-300%',
   left: '50%',
   transform: 'translate(-50%, -50%)', // 中央に配置
   width: '250%', // モバイルデバイスに適した幅

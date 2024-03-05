@@ -22,7 +22,7 @@ const ImageUploadModal: FC<ImageUploadModalProps> = ({ onClose, children }) => {
     <div className={styles.sidebarOverlay} onClick={handleClose}>
       <div className={`${styles.sidebar} ${isClosing ? styles.sidebarClosing : ''}`} onClick={e => e.stopPropagation()}>
         {children}
-        <text style={{ fontFamily: 'var(--font-dot)' }} className={styles.uploadButton}>ガゾウ投稿デキルニャ!!</text>
+        <text style={{ fontFamily: 'var(--font-dot)' }} className={styles.uploadButton}>ガゾウを投稿するニャ!!</text>
       </div>
     </div>
   );

@@ -52,6 +52,7 @@ export default function HomePage() {
     image7: '/ai6.jpg',
     image8: '/aix.jpg',
     image9: '/aicat.png',
+
   });
 
 // 画像のデータを配列に変換

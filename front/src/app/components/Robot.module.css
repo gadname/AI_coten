@@ -4,7 +4,7 @@
 
 .modal {
   position: fixed;
-  top: 85%;
+  top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
   
@@ -29,6 +29,8 @@
   border-style: solid;
   border-color: rgba(255,255,255,.4) transparent transparent transparent;
 }
+
+
 
 
 

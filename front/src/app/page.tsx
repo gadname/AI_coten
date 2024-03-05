@@ -92,7 +92,6 @@ const verticalTexts = texts.split('').map((char, index) => (
       
       <Stars />
       <Robot />
-      {/* ここにsection要素を追加 */}
       <Footer />
 
       <Snackbar

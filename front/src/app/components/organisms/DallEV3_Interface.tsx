@@ -49,10 +49,46 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
+  const [requestCount, setRequestCount] = useState(() => {
+    const storedCount = localStorage.getItem('requestCount');
+    return storedCount !== null ? parseInt(storedCount, 10) : 0;
+  });
+  const [isLimitReached, setIsLimitReached] = useState(requestCount >= 20);
+
+  const [resetTime, setResetTime] = useState(() => {
+    const storedResetTime = localStorage.getItem('resetTime');
+    return storedResetTime ? new Date(storedResetTime) : null;
+  });
+
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setCheckboxStates(prev => ({ ...prev, [name]: checked }));
   };
+
+
+  useEffect(() => {
+    // リセット時間を過ぎていたらリクエストカウントとリミット到達状態をリセット
+    const now = new Date();
+    if (resetTime && now >= resetTime) {
+      setRequestCount(0);
+      setIsLimitReached(false);
+      localStorage.removeItem('resetTime');
+      localStorage.removeItem('requestCount');
+    }
+  }, [resetTime]);
+
+  useEffect(() => {
+    // リクエストカウントの変更をローカルストレージに保存
+    localStorage.setItem('requestCount', requestCount.toString());
+    if (requestCount >= 19) {
+      setIsLimitReached(true);
+    }
+  }, [requestCount]);
+
+
+
+
+
   const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
 
   const handleImageClick = (imageItem: ImageItem) => {
@@ -65,8 +101,23 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
   };
 
   const onSubmit: SubmitHandler<TextPromptFormInputs> = useCallback(async (data) => {
-    console.log("onSubmit", data);
+    if (isLimitReached) {
+      alert("リクエストの上限ニャ...また明日、会おうニャ！");
+      return;
+    }
+  
     setIsExecuting(true);
+    setRequestCount(current => {
+      if (current >= 29) {
+        setIsLimitReached(true);
+        // リクエストカウントが9に達した時点で、リセット時間を設定
+        const tomorrow = new Date();
+        tomorrow.setDate(tomorrow.getDate() + 1); // 現在の日付+1日
+        setResetTime(tomorrow);
+        localStorage.setItem('resetTime', tomorrow.toISOString()); // リセット時間をローカルストレージに保存
+      }
+      return current + 1;
+    });
     
     let promptPrefix = "";
     if (checkboxStates.precision) {
@@ -154,7 +205,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     } finally {
       setIsExecuting(false);
     }
-  }, [checkboxStates]); // 依存配列を空にしてonSubmit関数が再生成されないようにする
+  }, [checkboxStates, requestCount, isLimitReached, setRequestCount, setIsExecuting, setResetTime]); // 依存配列を空にしてonSubmit関数が再生成されないようにする
 
 
   const addImage: MouseEventHandler<HTMLDivElement> = () => {
@@ -270,24 +321,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
 
 
 
-  
-      
-      {/* <label style={flexItemStyle}>
-        <input type="checkbox" className={styles.checkboxInput} name="comic" checked={checkboxStates.comic} onChange={handleCheckboxChange} />
-        コミック風に
-      </label>
-      <label style={flexItemStyle}>
-        <input type="checkbox" className={styles.checkboxInput} name="genshin_impact" checked={checkboxStates.genshin_impact} onChange={handleCheckboxChange} />
-        原神風に
-      </label>
-      <label style={flexItemStyle}>
-        <input type="checkbox" className={styles.checkboxInput} name="final_fantasy" checked={checkboxStates.final_fantasy} onChange={handleCheckboxChange} />
-        ファイナルファンタジー風に
-      </label>
-      <label style={flexItemStyle}>
-        <input type="checkbox" className={styles.checkboxInput} name="persona5" checked={checkboxStates.persona5} onChange={handleCheckboxChange} />
-        ペルソナ風に
-      </label> */}
+
     </div>
   
     {/* <Typography level="h2">画像生成</Typography> */}
@@ -295,17 +329,13 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     <ImageWrapper src={imageUrl} onUpload={() => onUpload()} />
       
     {imageUrl ? <div style={{ textAlign: 'center', fontFamily: 'var(--font-dot)', color: 'blue' }}>気に入ったら右クリック→「名前をつけて画像を保存」してニャ</div> : <></>}
-    {/* {selectedImage && (
-      <>
-        <div style={{ position: 'fixed', top: '0', left: '0', width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={handleCloseModal}>
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transform: 'translateY(-100%)' }}>
-              <img src={selectedImage.imageUrl} style={{ width: '300px', height: '300px'}}/>
-          </div>
-        </div>
-        <span>画像を追加するb</span>
-      </>
-    )} */}
+    <div style={{ marginTop: '20px', textAlign: 'center' }} className={styles.fontDot}>
+      {isLimitReached ? (
+        <p style={{ color: 'red' }}>リクエストの上限に達しました。</p>
+      ) : (
+        <p>残りのリクエスト回数: {20 - requestCount}</p>
+      )}
+    </div>
   </div>
 );
- 
 };

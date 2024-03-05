@@ -1,10 +1,7 @@
+# Gallery.ai / AI個展生成サービス
+
 ![GOGP](https://github.com/gadname/AI_coten/assets/59115863/264ff173-3a6d-4d6e-a3ba-526f2db72ad1)
 
-## 🌎 サービスのURL 🌎
-https://ai-coten-nu.vercel.app/
-
-[![CI/CD](https://github.com/keynyaan/hayabusatrip-frontend/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/keynyaan/hayabusatrip-frontend/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/keynyaan/hayabusatrip-frontend/graph/badge.svg?token=LCPY7L2MHO)](https://codecov.io/gh/keynyaan/hayabusatrip-frontend)
 [![Ruby](https://img.shields.io/badge/Ruby-v3.2.2-CC342D?logo=Ruby&logoColor=CC342D)](https://www.ruby-lang.org/ja/news/2023/03/30/ruby-3-2-2-released)
 [![Rails](https://img.shields.io/badge/Rails-v7.0.7.2-CC0000?logo=Ruby-on-Rails&logoColor=CC0000)](https://rubyonrails.org/2023/3/13/Rails-7-0-4-3-and-6-1-7-3-have-been-released)
 [![TypeScript](https://img.shields.io/badge/TypeScript-v5.0.2-007ACC?logo=TypeScript&logoColor=007ACC)](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html)

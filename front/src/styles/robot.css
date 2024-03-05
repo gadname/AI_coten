@@ -100,9 +100,9 @@
     height: 0;
     border-left: 8px solid transparent; /* 左側の透明な境界を小さく */
     border-right: 8px solid transparent; /* 右側の透明な境界を小さく */
-    border-bottom: 8px solid #ffde55; /* 下向きの三角形を形成し、サイズを小さく */
+    border-top: 8px solid #ffde55; /* 上向きの三角形を形成し、サイズを小さく */
     opacity: 1;
-}
+  }
 
 /* .face__wrapperにカーソルを当てた時に.triangleMouthのアニメーションを実行 */
 .face__wrapper:hover .triangleMouth {

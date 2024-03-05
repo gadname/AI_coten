@@ -71,14 +71,14 @@ export const App = ({ images, onShowModal, onHideModal, isModalVisible, }: AppPr
     
       <Stars
      radius={300}
-     depth={50}
+     depth={120}
      count={200000}
-     factor={4}
+     factor={7}
      fade={true}
-     speed={0.2}
-     saturation={8}
+     speed={0.8}
+     saturation={12}
      // @ts-ignore
-     randomness={1}
+     randomness={2}
    />
    <Environment preset="dawn" />
       <fog attach="fog" args={['#ffffff', 0, 15]} />
@@ -212,6 +212,8 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
                  {/* 画像アップロードボタン */}
       
                 <div className="face">
+                <div className={styles.speechBubble}>{selectedModalType === 'dalle' ? 'post!' : 'create!'}</div>
+          
                   <div className="face__wrapper">
                   <div className="triangleMouth"></div> 
                     <div className="eye"></div>

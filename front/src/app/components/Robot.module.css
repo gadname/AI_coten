@@ -648,53 +648,55 @@
   /* typing4 アニメーション */
   @keyframes typing4 {
     0% { content: ''; }
-    5% { content: '「'; }
-    10% { content: '「G'; }
-    15% { content: '「Ga'; }
-    20% { content: '「Gal'; }
-    25% { content: '「Gall'; }
-    30% { content: '「Galle'; }
-    35% { content: '「Gallery'; }
-    40% { content: '「Gallery.'; }
-    45% { content: '「Gallery.a'; }
-    50% { content: '「Gallery.ai'; }
-    55% { content: '「Gallery.ai」'; }
-    60% { content: '「Gallery.ai」は'; }
-    65% { content: '「Gallery.ai」は「'; }
-    70% { content: '「Gallery.ai」は「A'; }
-    75% { content: '「Gallery.ai」は「AI'; }
-    80% { content: '「Gallery.ai」は「AI個'; }
-    85% { content: '「Gallery.ai」は「AI個展'; }
-    90% { content: '「Gallery.ai」は「AI個展生成'; }
-    95% { content: '「Gallery.ai」は「AI個展生成サービス'; }
-    100% { content: '「Gallery.ai」は「AI個展生成サービス」ニャ！'; }
+    5% { content: '「G'; }
+    10% { content: '「Ga'; }
+    15% { content: '「Gal'; }
+    20% { content: '「Gall'; }
+    25% { content: '「Galle'; }
+    30% { content: '「Gallery'; }
+    35% { content: '「Gallery.'; }
+    40% { content: '「Gallery.a'; }
+    45% { content: '「Gallery.ai'; }
+    50% { content: '「Gallery.ai」で'; }
+    55% { content: '「Gallery.ai」では'; }
+    60% { content: '「Gallery.ai」では「AI画像の生成'; }
+    65% { content: '「Gallery.ai」では「AI画像の生成」と'; }
+    70% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成'; }
+    75% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」が'; }
+    80% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができ'; }
+    85% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができる'; }
+    90% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができるに'; }
+    95% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができるニャ'; }
+    100% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができるニャ！'; }
   }
   
   /* typing5 アニメーション */
 
   @keyframes typing5 {
     0% { content: ''; }
-    5% { content: '個'; }
-    10% { content: '個展'; }
-    15% { content: '個展が'; }
-    20% { content: '個展がで'; }
-    25% { content: '個展ができ'; }
-    30% { content: '個展ができた'; }
-    35% { content: '個展ができたら'; }
-    40% { content: '個展ができたらS'; }
-    45% { content: '個展ができたらSha'; }
-    50% { content: '個展ができたらShar'; }
-    55% { content: '個展ができたらShare'; }
-    60% { content: '個展ができたらShareボ'; }
-    65% { content: '個展ができたらShareボタ'; }
-    70% { content: '個展ができたらShareボタン'; }
-    75% { content: '個展ができたらShareボタンで'; }
-    80% { content: '個展ができたらShareボタンで、'; }
-    85% { content: '個展ができたらShareボタンで、ア'; }
-    90% { content: '個展ができたらShareボタンで、アナ'; }
-    95% { content: '個展ができたらShareボタンで、アナタ'; }
-    100% { content: '個展ができたらShareボタンで、アナタの個展を世界に広げようニャ！'; }
-  }
+    2% { content: 'S'; }
+    4% { content: 'Sh'; }
+    6% { content: 'Sha'; }
+    8% { content: 'Shar'; }
+    10% { content: 'Share'; }
+    20% { content: 'Shareボ'; }
+    30% { content: 'Shareボタン'; }
+    35% { content: 'Shareボタンで'; }
+    40% { content: 'Shareボタンで個'; }
+    45% { content: 'Shareボタンで個展'; }
+    50% { content: 'Shareボタンで個展を'; }
+    55% { content: 'Shareボタンで個展をみ'; }
+    60% { content: 'Shareボタンで個展をみん'; }
+    65% { content: 'Shareボタンで個展をみんな'; }
+    70% { content: 'Shareボタンで個展をみんなに'; }
+    75% { content: 'Shareボタンで個展をみんなに共'; }
+    80% { content: 'Shareボタンで個展をみんなに共有'; }
+    85% { content: 'Shareボタンで個展をみんなに共有する'; }
+    90% { content: 'Shareボタンで個展をみんなに共有すること'; }
+    95% { content: 'Shareボタンで個展をみんなに共有することも'; }
+    100% { content: 'Shareボタンで個展をみんなに共有することもできるニャ！'; }
+}
+    
 
 @keyframes typing6 {
     0% { content: ''; }

@@ -50,7 +50,7 @@ export default function HomePage() {
     image5: '/AIs.jpg',
     image6: '/ai8.jpg',
     image7: '/ai6.jpg',
-    image8: '/ai7.jpg',
+    image8: '/aix.jpg',
     image9: '/aicat.png',
   });
 

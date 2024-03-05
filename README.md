@@ -1,4 +1,3 @@
-# Gallery.ai / AI個展生成サービス
 
 ![GOGP](https://github.com/gadname/AI_coten/assets/59115863/264ff173-3a6d-4d6e-a3ba-526f2db72ad1)
 
@@ -11,7 +10,12 @@
 [![Docker](https://img.shields.io/badge/Docker-gray?logo=Docker&logoColor=2496ED)](https://www.docker.com)
 
 
-## サービス概要
+## 🌏 サービスURL 🌏
+https://ai-coten-nu.vercel.app/
+
+Gallery.aiは、「AI画像生成の魅力を伝えたい！」というコンセプトで開発された、無料のAI画像生成アプリです。
+
+わずか3ステップで旅行プランを共有できる直感的なUIで、ユーザーの面倒な旅行の準備をサポートします。
 
 
 

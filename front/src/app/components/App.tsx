@@ -50,6 +50,7 @@ interface CustomMaterial extends THREE.Material {
 export const App = ({ images, onShowModal, onHideModal, isModalVisible, }: AppProps) => {
   const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
   const [modalType, setModalType] = useState('');
+  
 
   const backgroundStyle = {
     backgroundColor: 'hsla(205,100%,13%,1)',

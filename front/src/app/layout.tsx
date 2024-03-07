@@ -11,14 +11,14 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   metadataBase: new URL('https://ai-coten-nu.vercel.app/'), // 本番環境のアプリ名
   title: 'Gallery.ai',
-  description: 'Gallery.aiはAI画像生成&デジタル個展サービスです',
+  description: 'Gallery.aiはAI個展生成サービスです',
   openGraph: {
     title: 'Gallery.ai',
-    description: 'Gallery.aiはAI画像生成&デジタル個展サービスです',
+    description: 'Gallery.aiはAI個展生成サービスです',
   },
   twitter: {
     title: 'Gallery.ai',
-    description: 'Gallery.aiはAI画像生成&デジタル個展サービスです',
+    description: 'Gallery.aiはAI個展生成サービスです',
     card: 'summary_large_image',
   },
 };

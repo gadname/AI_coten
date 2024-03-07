@@ -45,6 +45,7 @@ interface CustomSession extends Session {
 export default function HomePage() {
   const { data: session } = useSession();//sessionの状態を取得
   const params = useSearchParams();
+  const shareQuery = params.get('share_id')
 
   
   const [imageUrls, setImageUrls] = useState({
@@ -155,11 +156,10 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
 // 画像 URL を更新する関数
 
 const fetchImageUrls = async () => {
-  const shareQuery = params.get('share_id')
+ 
   // sessionがある場合は自分の画像URLを取得
   if (shareQuery) {
     // shareQueryから画像データを取得する
-    console.log("**********aaaaa")
     try {
       const response = await fetch(`https://ai-coten.onrender.com/api/v1/user_images/share?user_id=${shareQuery}`, {
         method: 'GET', 
@@ -225,7 +225,7 @@ useEffect(() => {
 return (
   <div className={styles.root}>
     {/* セッションが存在する場合にのみ画像アップロード関連のUIを表示 */}
-    {session && (
+    {session && !shareQuery && (
       <>
         {/* モーダル表示のためのボタンを追加 */}
 

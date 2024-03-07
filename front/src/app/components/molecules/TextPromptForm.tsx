@@ -84,7 +84,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       )}
       <span style={{ marginLeft: 8, display: isListening ? 'inline' : 'none' }}>聞いてるニャ...</span>
     </Button>
-    <span style={{ marginTop: '8px', color: 'red', fontFamily: 'var(--font-dot)' }}>ボタンを押して話してみてニャ！(音声入力)</span>
+    <span style={{ marginTop: '8px', color: 'red', fontFamily: 'var(--font-dot)' }}>ボタンを押して話してみてニャ！</span>
   </div>
 </div>
       <Controller

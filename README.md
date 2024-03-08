@@ -18,13 +18,19 @@ Gallery.aiは、「AI画像生成の魅力を伝えたい！」というコン�
 
 
 
-▼紹介記事(Qiita)
-
 ▼開発者Twitter
+https://twitter.com/Necono_Engineer
+
+何かあれば、こちらまでお気軽にご連絡ください。
 
 # メイン機能の使い方
 
 # 使用技術一覧
+バックエンド: Ruby 3.2.2 / Rails 7.0.7.2
+
+フロントエンド: TypeScript 5.0.2 / React 18.2.0 / Next.js 13.2.4
+環境構築: Docker / Docker Compose
+認証: NextAuth
 
 # 主要対応一覧
 ## ユーザー向け

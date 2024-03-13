@@ -35,7 +35,6 @@ https://twitter.com/Necono_Engineer
 フロントエンド: TypeScript 5.3.3 / React 18.2.0 / Next.js 14.0.4
 環境構築: Docker / Docker Compose 
 認証: NextAuth 4.24.5
-- CarrierWave
 - firebase storage
 - OpenAI APIの使用
 - レスポンシブデザイン(TailwindCSS使用)

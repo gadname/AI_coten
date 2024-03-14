@@ -11,7 +11,6 @@
 [![Next.js](https://img.shields.io/badge/Next.js-v14.0.4-000000?logo=Next.js&logoColor=000000)](https://nextjs.org/blog/next-13-2)
 [![Firebase](https://img.shields.io/badge/Firebase-gray?logo=Firebase&logoColor=FFCA28)](https://firebase.google.com)
 [![Docker](https://img.shields.io/badge/Docker-gray?logo=Docker&logoColor=2496ED)](https://www.docker.com)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=flat&logo=github&logoColor=white)
 
 
 ## 🌏 サービスURL 🌏

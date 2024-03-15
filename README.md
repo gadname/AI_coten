@@ -31,24 +31,38 @@ https://twitter.com/Necono_Engineer
 
 ## 使用技術一覧
 バックエンド: Ruby 3.2.2 / Rails 7.0.8
-フロントエンド: TypeScript 5.3.3 / React 18.2.0 / Next.js 14.0.4
- - コード解析: ESLint
- - CSSフレームワーク: Tailwind CSS
- - 主要パッケージ: Axios
 
-インフラ:バックエンド: Renderでホスト フロントエンド: Vercelでデプロイ
+フロントエンド: TypeScript 5.3.3 / React 18.2.0 / Next.js 14.0.4
+ - 主要パッケージ: Axios / Three.js / MUI
+ - CSSフレームワーク: Tailwind CSS
+ - コード解析: ESLint
+
+インフラ:
+ - バックエンドホスティング: Render
+ - フロントエンドホスティング: Vercel
+ - ストレージ: Firebase Storage
+
 環境構築: Docker / Docker Compose 
+
 認証: NextAuth.js
 
-- firebase storage
-- OpenAI APIの使用
-- レスポンシブデザイン(TailwindCSS使用)
+外部API: 
+- OpenAI API(DALL-E 3による画像生成機能)
+- Web speech API(音声入力機能)
 
-# 主要対応一覧
-## ユーザー向け
+## 主要対応一覧
+
 ### 機能
-### 画面
-## 非ユーザー向け
+
+- Googleアカウントを利用したユーザー登録 / ログイン機能
+- Three.jsを使用した投稿一覧
+- Open AI APIを使用した画像生成機能
+- Web speech APIを使用した音声入力機能
+- Twitterシェア機能
+- 画像の取得 / アップロード機能
+- ローディング画面
+- レスポンシブデザイン
+
 
 ### 画面遷移図
 - ログイン機能（NextAuth認証）
@@ -57,7 +71,7 @@ https://twitter.com/Necono_Engineer
 - Dockerによる環境構築
 - フロントエンド：Next.js
 - バックエンド：Rails
-MUI
+
 
 ER図
 https://app.diagrams.net/#G1BNecqmVT4mcvx4kreQ_sa9qpeW4pQ1FU

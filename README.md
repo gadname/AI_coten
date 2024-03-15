@@ -12,28 +12,34 @@
 [![Firebase](https://img.shields.io/badge/Firebase-gray?logo=Firebase&logoColor=FFCA28)](https://firebase.google.com)
 [![Docker](https://img.shields.io/badge/Docker-gray?logo=Docker&logoColor=2496ED)](https://www.docker.com)
 
+## 🎨サービス概要🎨
+Gallery.aiは、AIを用いて画像を生成し、それらをオンラインで個展として共有できるプラットフォームです。
 
-## 🌏 サービスURL 🌏
+### ▼ サービスURL
 https://ai-coten-nu.vercel.app/
 
-Gallery.aiは、「AI画像生成の魅力を伝えたい！」というコンセプトで開発された、無料のAI画像生成アプリです。
-## サービスへの想い
+レスポンシブ対応済のため、PCでもスマートフォンでも快適にご利用いただけます。
 
 
-
-▼開発者Twitter
+### ▼ 開発者Twitter
 https://twitter.com/Necono_Engineer
 
 何かあれば、こちらまでお気軽にご連絡ください。
 
-# メイン機能の使い方
+## メイン機能の使い方
 
-# 使用技術一覧
+
+## 使用技術一覧
 バックエンド: Ruby 3.2.2 / Rails 7.0.8
-
 フロントエンド: TypeScript 5.3.3 / React 18.2.0 / Next.js 14.0.4
+ - コード解析: ESLint
+ - CSSフレームワーク: Tailwind CSS
+ - 主要パッケージ: Axios
+
+インフラ:バックエンド: Renderでホスト フロントエンド: Vercelでデプロイ
 環境構築: Docker / Docker Compose 
-認証: NextAuth 4.24.5
+認証: NextAuth.js
+
 - firebase storage
 - OpenAI APIの使用
 - レスポンシブデザイン(TailwindCSS使用)
@@ -51,7 +57,7 @@ https://twitter.com/Necono_Engineer
 - Dockerによる環境構築
 - フロントエンド：Next.js
 - バックエンド：Rails
-
+MUI
 
 ER図
 https://app.diagrams.net/#G1BNecqmVT4mcvx4kreQ_sa9qpeW4pQ1FU

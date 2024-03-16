@@ -55,7 +55,7 @@ https://twitter.com/Necono_Engineer
 ### 機能
 
 - Googleアカウントを利用したユーザー登録 / ログイン機能
-- firebase storageへの画像保存
+- Firebase Storageへの画像保存
 - Three.jsを使用した投稿一覧
 - Open AI APIを使用した画像生成機能
 - Web speech APIを使用した音声入力機能

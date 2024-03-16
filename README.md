@@ -55,6 +55,7 @@ https://twitter.com/Necono_Engineer
 ### 機能
 
 - Googleアカウントを利用したユーザー登録 / ログイン機能
+- firebase storageへの画像保存
 - Three.jsを使用した投稿一覧
 - Open AI APIを使用した画像生成機能
 - Web speech APIを使用した音声入力機能
@@ -63,18 +64,9 @@ https://twitter.com/Necono_Engineer
 - ローディング画面
 - レスポンシブデザイン
 
+### ER図
 
 ### 画面遷移図
-- ログイン機能（NextAuth認証）
-- OpenAI APIの使用(画像生成)
-- レスポンシブデザイン(TailwindCSS使用) 
-- Dockerによる環境構築
-- フロントエンド：Next.js
-- バックエンド：Rails
 
-
-ER図
-https://app.diagrams.net/#G1BNecqmVT4mcvx4kreQ_sa9qpeW4pQ1FU
-
-インフラ構成図
+### インフラ構成図
 

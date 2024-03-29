@@ -10,11 +10,6 @@ Rails.application.routes.draw do
           post 'update_urls' 
           get 'share'
         end
-        resources :our_images do
-          collection do
-            post 'update_urls' 
-          end
-        end 
       end
     end
   end

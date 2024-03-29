@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { DallE3Interface } from "../../components/organisms/DallEV3_Interface";
 // import { GptV3_5TurboInterface } from "../../components/organisms/GptV3_5TurboInterface";
-import { FC , useEffect } from "react";
+import { FC  } from "react";
 
 
 export const HomeTemplate: FC<any> = ({onUpload}) => {

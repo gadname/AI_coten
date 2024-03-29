@@ -1,19 +1,16 @@
 "use client";
-import React, { FC, useState, useEffect, useCallback, MouseEventHandler } from "react";
+import React, { FC, useState, useEffect, useCallback, MouseEventHandler } from 'react';
 import styles from './DallEV3_Interface.module.css';
 import { SubmitHandler } from "react-hook-form";
+import { TextPromptForm, TextPromptFormInputs } from '../../components/molecules/TextPromptForm';
+import { ImageWrapper } from '../../components/molecules/ImageWrapper';
 
-import {
-  TextPromptForm,
-  TextPromptFormInputs,
-} from "../../components/molecules/TextPromptForm";
-import { ImageWrapper } from "../../components/molecules/ImageWrapper";
-
-interface ImageItem {
+interface CheckboxItemProps {
   name: string;
-  imageUrl: string;
+  label: string;
+  checked: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
-
 
 export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
   const [checkboxStates, setCheckboxStates] = useState({
@@ -35,34 +32,26 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     logoStyle: false,
     disney: false,
     comic: false,
-    genshin_impact: false,
-    final_fantasy: false,
-    persona5: false,
   });
 
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isExecuting, setIsExecuting] = useState<boolean>(false);
-  const [requestCount, setRequestCount] = useState(() => {
+  const [requestCount, setRequestCount] = useState<number>(() => {
     const storedCount = localStorage.getItem('requestCount');
     return storedCount !== null ? parseInt(storedCount, 10) : 0;
   });
-  const [isLimitReached, setIsLimitReached] = useState(requestCount >= 20);
-
-  const [resetTime, setResetTime] = useState(() => {
+  const [isLimitReached, setIsLimitReached] = useState<boolean>(requestCount >= 20);
+  const [resetTime, setResetTime] = useState<Date | null>(() => {
     const storedResetTime = localStorage.getItem('resetTime');
     return storedResetTime ? new Date(storedResetTime) : null;
   });
-
-  
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
     setCheckboxStates(prev => ({ ...prev, [name]: checked }));
   };
 
-
   useEffect(() => {
-    // リセット時間を過ぎていたらリクエストカウントとリミット到達状態をリセット
     const now = new Date();
     if (resetTime && now >= resetTime) {
       setRequestCount(0);
@@ -73,27 +62,11 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
   }, [resetTime]);
 
   useEffect(() => {
-    // リクエストカウントの変更をローカルストレージに保存
     localStorage.setItem('requestCount', requestCount.toString());
     if (requestCount >= 19) {
       setIsLimitReached(true);
     }
   }, [requestCount]);
-
-
-
-
-
-  const [selectedImage, setSelectedImage] = useState<ImageItem | null>(null);
-
-  const handleImageClick = (imageItem: ImageItem) => {
-    setSelectedImage(imageItem);
-  };
-
-  // モーダルを閉じる関数
-  const handleCloseModal = () => {
-    setSelectedImage(null);
-  };
 
   const onSubmit: SubmitHandler<TextPromptFormInputs> = useCallback(async (data) => {
     if (isLimitReached) {
@@ -158,15 +131,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     if (checkboxStates.comic) {
       promptPrefix += "コミック風に ";
     }
-    if (checkboxStates.genshin_impact) {
-      promptPrefix += "原神風に ";
-    }
-    if (checkboxStates.final_fantasy) {
-      promptPrefix += "ファイナルファンタジー風に ";
-    }
-    if (checkboxStates.persona5) {
-      promptPrefix += "ペルソナ風に ";
-    }
+
     const modifiedData = {
       textPrompt: `${promptPrefix}画像生成が可能な英文に修正 ${data.textPrompt}`,
     };
@@ -184,7 +149,6 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
 
       const result = await response.json();
       setImageUrl(result.srcUrl);
-
       setRequestCount(current => current + 1);
       if (requestCount >= 19) {
         setIsLimitReached(true);
@@ -205,13 +169,6 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     }
   }, [checkboxStates, requestCount, isLimitReached, setRequestCount, setIsExecuting, setResetTime]); // 依存配列を空にしてonSubmit関数が再生成されないようにする
 
-
-  const addImage: MouseEventHandler<HTMLDivElement> = () => {
-    // ここで何かの処理をする
-    console.log('ここまできてるよ')
-    onUpload(imageUrl)
-  };
-
   useEffect(() => {
     if (gptOutput) {
       onSubmit({ textPrompt: gptOutput }); // gptOutputが変更されたときに自動的に送信
@@ -231,95 +188,46 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     minWidth: '49%', // 最小幅を設定して、内容に応じて伸縮するが、あまりにも小さくならないようにする
   };
   
+  const checkboxItems = [
+    { name: 'precision', label: '浮世絵風に' },
+    { name: 'watercolor', label: '水彩画風に' },
+    { name: 'acrylic', label: 'アクリル画風に' },
+    { name: 'pastelArt', label: 'パステル画風に' },
+    { name: 'penAndInk', label: 'ペンとインク風に' },
+    { name: 'brushStroke', label: '筆風に' },
+    { name: 'lineStamp', label: 'LINEスタンプ風に' },
+    { name: 'crayon', label: 'クレヨン画風に' },
+    { name: 'pencilDrawing', label: '鉛筆画風に' },
+    { name: 'coloredPencil', label: '色鉛筆画風に' },
+    { name: 'oilPainting', label: '油絵画風に' },
+    { name: 'vanGogh', label: 'ゴッホ風に' },
+    { name: 'Manet', label: 'モネ風に' },
+    { name: 'picasso', label: 'ピカソ風に' },
+    { name: 'Leonardo_da_Vinci', label: 'ダヴィンチ風に' },
+    { name: 'logoStyle', label: 'ロゴ風に' },
+    { name: 'comic', label: 'コミック風に' },
+    { name: 'disney', label: 'ディズニー風に' },
+  ];
+
+  const CheckboxItem: React.FC<CheckboxItemProps> = ({ name, label, checked, onChange }) => (
+    <label className={`${styles.fontDot}`} style={flexItemStyle}>
+      <input type="checkbox" className={styles.checkboxInput} name={name} checked={checked} onChange={onChange} />
+      {label}
+    </label>
+  );
+
   return (
     <div style={{ width: "100%" }}>
-      <div style={flexContainerStyle}>
-
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="precision" checked={checkboxStates.precision} onChange={handleCheckboxChange} />
-  浮世絵風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="watercolor" checked={checkboxStates.watercolor} onChange={handleCheckboxChange} />
-  水彩画風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="acrylic" checked={checkboxStates.acrylic} onChange={handleCheckboxChange} />
-  アクリル画風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="pastelArt" checked={checkboxStates.pastelArt} onChange={handleCheckboxChange} />
-  パステル画風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="penAndInk" checked={checkboxStates.penAndInk} onChange={handleCheckboxChange} />
-  ペンとインク風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="brushStroke" checked={checkboxStates.brushStroke} onChange={handleCheckboxChange} />
-  筆風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="lineStamp" checked={checkboxStates.lineStamp} onChange={handleCheckboxChange} />
-  LINEスタンプ風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="crayon" checked={checkboxStates.crayon} onChange={handleCheckboxChange} />
-  クレヨン画風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="pencilDrawing" checked={checkboxStates.pencilDrawing} onChange={handleCheckboxChange} />
-  鉛筆画風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="coloredPencil" checked={checkboxStates.coloredPencil} onChange={handleCheckboxChange} />
-  色鉛筆画風に
-</label>
-<label className={`${styles.fontDot}`} style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="oilPainting" checked={checkboxStates.oilPainting} onChange={handleCheckboxChange} />
-  油絵画風に
-</label>
-
-<label className={`${styles.fontDot}`}　style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="vanGogh" checked={checkboxStates.vanGogh} onChange={handleCheckboxChange} />
-  ゴッホ風に
-</label>
-
-<label className={`${styles.fontDot}`}　style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="Manet" checked={checkboxStates.Manet} onChange={handleCheckboxChange} />
-  モネ風に
-</label>
-
-<label className={`${styles.fontDot}`}　style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="picasso" checked={checkboxStates.picasso} onChange={handleCheckboxChange} />
-  ピカソ風に
-</label>
-
-<label className={`${styles.fontDot}`}　style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="Leonardo_da_Vinci" checked={checkboxStates.Leonardo_da_Vinci} onChange={handleCheckboxChange} />
-  ダヴィンチ風に
-</label>
-
-<label className={`${styles.fontDot}`}　style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="logoStyle" checked={checkboxStates.logoStyle} onChange={handleCheckboxChange} />
-  ロゴ風に
-</label>
-
-
-<label className={`${styles.fontDot}`}　style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="comic" checked={checkboxStates.comic} onChange={handleCheckboxChange} />
-  コミック風に
-</label>
-
-<label className={`${styles.fontDot}`}　style={flexItemStyle}>
-  <input type="checkbox" className={styles.checkboxInput} name="disney" checked={checkboxStates.disney} onChange={handleCheckboxChange} />
-  ディズニー風に
-</label>
-
-
-
-
-
+    <div style={flexContainerStyle}>
+      {checkboxItems.map(item => (
+        <CheckboxItem
+          key={item.name}
+          name={item.name}
+          label={item.label}
+          checked={checkboxStates[item.name as keyof typeof checkboxStates]}
+          onChange={handleCheckboxChange}
+        />
+      ))}
     </div>
     <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue={gptOutput} />
     <ImageWrapper src={imageUrl} onUpload={() => onUpload()} />

@@ -4,22 +4,9 @@ import { Canvas, extend, useFrame } from '@react-three/fiber'
 import { Image, ScrollControls, useScroll, Billboard, Text } from '@react-three/drei'
 import { easing, geometry } from 'maath'
 import { initializeApp } from "firebase/app";
-import { listAll, getStorage, ref as firebaseRef, uploadBytes,  getDownloadURL } from "firebase/storage";
-import { ref, deleteObject } from "firebase/storage";
+import { listAll, getStorage, ref as firebaseRef,  getDownloadURL } from "firebase/storage";
 import { TextureLoader } from 'three';
 import { useLoader } from '@react-three/fiber';
-
-const deleteImageFromStorage = async (imagePath: string) => {
-  const imageRef = ref(storage, imagePath);
-
-  try {
-    await deleteObject(imageRef);
-    console.log("File deleted successfully");
-  } catch (error) {
-    console.error("Error removing file: ", error);
-  }
-};
-
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -130,9 +117,7 @@ function Scene({ children, ...props }: { children?: React.ReactNode, [x: string]
     <ActiveCard hovered={hovered} url={selectedImageUrl} />
   </group>
     
-    
   )
-  
 }
 
 
@@ -140,8 +125,6 @@ function Cards({ category, data, from = 0, len = Math.PI * 2, radius = 5.25, onP
   const [hovered, hover] = useState<number | null>(null)
   const amount = Math.round(len * 22)
   const textPosition = from + (amount / 2 / amount) * len
-  
-
   
   return (
     <group {...props}>
@@ -204,10 +187,6 @@ function Card({ url, active, hovered, onPointerOver, onPointerOut,setSelectedIma
     </group>
   );
 }
-interface CustomMaterial extends THREE.Material {
-  zoom?: number;
-}
-
 
 function ActiveCard({ hovered, url, ...props }: { hovered: number | null, url?: string, [key: string]: any }) {
   const ref = useRef<THREE.Mesh>(null);

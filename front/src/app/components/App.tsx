@@ -9,10 +9,8 @@ import { Html } from '@react-three/drei'
 import '../../styles/robot.css';
 import React from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { TextureLoader } from 'three';
 import styles from './App.module.css';
 import { Stars } from '@react-three/drei';
-import { Points, PointMaterial } from '@react-three/drei';
 
 
 

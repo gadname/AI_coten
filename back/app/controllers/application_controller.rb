@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
   def set_current_user
     received_access_token = request.headers["Authorization"].split(' ').last
     
-    Rails.logger.info "User ID in session: #{session[:user_id]}"
-    Rails.logger.info "Received access token: #{received_access_token}"
+    # Rails.logger.info "User ID in session: #{session[:user_id]}"
+    # Rails.logger.info "Received access token: #{received_access_token}"
 
     if session[:user_id] && session[:access_token] == received_access_token
       @current_user = User.find_by(id: session[:user_id])

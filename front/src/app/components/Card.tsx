@@ -33,6 +33,25 @@ const firebaseConfig = {
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 };
 
+interface CardProps {
+  url?: string;
+  active?: boolean;
+  hovered?: boolean;
+  onPointerOver: (index: number | null) => void;
+  onPointerOut: (index: number | null) => void;
+  position?: [number, number, number];
+  rotation?: [number, number, number];
+  category: string;
+  from?: number;
+  len?: number;
+  data?: any;
+  radius?: number;
+  index?: number; // Add this line
+  className?: string;
+  setSelectedImage: (url: string) => void;
+  imageUrls: string[];
+}
+
 
 
 const app = initializeApp(firebaseConfig);
@@ -54,24 +73,7 @@ const fetchImageUrlsFromStorage = async () => {
   }
 };
 
-interface CardProps {
-  url?: string;
-  active?: boolean;
-  hovered?: boolean;
-  onPointerOver: (index: number | null) => void;
-  onPointerOut: (index: number | null) => void;
-  position?: [number, number, number];
-  rotation?: [number, number, number];
-  category: string;
-  from?: number;
-  len?: number;
-  data?: any;
-  radius?: number;
-  index?: number; // Add this line
-  className?: string;
-  setSelectedImage: (url: string) => void;
-  imageUrls: string[];
-}
+
 
 extend(geometry)
 const inter = import('@pmndrs/assets/fonts/inter_regular.woff')

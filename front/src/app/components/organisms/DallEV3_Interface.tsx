@@ -2,9 +2,7 @@
 import React, { FC, useState, useEffect, useCallback, MouseEventHandler } from "react";
 import styles from './DallEV3_Interface.module.css';
 import { SubmitHandler } from "react-hook-form";
-import LoadingSVG from '../../../assets/loading.svg';
-import commonStyles from '../CommonStyles.module.css';
-import { Typography } from "@mui/joy";
+
 import {
   TextPromptForm,
   TextPromptFormInputs,
@@ -14,11 +12,6 @@ import { ImageWrapper } from "../../components/molecules/ImageWrapper";
 interface ImageItem {
   name: string;
   imageUrl: string;
-}
-interface DallE3InterfaceProps {
-  gptOutput: string;
-  isUpload: boolean;
-  // include other properties as necessary
 }
 
 
@@ -59,6 +52,8 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
     const storedResetTime = localStorage.getItem('resetTime');
     return storedResetTime ? new Date(storedResetTime) : null;
   });
+
+  
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = event.target;
@@ -326,8 +321,6 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
 
 
     </div>
-  
-    {/* <Typography level="h2">画像生成</Typography> */}
     <TextPromptForm onSubmit={onSubmit} isExecuting={isExecuting} initialValue={gptOutput} />
     <ImageWrapper src={imageUrl} onUpload={() => onUpload()} />
       

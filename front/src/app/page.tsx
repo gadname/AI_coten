@@ -92,8 +92,10 @@ const verticalTexts = texts.split('').map((char, index) => (
       
       <Stars />
       <Robot />
+      <div className="text-xs sm:text-base">
       <Footer />
-
+      </div>
+      
       <Snackbar
         open={open}
         autoHideDuration={2000}

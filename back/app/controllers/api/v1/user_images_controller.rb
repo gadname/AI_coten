@@ -26,7 +26,7 @@ class Api::V1::UserImagesController < ApplicationController
     if user.present?
       user_images = user.user_images
     end
-
+    
     if user.present? && user_images.any?
       render json: user_images.last.image_urls, status: :ok
     else

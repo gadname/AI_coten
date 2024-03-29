@@ -5,7 +5,6 @@ import { SubmitHandler, useForm, Controller } from "react-hook-form";
 import MicIcon from '@mui/icons-material/Mic';
 import MicOffIcon from '@mui/icons-material/MicOff';
 import { Textarea } from "@mui/joy";
-import commonStyles from '../CommonStyles.module.css';
 
 interface SpeechRecognitionEvent {
   results: SpeechRecognitionResultList;
@@ -38,6 +37,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
   useEffect(() => {
     setValue('textPrompt', initialValue);
   }, [initialValue, setValue]);
+  
   const [isListening, setIsListening] = useState(false);
 
   const startSpeechToText = () => {
@@ -85,8 +85,8 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       <span style={{ marginLeft: 8, display: isListening ? 'inline' : 'none' }}>聞いてるニャ...</span>
     </Button>
     <span style={{ marginTop: '8px', color: 'red', fontFamily: 'var(--font-dot)' }}>ボタンを押して話してみてニャ！</span>
+    </div>
   </div>
-</div>
       <Controller
         name="textPrompt"
         control={control}
@@ -112,7 +112,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       loading={isExecuting}
       style={{ fontFamily: 'var(--font-dot)' }}
       >
-  ガゾウを作るニャ！
+        ガゾウを作るニャ！
   </Button>
       
     </form>

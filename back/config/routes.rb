@@ -14,7 +14,7 @@ Rails.application.routes.draw do
           collection do
             post 'update_urls' 
           end
-        end # このendが不足していました
+        end 
       end
     end
   end

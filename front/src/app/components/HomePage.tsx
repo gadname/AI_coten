@@ -1,24 +1,16 @@
-// components/HomePage.tsx
 import React, { useState,useEffect } from 'react';
-import { App } from './App'; // Adjust the path according to your project structure
+import { App } from './App'; 
 import styles from './HomePage.module.css';
 import ImageUploadModal from './ImageUploadModal';
 import localForage from 'localforage';
 import { useSession } from "next-auth/react";
 import { Session } from "next-auth";
-import { getSession } from 'next-auth/react';
-import Stars from '../components/Stars';
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { DallE3Interface } from '@/app/components/organisms/DallEV3_Interface';
-import { Dialog, Modal } from "@mui/material";
+import {  Modal } from "@mui/material";
 import { useSearchParams } from "next/navigation"
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
@@ -32,18 +24,12 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const storage = getStorage();
 
-// 'file' comes from the Blob or File API
-
-
-// Initialize Firebase
-
-
 interface CustomSession extends Session {
     user_id: string;
     accessToken: string;
   }
 export default function HomePage() {
-  const { data: session } = useSession();//sessionの状態を取得
+  const { data: session } = useSession();
   const params = useSearchParams();
   const shareQuery = params.get('share_id')
 
@@ -110,7 +96,6 @@ const images = [
       uploadBytes(storageRef, file).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((downloadURL) => {
           console.log('File available at', downloadURL);
-          // ここでダウンロードURLを使用してステートを更新
           updateImageUrl(imageKey as keyof typeof imageUrls, downloadURL);
         });
       }).catch((error) => {
@@ -132,7 +117,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
         image_urls: updatedUrls,
       };
       console.log('updatedUrls', updatedUrls);
-      fetch("https://ai-coten.onrender.com/api/v1/user_images/update_urls", { 
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user_images/update_urls`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -161,7 +146,7 @@ const fetchImageUrls = async () => {
   if (shareQuery) {
     // shareQueryから画像データを取得する
     try {
-      const response = await fetch(`https://ai-coten.onrender.com/api/v1/user_images/share?user_id=${shareQuery}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user_images/share?user_id=${shareQuery}`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
@@ -183,7 +168,7 @@ const fetchImageUrls = async () => {
     }
   } else if (session) {
     try {
-      const response = await fetch("https://ai-coten.onrender.com/api/v1/user_images", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user_images`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',

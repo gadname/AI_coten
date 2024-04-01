@@ -1,9 +1,6 @@
 import React, { FC, useState, useEffect, CSSProperties } from 'react';
 import styles from './Robot.module.css';
-import Link from 'next/link';
-import { HomeTemplate } from "@/app/components/templates/HomeTemplate";
 import { usePathname } from 'next/navigation';
-import { DallE3Interface } from './organisms/DallEV3_Interface';
 import Login from '../components/Login';
 
 const dynamicStyles = {
@@ -40,7 +37,7 @@ const Robot: FC<any> = ({onUpload}) => {
 
   // スタイルの分岐
   const style = isMobile 
-    ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '130px', bottom: '130px' }
+    ? { transform: 'scale(0.8)', transformOrigin: 'bottom right', right: '130px', bottom: '60px' }
     : isTablet // タブレットサイズの場合のスタイル
       ? { transform: 'scale(0.9)', right: '100px', bottom: '10px' } // iPadサイズに適したスタイル
       : { right: '0px', top: '500px' };

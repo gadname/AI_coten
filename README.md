@@ -13,7 +13,10 @@
 [![Docker](https://img.shields.io/badge/Docker-gray?logo=Docker&logoColor=2496ED)](https://www.docker.com)
 
 ## 🎨サービス概要🎨
-<font color="Aqua">**Gallery.ai**</font>は、AI画像生成とオンライン個展を掛け合わせた新しいアート・プラットフォームです。
+Gallery.aiは最先端のAI技術、DALL-E 3を使って誰もが簡単にオリジナルのデジタルアートを作成し、展示できるプラットフォームです。
+
+ユーザーが自分のアイデアやキーワードを入力するだけで、AIが独自のアート作品を生成します。
+さらに、このサービスでは生成されたアートを3Dのバーチャルギャラリーで展示することが可能です。
 
 ### ▼ サービスURL
 https://ai-coten-nu.vercel.app/

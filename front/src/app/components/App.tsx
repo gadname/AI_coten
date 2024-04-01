@@ -211,7 +211,7 @@ function Frames({ images, onShowModal, onHideModal, isModalVisible, q = new THRE
                  {/* 画像アップロードボタン */}
       
                 <div className="face">
-                <div className={styles.speechBubble}>{selectedModalType === 'dalle' ? 'post!' : 'create!'}</div>
+                <div className={styles.speechBubble}>{selectedModalType === 'dalle' ? 'Post!ニャ!' : 'Create!ニャ!'}</div>
           
                   <div className="face__wrapper">
                   <div className="triangleMouth"></div> 

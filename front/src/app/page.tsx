@@ -8,7 +8,6 @@ import Main from './components/Main';
 import Link from 'next/link';
 import Ball from './components/Ball';
 import Robot from './components/Robot';
-import Flic from './components/flic';
 import Stars from './components/Stars';
 import { Ticket }  from './components/Card';
 import  Hed  from './components/Header';
@@ -34,20 +33,7 @@ const styles = {
 };
 
 export default function Home() {
-  const typewritewText = "AIで、創る。";
-  const typewritewText2 = "DALL-E3を使用し、AIでイラストを作成することができます。";
-  const text = "想い、";
-  const texts = "描く。";
-const verticalText = text.split('').map((char, index) => (
-  <div key={index} style={{writingMode: 'vertical-rl'}}>
-    {char}
-  </div>
-));
-const verticalTexts = texts.split('').map((char, index) => (
-  <div key={index} style={{writingMode: 'vertical-rl'}}>
-    {char}
-  </div>
-));
+
   const { data: session, status } = useSession() as any
 
   const [open, hundleOpen] = useState(false)
@@ -93,7 +79,9 @@ const verticalTexts = texts.split('').map((char, index) => (
       <Stars />
       <Robot />
       <div className="text-xs sm:text-base">
-      <Footer />
+      <div className="lg:block hidden">
+        <Footer />
+      </div>
       </div>
       
       <Snackbar

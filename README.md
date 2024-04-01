@@ -13,7 +13,7 @@
 [![Docker](https://img.shields.io/badge/Docker-gray?logo=Docker&logoColor=2496ED)](https://www.docker.com)
 
 ## 🎨サービス概要🎨
-<font color="Aqua">**Gallery.ai**</font>は、AIとオンライン個展を掛け合わせた新しいアート・プラットフォームです。
+<font color="Aqua">**Gallery.ai**</font>は、AI画像生成とオンライン個展を掛け合わせた新しいアート・プラットフォームです。
 
 ### ▼ サービスURL
 https://ai-coten-nu.vercel.app/

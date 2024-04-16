@@ -29,13 +29,6 @@ https://twitter.com/Necono_Engineer
 
 当サービスは、私が参加したスクールの自主的なチーム開発がきっかけで始まりました。
 
-
-**チーム開発したサービス** : [MISERY](https://misery-seven.vercel.app/)
-
-
-https://misery-seven.vercel.app/
-
-
 チーム内での私の役割はフロント実装・UIデザインでしたが、適切な画像をどのように選ぶかが大きな課題でした。
 
 この問題の解決策として、画像生成AIの力を借りました。

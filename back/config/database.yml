@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: ai_coten_db_fg85
-  username: ai_coten_db_fg85_user
+  database: ai_coten_db_zjbu
+  username: ai_coten_db_zjbu_user
   url: <%= ENV['DATABASE_URL'] %>

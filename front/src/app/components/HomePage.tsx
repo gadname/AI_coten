@@ -117,7 +117,7 @@ const updateImageUrl = (imageKey: keyof typeof imageUrls, newUrl: string) => {
         image_urls: updatedUrls,
       };
       console.log('updatedUrls', updatedUrls);
-      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user_images/update_urls`, { 
+      fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/user_images/update_urls`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ const fetchImageUrls = async () => {
   if (shareQuery) {
     // shareQueryから画像データを取得する
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user_images/share?user_id=${shareQuery}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/user_images/share?user_id=${shareQuery}`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ const fetchImageUrls = async () => {
     }
   } else if (session) {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/user_images`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/user_images`, {
         method: 'GET', 
         headers: {
           'Content-Type': 'application/json',

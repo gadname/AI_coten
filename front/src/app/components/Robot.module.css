@@ -8,7 +8,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   
-  background: linear-gradient(135deg, rgba(255,255,255,.4) 8%, rgba(255,255,255,.1) 60%, rgba(255,255,255,.2) 92%);
+  background: linear-gradient(135deg, rgba(142, 182, 208, 0.8) 10%, rgba(255,255,255,.3) 60%, rgba(255,255,255,.2) 92%);
   transition: all ease .7s;
   color: #000000;
   padding: 20px;
@@ -550,7 +550,9 @@
   
   .modalContent::before {
     font-family: var(--font-dot);
-    color: white;
+    color: #ffde55;
+    font-weight: 300;
+    text-shadow: 0 0 2px #ffde55;
     content: "";
     animation: typing1 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
   }
@@ -593,7 +595,7 @@
     75% { content: '「Gallery.ai」へヨーコ'; }
     80% { content: '「Gallery.ai」へヨーコソ'; }
     85% { content: '「Gallery.ai」へヨーコソ！'; }
-    90% { content: '「Gallery.ai」へヨーコソ！ニャ'; }
+    90% { content: '「Gallery.ai」ーコソ！ニ'; }
     95% { content: '「Gallery.ai」へヨーコソ！ニャ！'; }
     100% { content: '「Gallery.ai」へヨーコソ！ニャ！'; }
 }
@@ -659,42 +661,44 @@
     45% { content: '「Gallery.ai'; }
     50% { content: '「Gallery.ai」で'; }
     55% { content: '「Gallery.ai」では'; }
-    60% { content: '「Gallery.ai」では「AI画像の生成'; }
-    65% { content: '「Gallery.ai」では「AI画像の生成」と'; }
-    70% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成'; }
-    75% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」が'; }
-    80% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができ'; }
-    85% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができる'; }
-    90% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができるに'; }
-    95% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができるニャ'; }
-    100% { content: '「Gallery.ai」では「AI画像の生成」と「個展の作成」ができるニャ！'; }
+    60% { content: '「Gallery.ai」では「AIガゾウの生成'; }
+    65% { content: '「Gallery.ai」では「AIガゾウの生成」と'; }
+    70% { content: '「Gallery.ai」では「AIガゾウの生成」と「コテンの作成'; }
+    75% { content: '「Gallery.ai」では「AIガゾウの生成」と「コテンの作成」が'; }
+    80% { content: '「Gallery.ai」では「AIガゾウの生成」と「コテンの作成」ができ'; }
+    85% { content: '「Gallery.ai」では「AIガゾウの生成」と「コテンの作成」ができる'; }
+    90% { content: '「Gallery.ai」では「AIガゾウの生成」と「コテンの作成」ができるに'; }
+    95% { content: '「Gallery.ai」では「AIガゾウの生成」と「コテンの作成」ができるニャ'; }
+    100% { content: '「Gallery.ai」では「AIガゾウの生成」と「コテンの作成」ができるニャ！'; }
   }
   
   /* typing5 アニメーション */
 
   @keyframes typing5 {
     0% { content: ''; }
-    2% { content: 'S'; }
-    4% { content: 'Sh'; }
-    6% { content: 'Sha'; }
-    8% { content: 'Shar'; }
-    10% { content: 'Share'; }
-    20% { content: 'Shareボ'; }
-    30% { content: 'Shareボタン'; }
-    35% { content: 'Shareボタンで'; }
-    40% { content: 'Shareボタンで個'; }
-    45% { content: 'Shareボタンで個展'; }
-    50% { content: 'Shareボタンで個展を'; }
-    55% { content: 'Shareボタンで個展をみ'; }
-    60% { content: 'Shareボタンで個展をみん'; }
-    65% { content: 'Shareボタンで個展をみんな'; }
-    70% { content: 'Shareボタンで個展をみんなに'; }
-    75% { content: 'Shareボタンで個展をみんなに共'; }
-    80% { content: 'Shareボタンで個展をみんなに共有'; }
-    85% { content: 'Shareボタンで個展をみんなに共有する'; }
-    90% { content: 'Shareボタンで個展をみんなに共有すること'; }
-    95% { content: 'Shareボタンで個展をみんなに共有することも'; }
-    100% { content: 'Shareボタンで個展をみんなに共有することもできるニャ！'; }
+    2% { content: '「'; }
+    4% { content: '「S'; }
+    6% { content: '「Sh'; }
+    8% { content: '「Sha'; }
+    10% { content: '「Shar'; }
+    15% { content: '「Share'; }
+    20% { content: '「Share」'; }
+    25% { content: '「Share」ボ'; }
+    30% { content: '「Share」ボタ'; }
+    35% { content: '「Share」ボタン'; }
+    40% { content: '「Share」ボタンで'; }
+    45% { content: '「Share」ボタンでコ'; }
+    50% { content: '「Share」ボタンでコテ'; }
+    55% { content: '「Share」ボタンでコテン'; }
+    60% { content: '「Share」ボタンでコテンを'; }
+    65% { content: '「Share」ボタンでコテンをシ'; }
+    70% { content: '「Share」ボタンでコテンをシェ'; }
+    75% { content: '「Share」ボタンでコテンをシェア'; }
+    80% { content: '「Share」ボタンでコテンをシェアも'; }
+    85% { content: '「Share」ボタンでコテンをシェアもでき'; }
+    90% { content: '「Share」ボタンでコテンをシェアもできる'; }
+    95% { content: '「Share」ボタンでコテンをシェアもできるニャ'; }
+    100% { content: '「Share」ボタンでコテンをシェアもできるニャ！'; }
 }
     
 
@@ -712,14 +716,14 @@
     50% { content: '「Gallery.ai'; }
     55% { content: '「Gallery.ai」'; }
     60% { content: '「Gallery.ai」の'; }
-    65% { content: '「Gallery.ai」の世'; }
-    70% { content: '「Gallery.ai」の世界'; }
-    75% { content: '「Gallery.ai」の世界に'; }
-    80% { content: '「Gallery.ai」の世界にレ'; }
-    85% { content: '「Gallery.ai」の世界にレッ'; }
-    90% { content: '「Gallery.ai」の世界にレッツ'; }
-    95% { content: '「Gallery.ai」の世界にレッツゴ'; }
-    100% { content: '「Gallery.ai」の世界にレッツゴー！ニャ！'; }
+    65% { content: '「Gallery.ai」のセ'; }
+    70% { content: '「Gallery.ai」のセカ'; }
+    75% { content: '「Gallery.ai」のセカイ'; }
+    80% { content: '「Gallery.ai」のセカイにレ'; }
+    85% { content: '「Gallery.ai」のセカイにレッ'; }
+    90% { content: '「Gallery.ai」のセカイにレッツ'; }
+    95% { content: '「Gallery.ai」のセカイにレッツゴ'; }
+    100% { content: '「Gallery.ai」のセカイにレッツゴー！ニャ！'; }
 }
   
   
@@ -751,42 +755,58 @@
 
   .speechBubble {
     position: absolute;
-    top: -20px; /* 顔の上端からさらに上に配置 */
-    left: 110%; /* 顔の右端から少し離れた位置に配置 */
-    transform: translate(0, -100%); /* Y軸方向の中心を上にずらし、さらに上方向に少し移動 */
+    top: -30px;
+    left: 110%;
+    transform: translate(0, -100%);
     background: linear-gradient(135deg, rgba(255,255,255,.4) 8%, rgba(255,255,255,.1) 60%, rgba(255,255,255,.2) 92%);
-    border-radius: 50%; /* 丸みを増やす */
-    padding: 10px 20px;
+    border-radius: 50%;
+    padding: 20px 35px;
     color: #f1e9e9;
-    font-size: 14px;
+    font-size: 20px;
     font-family: var(--font-dot);
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
     z-index: 3;
+    width: auto;
+    min-width: 140px;
+    text-align: center;
 }
 
 .speechBubble::after {
     content: "";
     position: absolute;
-    bottom: -10px; /* 尾っぽの基点を吹き出しの下部に設定 */
-    left: 20%; /* 尾っぽの左右の位置を調整 */
+    bottom: -10px;
+    left: 20%;
     width: 20px;
     height: 20px;
-    background: inherit; /* 吹き出しと同じ背景色を使用 */
+    background: inherit;
     border-radius: 50%;
-    transform: translateX(-50%) rotate(45deg); /* 尾っぽを適切な角度に回転 */
-    box-shadow: -2px 2px 2px rgba(0,0,0,0.1); /* 尾っぽにも影を追加 */
-  }
+    transform: translateX(-50%) rotate(45deg);
+    box-shadow: -2px 2px 2px rgba(0,0,0,0.1);
+}
 
-  .speechBubble::before {
+.speechBubble::before {
     content: "";
     position: absolute;
-    bottom: -20px; /* 尾っぽの基点より下に配置 */
-    left: 10%; /* 尾っぽの中心に配置 */
-    width: 10px; /* 小さな丸のサイズ */
-    height: 10px; /* 小さな丸のサイズ */
-    background: inherit; /* 吹き出しと同じ背景色を使用 */
-    border-radius: 50%; /* 完全な円形に */
-    transform: translateX(-50%) translateY(50%) rotate(45deg); /* 尾っぽの左下に配置し、角度を調整 */
-    box-shadow: -1px 1px 2px rgba(0,0,0,0.1); /* 小さな丸にも影を追加 */
+    bottom: -20px;
+    left: 10%;
+    width: 10px;
+    height: 10px;
+    background: inherit;
+    border-radius: 50%;
+    transform: translateX(-50%) translateY(50%) rotate(45deg);
+    box-shadow: -1px 1px 2px rgba(0,0,0,0.1);
+}
+  
+.blinkText {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 49.99% {
+    opacity: 0;
   }
+  50%, 100% {
+    opacity: 1;
+  }
+}
   

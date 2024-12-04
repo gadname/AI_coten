@@ -19,6 +19,7 @@ const Robot: FC<any> = ({onUpload}) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false); // タブレットサイズの状態
   const [isThreePath, setIsThreePath] = useState(false);
+  const [clickText, setClickText] = useState('Click!');
 
   const pathname = usePathname();
 
@@ -34,6 +35,14 @@ const Robot: FC<any> = ({onUpload}) => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (isTypingSixth) {
+      setClickText("Let'sGo!");
+    } else {
+      setClickText('Click!');
+    }
+  }, [isTypingSixth]);
 
   // スタイルの分岐
   const style = isMobile 
@@ -163,12 +172,14 @@ useEffect(() => {
           <div className="front parts_A"></div>
           <div className="front parts_B"></div>
           <div className="face">
-          <div className={styles.speechBubble}>touch me !</div>
+          <div className={styles.speechBubble}>
+            <span className={styles.blinkText}>Click me !</span>
+          </div>
           
             <div className="face__wrapper">
               <div className="eye"></div>
               <div className="triangleMouth"></div> 
-              <span className="text">Click!</span>
+              <span className="text">{clickText}</span>
             </div>
             
           </div>

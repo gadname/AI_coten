@@ -144,7 +144,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
         body: JSON.stringify(modifiedData),
       });
       if (!response.ok) {
-        throw new Error("リクエストに失敗したニャ...もう一度試してみてニャ");
+        throw new Error("リクエストに失敗したニャ...もう1度試してみてニャ");
       }
 
       const result = await response.json();
@@ -237,7 +237,7 @@ export const DallE3Interface: FC<any> = ({ onUpload, gptOutput }) => {
       {isLimitReached ? (
         <p style={{ color: 'red' }}>リクエストの上限に達しました。</p>
       ) : (
-        <p>残りのリクエスト回数: {20 - requestCount}</p>
+        <p>リクエスト残り回数: {20 - requestCount}</p>
       )}
     </div>
   </div>

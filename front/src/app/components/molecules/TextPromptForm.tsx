@@ -82,9 +82,9 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       ) : (
         <MicIcon style={{ color: 'white', border: '2px solid white', borderRadius: '50%', padding: '4px', fontSize: '28px', backgroundColor: 'red' }} />
       )}
-      <span style={{ marginLeft: 8, display: isListening ? 'inline' : 'none' }}>聞いてるニャ...</span>
+      <span style={{ marginLeft: 8, display: isListening ? 'inline' : 'none' }}>きこえてるニャ...</span>
     </Button>
-    <span style={{ marginTop: '8px', color: 'red', fontFamily: 'var(--font-dot)' }}>ボタンを押して話してみてニャ！</span>
+    <span style={{ marginTop: '8px', color: 'red', fontFamily: 'var(--font-dot)' }}>ポチッとニャ。はなしてみてニャ！</span>
     </div>
   </div>
       <Controller
@@ -98,7 +98,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
               minRows={2}
               onChange={onChange}
               value={value}
-              placeholder="ここに文字を打つニャ!"
+              placeholder="どんなガゾウをつくるかニャ?"
               style={{ fontFamily: 'var(--font-dot)' }}
               
             />
@@ -112,7 +112,7 @@ export const TextPromptForm: FC<TextPromptFormProps> = ({ onSubmit, isExecuting,
       loading={isExecuting}
       style={{ fontFamily: 'var(--font-dot)' }}
       >
-        ガゾウを作るニャ！
+        ガゾウをつくるニャ！
   </Button>
       
     </form>

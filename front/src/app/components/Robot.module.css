@@ -113,8 +113,8 @@
     margin : auto ;
     width : 200px ;
     height : 64px ;
-    background : #333 ;
-    box-shadow : 0 0 8px rgba(0,0,0,.6) inset ;
+    background : #41d75f ;
+    box-shadow : 0 0 8px #41d75f inset , 0 0 12px ;
     border-radius: 20px;
 }
 
@@ -170,7 +170,7 @@
     border-radius : 20px ;
     background : #ffde55 ;
     box-sizing : border-box ;
-    border : solid 1px #a48c00 ;
+    border : solid 20px #01ff45 ;
     box-shadow : 0 0 8px rgba(255,255,0 ,1)  ;
     animation : eye linear 6s infinite ;
     transition : all ease .2s ;
@@ -197,11 +197,12 @@
     height : 70% ;
     font-size : 24px ;
     font-weight : bold ;
-    color : transparent ;
+    color : #ffffff ;
     
     letter-spacing : 3px ;
     transition : all ease-out .2s ;
     border-radius: 20px;
+    text-shadow: 0 0 8px rgba(65, 215, 95, 0.8);
 }
 .text::before,
 .text::after{
@@ -209,9 +210,9 @@
     position : absolute ;
     width : 0 ;
     height : 2px ;
-    background : #ffde55 ;
+    background : #41d75f ;
     transition : all ease-out .2s ;
-    box-shadow : 0 0 8px rgba(255,255,0 ,1)  ;
+    box-shadow : 0 0 8px rgba(65, 215, 95, 0.8) ;
 }
 .text::before{
     top : 0 ;
@@ -477,7 +478,7 @@
 }
 .robot:hover .text{
     color : #ffde55 ;
-    text-shadow : 0 0 4px #ffde55 ;
+    text-shadow : 0 0 4px #55ff7a ;
 }
 .robot:hover .text::before,
 .robot:hover .text::after{
@@ -550,9 +551,9 @@
   
   .modalContent::before {
     font-family: var(--font-dot);
-    color: #ffde55;
-    font-weight: 300;
-    text-shadow: 0 0 2px #ffde55;
+    color: #ffffff;
+    font-weight: 400;
+    text-shadow: 0 0 4px #00fbff;
     content: "";
     animation: typing1 1s steps(30, end) 0s forwards, blink-caret 0.75s step-end infinite;
   }
@@ -761,7 +762,7 @@
     background: linear-gradient(135deg, rgba(255,255,255,.4) 8%, rgba(255,255,255,.1) 60%, rgba(255,255,255,.2) 92%);
     border-radius: 50%;
     padding: 20px 35px;
-    color: #f1e9e9;
+    color: #e9f0f1;
     font-size: 20px;
     font-family: var(--font-dot);
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -799,6 +800,9 @@
   
 .blinkText {
   animation: blink 1s infinite;
+  color: #ffffff;
+  text-shadow: 0 0 4px #00fbff;
+  font-size: 20px;
 }
 
 @keyframes blink {
